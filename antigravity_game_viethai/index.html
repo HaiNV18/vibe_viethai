@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cờ Caro (Gomoku) - HTML5 Canvas Game</title>
+    <meta name="description" content="Game Cờ Caro 20x20 hoàn chỉnh bằng JavaScript thuần và HTML5 Canvas với giao diện hiện đại, animation mượt mà, đồng hồ đếm giờ và tính năng hoàn tác.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header tiêu đề game -->
+        <header class="game-header">
+            <h1 class="game-title">CỜ CARO <span class="accent-text">GOMOKU</span></h1>
+            <p class="game-subtitle">Bàn cờ 20x20 - 5 quân liên tiếp để chiến thắng</p>
+        </header>
+
+        <!-- Khung nội dung chính -->
+        <main class="game-content">
+            <!-- Bảng điều khiển side panel -->
+            <aside class="control-panel">
+                <!-- Thẻ người chơi hiện tại -->
+                <div class="card turn-card">
+                    <h2 class="card-title">LƯỢT HIỆN TẠI</h2>
+                    <div class="player-badge-container">
+                        <div id="player-x-badge" class="player-badge active player-x">
+                            <span class="symbol">X</span>
+                            <span class="name">Người chơi 1</span>
+                        </div>
+                        <div id="player-o-badge" class="player-badge player-o">
+                            <span class="symbol">O</span>
+                            <span class="name">Người chơi 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Đồng hồ đếm ngược 30s -->
+                <div class="card timer-card">
+                    <div class="timer-header">
+                        <span class="card-title">THỜI GIAN LƯỢT</span>
+                        <span id="timer-text" class="timer-countdown">30s</span>
+                    </div>
+                    <div class="timer-bar-bg">
+                        <div id="timer-bar" class="timer-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Thông tin trạng thái & Số lượt -->
+                <div class="card stats-card">
+                    <div class="stat-item">
+                        <span class="stat-label">Số nước đi:</span>
+                        <span id="move-count" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Trạng thái:</span>
+                        <span id="game-status" class="stat-value status-playing">Đang chơi...</span>
+                    </div>
+                </div>
+
+                <!-- Nhóm nút hành động -->
+                <div class="action-buttons">
+                    <button id="btn-undo" class="btn btn-secondary" title="Hoàn tác nước đi (Ctrl + Z)">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 7v6h6"></path>
+                            <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+                        </svg>
+                        Hoàn tác <span class="hotkey">(Ctrl+Z)</span>
+                    </button>
+
+                    <button id="btn-restart" class="btn btn-warning" title="Chơi lại ván hiện tại (Phím R)">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 4v6h-6"></path>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
+                        Chơi lại <span class="hotkey">(Phím R)</span>
+                    </button>
+
+                    <button id="btn-newgame" class="btn btn-primary" title="Bắt đầu ván đấu mới">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Bắt đầu mới
+                    </button>
+                </div>
+
+                <!-- Khung phím tắt hướng dẫn -->
+                <div class="card shortcuts-card">
+                    <h3 class="card-subtitle">Hướng dẫn & Phím tắt</h3>
+                    <ul class="shortcut-list">
+                        <li><kbd>Click chuột</kbd>: Đặt quân cờ</li>
+                        <li><kbd>Ctrl</kbd> + <kbd>Z</kbd>: Hoàn tác nước đi</li>
+                        <li><kbd>R</kbd>: Chơi lại từ đầu</li>
+                        <li>⏱ Hết 30s tự chuyển lượt</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Khung chứa Canvas bàn cờ -->
+            <section class="canvas-container">
+                <div class="board-frame">
+                    <canvas id="game-canvas" width="800" height="800"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script chính -->
+    <script src="game.js"></script>
+</body>
+</html>

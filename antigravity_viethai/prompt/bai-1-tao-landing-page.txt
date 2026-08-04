@@ -1,0 +1,49 @@
+Hãy tạo cho tôi một trang Landing Page đơn giản bằng HTML, CSS (dùng Bootstrap qua CDN) và JavaScript. Trang web bao gồm các phần:
+
+Chủ đề: trung tâm tin học, dạy các môn như MOS, lập trình Java, sử dụng AI.
+
+Header/Navbar: Logo tên thương hiệu và menu chuyển hướng đơn giản.
+
+Hero Section: Tiêu đề giật gân, đoạn mô tả ngắn và 1 nút kêu gọi hành động (Call to Action - CTA).
+
+Features Section: 3 thẻ (cards) trình bày tính năng nổi bật.
+
+Footer: Thông tin bản quyền và liên hệ.
+Hãy lưu mã nguồn chính vào tệp index.html.
+
+
+===============
+
+Tiếp theo, hãy tạo trang chi tiết khóa học.
+
+Banner: Ứng Dụng AI Đột Phá, có tấm hình nền máy vi tính.
+
+Widget bên phải: nút mạng xã hội (Facebook, YoUTUbe, TikTok...)
+
+Nội dung bên trái: giới thiệu khóa học về AI (Claude AI, LLM...)
+
+Học phí: 4 triệu
+Thời gian: 6 buổi, mỗi buổi 3 tiếng. Thứ 7 và Chủ Nhật, từ 13:30 đến 16:30
+
+===============
+
+Hãy tạo ra các trang chi tiết khóa học khác:
+
+Khóa học MOS: mos-ai.html
+
+Banner: Khóa học MOS, có tấm hình nền Word, Excel
+
+Widget bên phải: nút mạng xã hội (Facebook, YoUTUbe, TikTok...)
+
+Nội dung bên trái: giới thiệu khóa học luyện thi MOS.
+Học viên sẽ được đào tạo về Word, Excel, PowerPoint
+
+Học phí:
+1000000 dành cho khóa Word + Excel
+1500000 dành cho khóa Word + Excel + PowerPoint
+
+Thời gian: 6 buổi, mỗi buổi 3 tiếng. Thứ 7 và Chủ Nhật, từ 13:30 đến 16:30
+
+
+
+

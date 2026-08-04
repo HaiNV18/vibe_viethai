@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trung tâm Đào tạo Tin học & Công nghệ hàng đầu - Chuyên đào tạo MOS chuẩn quốc tế, Lập trình Java thực chiến và Ứng dụng AI đột phá hiệu suất.">
+    <title>TechEdu Academy - Đào Tạo MOS, Lập Trình Java & Ứng Dụng AI</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary-color: #06b6d4;
+            --accent-pink: #ec4899;
+            --dark-bg: #0f172a;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #d946ef 100%);
+            --gradient-subtle: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Gradient Text Utility */
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphic Navbar */
+        .navbar-custom {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #334155;
+            margin: 0 8px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        /* Custom Button */
+        .btn-gradient {
+            background: var(--gradient-primary);
+            color: #fff;
+            font-weight: 700;
+            border: none;
+            border-radius: 50rem;
+            padding: 0.75rem 1.75rem;
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.5);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid #cbd5e1;
+            color: var(--text-dark);
+            font-weight: 700;
+            border-radius: 50rem;
+            padding: 0.725rem 1.75rem;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: rgba(79, 70, 229, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            padding: 120px 0 80px 0;
+            background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.1), transparent 40%);
+        }
+
+        .badge-glow {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.875rem;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .hero-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f1f5f9;
+            position: relative;
+        }
+
+        .stat-badge {
+            background: #f8fafc;
+            border-radius: 1rem;
+            padding: 1rem 1.25rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 90px 0;
+            background-color: #ffffff;
+        }
+
+        .section-tag {
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            font-weight: 800;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            border: 1px solid #e2e8f0;
+            padding: 2.25rem;
+            height: 100%;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-mos {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0284c7;
+        }
+
+        .icon-java {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+        }
+
+        .icon-ai {
+            background: rgba(168, 85, 247, 0.1);
+            color: #9333ea;
+        }
+
+        .feature-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-desc {
+            color: var(--text-muted);
+            font-size: 0.975rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-list li i {
+            color: #10b981;
+        }
+
+        /* Banner CTA Section */
+        .cta-banner {
+            padding: 80px 0;
+            background: var(--dark-bg);
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0b0f19;
+            color: #94a3b8;
+            padding: 70px 0 30px 0;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-brand {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .footer-title {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1e293b;
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-color);
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        /* Back to top button */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 991.98px) {
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .hero-section {
+                padding: 100px 0 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="bi bi-cpu-fill text-gradient fs-3"></i>
+                <span class="text-dark">TechEdu</span><span class="text-gradient">Academy</span>
+            </a>
+            
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#hero">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Khóa Học</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Về Chúng Tôi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Liên Hệ</a>
+                    </li>
+                </ul>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-gradient" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        <i class="bi bi-send-fill me-1"></i> Đăng Ký Tư Vấn
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <div class="badge-glow mb-3">
+                        <i class="bi bi-stars"></i> ĐÀO TẠO CÔNG NGHỆ CHUẨN THỰC CHIẾN 2026
+                    </div>
+                    <h1 class="hero-title mb-4">
+                        Bứt Phá Sự Nghiệp Với <span class="text-gradient">MOS, Java</span> & Đột Phá Bằng <span class="text-gradient">AI</span>
+                    </h1>
+                    <p class="hero-subtitle mb-4">
+                        Trung tâm tin học hàng đầu giúp bạn làm chủ kỹ năng văn phòng chuẩn quốc tế, thành thạo lập trình Java chuẩn doanh nghiệp và tối ưu 80% hiệu suất làm việc bằng công nghệ AI tiên tiến.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 mb-5">
+                        <a href="#courses" class="btn btn-gradient">
+                            <i class="bi bi-rocket-takeoff-fill me-2"></i> Khám Phá Khóa Học
+                        </a>
+                        <button class="btn btn-outline-custom" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            <i class="bi bi-play-circle-fill me-2"></i> Nhận Học Thử Miễn Phí
+                        </button>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <div class="stat-badge text-center">
+                                <h3 class="fw-bold text-gradient mb-0">5,000+</h3>
+                                <small class="text-muted fw-semibold">Học viên tốt nghiệp</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-badge text-center">
+                                <h3 class="fw-bold text-gradient mb-0">98%</h3>
+                                <small class="text-muted fw-semibold">Có việc làm ngay</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="stat-badge text-center">
+                                <h3 class="fw-bold text-gradient mb-0">15+</h3>
+                                <small class="text-muted fw-semibold">Chuyên gia giảng dạy</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-card">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                <i class="bi bi-journal-check fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-0">Tư Vấn Khóa Học Nhanh</h5>
+                                <small class="text-muted">Nhận lộ trình cá nhân hóa miễn phí</small>
+                            </div>
+                        </div>
+                        <form id="heroForm">
+                            <div class="mb-3">
+                                <label for="heroName" class="form-label fw-semibold">Họ và tên</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control bg-light" id="heroName" placeholder="Nguyễn Văn A" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="heroPhone" class="form-label fw-semibold">Số điện thoại</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light"><i class="bi bi-telephone"></i></span>
+                                    <input type="tel" class="form-control bg-light" id="heroPhone" placeholder="090x xxx xxx" required>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="heroCourse" class="form-label fw-semibold">Khóa học quan tâm</label>
+                                <select class="form-select bg-light" id="heroCourse">
+                                    <option value="MOS">Tin học văn phòng MOS Quốc tế</option>
+                                    <option value="Java">Lập trình Java từ Zero đến Hero</option>
+                                    <option value="AI">Ứng dụng AI & Prompt Engineering</option>
+                                    <option value="All">Combo Cả 3 Khóa Học (Ưu đãi 35%)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-gradient w-100 py-3">
+                                <i class="bi bi-arrow-right-circle-fill me-2"></i> Đăng Ký Nhận Tư Vấn
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Courses Section -->
+    <section class="features-section" id="courses">
+        <div class="container">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="section-tag">CHƯƠNG TRÌNH ĐÀO TẠO NỔI BẬT</span>
+                <h2 class="section-title mt-2">Các Khóa Học Trọng Tâm Tại TechEdu</h2>
+                <p class="text-muted fs-6">Được thiết kế chuẩn thực tế doanh nghiệp, đáp ứng nhu cầu tuyển dụng khắt khe nhất hiện nay.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Card 1: MOS -->
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-box icon-mos">
+                            <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+                        </div>
+                        <h3 class="feature-title">Tin Học Văn Phòng MOS</h3>
+                        <p class="feature-desc">
+                            Thành thạo trọn bộ Microsoft Office (Excel, Word, PowerPoint). Cam kết chuẩn đầu ra chứng chỉ quốc tế MOS do Certiport cấp.
+                        </p>
+                        <ul class="feature-list">
+                            <li><i class="bi bi-check-circle-fill"></i> Xử lý dữ liệu Excel chuyên sâu & Dashboard</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Soạn thảo văn bản hành chính chuẩn ISO</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Thiết kế Slide thuyết trình ấn tượng</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Tự tin thi đạt chứng chỉ MOS 900+ điểm</li>
+                        </ul>
+                        <a href="mos-ai.html" class="btn btn-outline-custom w-100 mt-auto text-decoration-none text-center">
+                            Xem Chi Tiết Khóa Học
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Java -->
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-box icon-java">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h3 class="feature-title">Lập Trình Java Thực Chiến</h3>
+                        <p class="feature-desc">
+                            Từ tư duy lập trình nền tảng, Hướng đối tượng (OOP) đến phát triển ứng dụng Web chuyên nghiệp với Spring Boot & MySQL.
+                        </p>
+                        <ul class="feature-list">
+                            <li><i class="bi bi-check-circle-fill"></i> Cấu trúc dữ liệu & Tư duy giải thuật</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Lập trình OOP, Collection, Multithreading</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Xây dựng RESTful API với Spring Boot</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Thực hành project thực tế bảo vệ tốt nghiệp</li>
+                        </ul>
+                        <button class="btn btn-outline-custom w-100 mt-auto" onclick="openCourseDetail('Java')">
+                            Xem Chi Tiết Khóa Học
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: AI Application -->
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon-box icon-ai">
+                            <i class="bi bi-robot"></i>
+                        </div>
+                        <h3 class="feature-title">Ứng Dụng AI Đột Phá</h3>
+                        <p class="feature-desc">
+                            Làm chủ các công cụ AI hàng đầu như ChatGPT, Claude, Midjourney để tự động hóa công việc và x10 hiệu suất làm việc mỗi ngày.
+                        </p>
+                        <ul class="feature-list">
+                            <li><i class="bi bi-check-circle-fill"></i> Kỹ thuật Prompt Engineering chuyên sâu</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Viết code & Fix bug siêu tốc với AI Assistants</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Tạo content, slide & hình ảnh tự động</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Tự động hóa quy trình làm việc kinh doanh</li>
+                        </ul>
+                        <a href="course-ai.html" class="btn btn-outline-custom w-100 mt-auto text-decoration-none text-center">
+                            Xem Chi Tiết Khóa Học
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / About Section -->
+    <section class="py-5 bg-light" id="about">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="pe-lg-4">
+                        <span class="section-tag">TẠI SAO CHỌN TECHEDU</span>
+                        <h2 class="section-title mt-2 mb-4">Phương Pháp Đào Tạo Hiện Đại, Học Đi Đôi Với Hành</h2>
+                        
+                        <div class="d-flex gap-3 mb-4">
+                            <div class="bg-primary-subtle text-primary p-3 rounded-4 h-fit-content">
+                                <i class="bi bi-person-workspace fs-3"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">100% Thực Hành Trên Dự Án</h5>
+                                <p class="text-muted mb-0">Không lý thuyết suông. Mỗi buổi học là một sản phẩm hoàn chỉnh áp dụng ngay vào công việc.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3 mb-4">
+                            <div class="bg-success-subtle text-success p-3 rounded-4 h-fit-content">
+                                <i class="bi bi-clock-history fs-3"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Lịch Học Linh Hoạt & Hỗ Trợ 1:1</h5>
+                                <p class="text-muted mb-0">Học trực tiếp hoặc Online qua Zoom. Đội ngũ trợ giảng đồng hành giải đáp thắc mắc 24/7.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <div class="bg-purple-subtle text-purple p-3 rounded-4 h-fit-content" style="background-color: rgba(147, 51, 234, 0.1); color: #9333ea;">
+                                <i class="bi bi-patch-check-fill fs-3"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold">Cam Kết Đầu Ra & Giới Thiệu Việc Làm</h5>
+                                <p class="text-muted mb-0">Cấp chứng chỉ uy tín sau khóa học và kết nối trực tiếp với hơn 50+ doanh nghiệp đối tác.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="p-4 bg-white rounded-4 shadow-sm border">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-chat-square-quote-fill text-primary me-2"></i>Học Viên Nói Gì Về Chúng Tôi?</h4>
+                        <div class="mb-4 pb-3 border-bottom">
+                            <p class="fst-italic text-secondary">"Nhờ khóa học MOS tại TechEdu, mình đã thi đạt 980/1000 điểm Excel và lấy chứng chỉ quốc tế chỉ sau 3 tuần. Giảng viên hỗ trợ cực kỳ nhiệt tình!"</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="fw-bold text-dark">Nguyễn Thị Minh Anh</div>
+                                <span class="badge bg-info-subtle text-info">Học viên MOS</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="fst-italic text-secondary">"Khóa học Java và Ứng dụng AI giúp mình thay đổi hoàn toàn tư duy lập trình. Mình đã tự tin ứng tuyển vị trí Java Developer và đỗ ngay lần đầu."</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="fw-bold text-dark">Trần Hoàng Nam</div>
+                                <span class="badge bg-warning-subtle text-warning">Học viên Java & AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner CTA -->
+    <section class="cta-banner" id="contact">
+        <div class="container text-center py-4 position-relative z-1">
+            <h2 class="fw-bold display-6 mb-3">Sẵn Sàng Nâng Tầm Kỹ Năng Công Nghệ Của Bạn?</h2>
+            <p class="text-light opacity-75 fs-5 mb-4 max-w-700 mx-auto">Đăng ký ngay hôm nay để nhận ưu đãi lên đến 35% học phí và trọn bộ tài liệu học tập trị giá 2.000.000đ!</p>
+            <button class="btn btn-gradient btn-lg px-5 py-3" data-bs-toggle="modal" data-bs-target="#registerModal">
+                <i class="bi bi-lightning-charge-fill me-2"></i> Nhận Ưu Đãi & Tư Vấn Miễn Phí
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand d-flex align-items-center gap-2 mb-3">
+                        <i class="bi bi-cpu-fill text-gradient fs-3"></i>
+                        <span>TechEdu Academy</span>
+                    </div>
+                    <p class="text-muted mb-4">
+                        Trung tâm đào tạo công nghệ thông tin thực chiến, nâng tầm kỹ năng cho học viên trong kỷ nguyên trí tuệ nhân tạo.
+                    </p>
+                    <div class="d-flex">
+                        <a href="#" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-icon" aria-label="Zalo"><i class="bi bi-chat-dots-fill"></i></a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title">Khóa Học</h5>
+                    <ul class="footer-links">
+                        <li><a href="#courses">Tin học MOS</a></li>
+                        <li><a href="#courses">Lập trình Java</a></li>
+                        <li><a href="#courses">Ứng dụng AI</a></li>
+                        <li><a href="#courses">Python Data Science</a></li>
+                        <li><a href="#courses">Lập trình Web</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title">Liên Kết</h5>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Trang chủ</a></li>
+                        <li><a href="#about">Giới thiệu</a></li>
+                        <li><a href="#courses">Chương trình đào tạo</a></li>
+                        <li><a href="#contact">Đăng ký tư vấn</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-title">Thông Tin Liên Hệ</h5>
+                    <ul class="footer-links">
+                        <li class="d-flex align-items-center gap-2">
+                            <i class="bi bi-geo-alt-fill text-primary"></i>
+                            <span>123 Đường Công Nghệ, Quận Cầu Giấy, Hà Nội</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i class="bi bi-telephone-fill text-primary"></i>
+                            <span>Hotline: 0988 123 456 - (024) 6688 9999</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i class="bi bi-envelope-fill text-primary"></i>
+                            <span>Email: tuvan@techedu.edu.vn</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2">
+                            <i class="bi bi-clock-fill text-primary"></i>
+                            <span>Giờ làm việc: 08:00 - 21:30 (Thứ 2 - Chủ Nhật)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-secondary opacity-25">
+
+            <div class="row align-items-center pt-3">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <small>&copy; 2026 TechEdu Academy. All rights reserved.</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <small class="text-muted">Thiết kế bởi TechEdu Studio</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" aria-label="Trở về đầu trang">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Modal Registration -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header border-0 bg-primary text-white rounded-top-4 p-4">
+                    <div>
+                        <h5 class="modal-title fw-bold" id="registerModalLabel">Đăng Ký Tư Vấn Khóa Học</h5>
+                        <small class="text-white-50">Nhận ngay ưu đãi 35% & lịch khai giảng mới nhất</small>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="modalForm">
+                        <div class="mb-3">
+                            <label for="modalName" class="form-label fw-semibold">Họ và tên *</label>
+                            <input type="text" class="form-control" id="modalName" placeholder="Nhập họ và tên của bạn" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modalPhone" class="form-label fw-semibold">Số điện thoại / Zalo *</label>
+                            <input type="tel" class="form-control" id="modalPhone" placeholder="Nhập số điện thoại" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modalEmail" class="form-label fw-semibold">Email</label>
+                            <input type="email" class="form-control" id="modalEmail" placeholder="example@gmail.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="modalCourse" class="form-label fw-semibold">Khóa học bạn quan tâm</label>
+                            <select class="form-select" id="modalCourse">
+                                <option value="MOS">Tin học văn phòng MOS Quốc tế</option>
+                                <option value="Java">Lập trình Java từ Zero đến Hero</option>
+                                <option value="AI">Ứng dụng AI & Prompt Engineering</option>
+                                <option value="Combo">Combo Trọn Bộ (MOS + Java + AI)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modalNote" class="form-label fw-semibold">Ghi chú thêm</label>
+                            <textarea class="form-control" id="modalNote" rows="2" placeholder="VD: Muốn học ca tối thứ 2-4-6..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gradient w-100 py-3 mt-2">
+                            <i class="bi bi-send-check-fill me-2"></i> Xác Nhận Đăng Ký
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Toast for notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <strong class="me-auto">Thành Công!</strong>
+                <small class="text-white-50">Vừa xong</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body bg-white text-dark rounded-bottom">
+                Cảm ơn bạn đã đăng ký! Đội ngũ tư vấn sẽ liên hệ lại trong thời gian sớm nhất.
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar background effect on scroll
+            const navbar = document.getElementById('mainNavbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
+                } else {
+                    navbar.style.boxShadow = 'none';
+                }
+            });
+
+            // Back to top button visibility and click
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Form Submit Handling (Hero Form & Modal Form)
+            const heroForm = document.getElementById('heroForm');
+            const modalForm = document.getElementById('modalForm');
+            const toastEl = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+
+            function handleFormSubmit(e, formType) {
+                e.preventDefault();
+                // Close modal if open
+                const registerModalEl = document.getElementById('registerModal');
+                const registerModal = bootstrap.Modal.getInstance(registerModalEl);
+                if (registerModal) {
+                    registerModal.hide();
+                }
+
+                // Show toast notification
+                toast.show();
+
+                // Reset form
+                e.target.reset();
+            }
+
+            if (heroForm) {
+                heroForm.addEventListener('submit', function(e) {
+                    handleFormSubmit(e, 'Hero Form');
+                });
+            }
+
+            if (modalForm) {
+                modalForm.addEventListener('submit', function(e) {
+                    handleFormSubmit(e, 'Modal Form');
+                });
+            }
+
+            // Global function to pre-select course in modal
+            window.openCourseDetail = function(courseName) {
+                const selectEl = document.getElementById('modalCourse');
+                if (selectEl) {
+                    selectEl.value = courseName;
+                }
+                const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+                registerModal.show();
+            };
+
+            // Active smooth scrolling for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const navHeight = navbar.offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // Collapse mobile navbar if open
+                        const navbarCollapse = document.getElementById('navbarContent');
+                        if (navbarCollapse.classList.contains('show')) {
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                            bsCollapse.hide();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
