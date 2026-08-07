@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Brew Lab - Cà Phê Rang Xay Thủ Công Cao Cấp</title>
+    <!-- Meta SEO -->
+    <meta name="description" content="Thưởng thức cà phê rang xay thủ công thượng hạng trong không gian yên tĩnh làm việc tại The Brew Lab. Địa chỉ: 123 Nguyễn Huệ, Q.1, TP.HCM. Đặt bàn ngay!">
+    <meta name="keywords" content="The Brew Lab, Cà phê thủ công, Cà phê rang xay, Cà phê Quận 1, Không gian làm việc, Đặt bàn cà phê">
+    <meta name="author" content="The Brew Lab">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="The Brew Lab Logo" id="nav-logo">
+                <span class="logo-text">The Brew <span class="accent-text">Lab</span></span>
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" id="mobile-toggle">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-section="home">Trang chủ</a></li>
+                    <li><a href="#about" class="nav-link" data-section="about">Giới thiệu</a></li>
+                    <li><a href="#menu" class="nav-link" data-section="menu">Thực đơn</a></li>
+                    <li><a href="#booking" class="nav-link" data-section="booking">Đặt bàn</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Header CTA & Member Info -->
+            <div class="header-actions">
+                <div id="user-status-container">
+                    <!-- Dynamic state in JS -->
+                    <button class="btn btn-outline btn-sm" id="btn-login-trigger">
+                        <i class="fa-solid fa-user-tag"></i> Thành viên
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO BANNER -->
+    <section id="home" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-star text-gold"></i>
+                <span>Nghệ thuật Cà Phê Thủ Công</span>
+                <i class="fa-solid fa-star text-gold"></i>
+            </div>
+            <h1 class="hero-title">The Brew <span class="highlight">Lab</span></h1>
+            <p class="hero-subtitle">Mỗi giọt cà phê là một nghiên cứu tỉ mỉ về hương vị. Đắm chìm trong không gian làm việc lý tưởng và những hạt cà phê rang xay thủ công chuẩn vị tại Sài Gòn.</p>
+            <div class="hero-actions">
+                <a href="#booking" class="btn btn-primary btn-lg">
+                    <i class="fa-solid fa-calendar-check"></i> Đặt Bàn Ngay
+                </a>
+                <a href="#menu" class="btn btn-outline-white btn-lg">
+                    <i class="fa-solid fa-mug-hot"></i> Khám Phá Thực Đơn
+                </a>
+            </div>
+        </div>
+        <div class="scroll-down-indicator">
+            <a href="#about"><i class="fa-solid fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- SECTION 2: GIỚI THIỆU (ABOUT US) -->
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-title">Câu Chuyện Của Chúng Tôi</span>
+                <h2 class="section-title">Về The Brew Lab</h2>
+                <div class="title-divider"><span></span><i class="fa-solid fa-mug-saucer"></i><span></span></div>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-text-content">
+                    <h3 class="about-lead">Nơi khoa học và đam mê pha chế giao nhau</h3>
+                    <p class="about-description">
+                        Tại <strong>The Brew Lab</strong>, chúng tôi không chỉ pha chế cà phê, chúng tôi xem đó là một quy trình nghiên cứu đầy nghệ thuật. Từng hạt Robusta và Arabica được tuyển chọn kỹ lưỡng từ vùng đất đỏ bazan Cao Nguyên Lâm Viên màu mỡ. Qua đôi tay tỉ mỉ của các Barista lành nghề cùng phương pháp rang xay thủ công độc bản, chúng tôi mang tới những tách cà phê giữ nguyên vẹn hương hoa cỏ tự nhiên, vị ngọt hậu sâu lắng và hương thơm đậm đà.
+                    </p>
+                    <p class="about-description">
+                        Chúng tôi kiến tạo một không gian yên bình nằm giữa lòng Quận 1 nhộn nhịp, nơi lý tưởng để bạn tập trung làm việc, khơi nguồn sáng tạo hay trò chuyện cùng bạn bè bên ly cà phê hảo hạng.
+                    </p>
+                </div>
+                
+                <div class="about-features">
+                    <!-- Feature 1 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Cà Phê Rang Xay Thủ Công</h4>
+                            <p>Được tuyển chọn thủ công, rang mộc theo mẻ nhỏ để giữ trọn vẹn hương vị tinh túy bản bản địa.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-laptop"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Không Gian Yên Tĩnh</h4>
+                            <p>Thiết kế gỗ mộc ấm cúng, bàn làm việc tiêu chuẩn và ánh sáng dịu giúp tập trung tối đa.</p>
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Wi-Fi Tốc Độ Cao</h4>
+                            <p>Đường truyền băng thông rộng cực nhanh và ổn định, đầy đủ ổ cắm điện tại mỗi bàn.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Menu Slider -->
+            <div class="featured-menu-area">
+                <h3 class="featured-menu-title text-center">Thực Đơn Nổi Bật Tại Quán</h3>
+                <div class="featured-carousel-wrapper">
+                    <button class="carousel-nav prev" id="btn-featured-prev" aria-label="Previous slide">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <div class="featured-carousel" id="featured-carousel">
+                        <!-- Featured Item 1 -->
+                        <div class="featured-item-card">
+                            <div class="featured-img-container">
+                                <img src="images/products/HLC_New_logo_5.1_Products__EXPRESSO.jpg" alt="Espresso">
+                                <span class="featured-price">45.000đ</span>
+                            </div>
+                            <div class="featured-item-info">
+                                <h4>Espresso</h4>
+                                <p>Đậm đà, thơm lừng từ hạt Arabica & Robusta phối trộn hoàn hảo.</p>
+                            </div>
+                        </div>
+                        <!-- Featured Item 2 -->
+                        <div class="featured-item-card">
+                            <div class="featured-img-container">
+                                <img src="images/products/HLC_New_logo_5.1_Products__LATTE_1.jpg" alt="Latte">
+                                <span class="featured-price">55.000đ</span>
+                            </div>
+                            <div class="featured-item-info">
+                                <h4>Latte</h4>
+                                <p>Sự kết hợp hoàn hảo giữa Espresso đậm đặc và sữa nóng béo ngậy.</p>
+                            </div>
+                        </div>
+                        <!-- Featured Item 3 -->
+                        <div class="featured-item-card">
+                            <div class="featured-img-container">
+                                <img src="images/products/Cold_Brew.jpg" alt="Cold Brew">
+                                <span class="featured-price">60.000đ</span>
+                            </div>
+                            <div class="featured-item-info">
+                                <h4>Cold Brew</h4>
+                                <p>Cà phê ủ lạnh 16 tiếng mát lạnh, thanh khiết dịu nhẹ vị trái cây.</p>
+                            </div>
+                        </div>
+                        <!-- Featured Item 4 -->
+                        <div class="featured-item-card">
+                            <div class="featured-img-container">
+                                <img src="images/products/HLC_New_logo_5.1_Products__FREEZE_TRA_XANH.jpg" alt="Matcha Latte">
+                                <span class="featured-price">65.000đ</span>
+                            </div>
+                            <div class="featured-item-info">
+                                <h4>Matcha Latte</h4>
+                                <p>Trà xanh Nhật Bản thượng hạng kết hợp sữa tươi ngọt dịu tự nhiên.</p>
+                            </div>
+                        </div>
+                        <!-- Featured Item 5 -->
+                        <div class="featured-item-card">
+                            <div class="featured-img-container">
+                                <img src="images/products/croissant.jpg" alt="Bánh Croissant" onerror="this.src='images/products/BANHCHUOI.jpg'">
+                                <span class="featured-price">35.000đ</span>
+                            </div>
+                            <div class="featured-item-info">
+                                <h4>Bánh Croissant</h4>
+                                <p>Bánh sừng bò ngàn lớp thơm bơ vàng giòn, hoàn hảo khi đi kèm cà phê.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-nav next" id="btn-featured-next" aria-label="Next slide">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: THỰC ĐƠN (MENU CHÍNH) -->
+    <section id="menu" class="menu-section section-padding bg-cream-dark">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-title">Khám Phá Hương Vị</span>
+                <h2 class="section-title">Thực Đơn Đầy Đủ</h2>
+                <div class="title-divider"><span></span><i class="fa-solid fa-utensils"></i><span></span></div>
+            </div>
+            
+            <!-- Search & Filters Container -->
+            <div class="menu-controls-card">
+                <div class="menu-search-bar">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Tìm kiếm thức uống hoặc bánh ngọt ưa thích...">
+                    <button id="search-clear-btn" class="search-clear-btn" aria-label="Clear search" style="display: none;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div class="menu-filters-and-sort">
+                    <!-- Filter Tabs -->
+                    <div class="category-tabs" id="category-tabs-container">
+                        <button class="tab-btn active" data-category-id="all">Tất cả</button>
+                        <!-- Dynamic categories go here -->
+                    </div>
+                    
+                    <!-- Sorting Dropdown -->
+                    <div class="sort-selector">
+                        <label for="sort-select"><i class="fa-solid fa-arrow-down-wide-short"></i> Sắp xếp:</label>
+                        <select id="sort-select" class="form-select">
+                            <option value="featured">Mặc định</option>
+                            <option value="price-asc">Giá: Thấp đến Cao</option>
+                            <option value="price-desc">Giá: Cao đến Thấp</option>
+                            <option value="name-asc">Tên: A - Z</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="products-grid-container">
+                <div class="products-grid" id="products-grid">
+                    <!-- Dynamic product cards go here -->
+                    <div class="menu-loading">
+                        <i class="fa-solid fa-circle-notch fa-spin"></i> Đang tải thực đơn...
+                    </div>
+                </div>
+                
+                <!-- Empty State -->
+                <div class="menu-empty-state" id="menu-empty" style="display: none;">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <h3>Không tìm thấy món nước phù hợp</h3>
+                    <p>Vui lòng đổi từ khóa tìm kiếm hoặc chọn danh mục khác nhé.</p>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination-container" id="pagination" style="display: none;">
+                    <!-- Dynamic pagination elements -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: FORM ĐẶT BÀN (BOOKING) -->
+    <section id="booking" class="booking-section section-padding">
+        <div class="booking-bg-decoration"></div>
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-title">Trải Nghiệm Trọn Vẹn</span>
+                <h2 class="section-title">Đặt Bàn Làm Việc & Thưởng Thức</h2>
+                <div class="title-divider"><span></span><i class="fa-solid fa-calendar-days"></i><span></span></div>
+            </div>
+            
+            <div class="booking-wrapper">
+                
+                <!-- Membership Gate / Gate Message -->
+                <div id="booking-gate" class="booking-gate-card">
+                    <div class="gate-icon">
+                        <i class="fa-solid fa-id-card-clip"></i>
+                    </div>
+                    <h3>Yêu Cầu Thành Viên</h3>
+                    <p class="gate-message">Để trải nghiệm dịch vụ chu đáo nhất và đặt chỗ trước tại <strong>The Brew Lab</strong>, quý khách vui lòng đăng ký thành viên hoặc đăng nhập tài khoản.</p>
+                    <div class="gate-actions">
+                        <button class="btn btn-primary" id="btn-gate-register">
+                            <i class="fa-solid fa-user-plus"></i> Đăng Ký Thành Viên Nhanh (Miễn Phí)
+                        </button>
+                        <button class="btn btn-outline" id="btn-gate-login">Đã Có Tài Khoản? Đăng Nhập</button>
+                    </div>
+                    <div class="gate-benefits">
+                        <h4>Quyền lợi thành viên:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Đặt giữ chỗ trước hoàn toàn miễn phí</li>
+                            <li><i class="fa-solid fa-check"></i> Tích lũy 5% điểm thưởng trên mỗi hóa đơn</li>
+                            <li><i class="fa-solid fa-check"></i> Nhận quà tặng và ưu đãi độc quyền ngày sinh nhật</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Booking Form Card (Initially Hidden, shown only for logged in members) -->
+                <div id="booking-form-card" class="booking-form-card" style="display: none;">
+                    <div class="form-header">
+                        <div class="member-welcome">
+                            <i class="fa-solid fa-circle-user text-gold"></i>
+                            <span id="member-greeting-text">Chào mừng thành viên, <strong>Khách hàng</strong>!</span>
+                        </div>
+                        <button class="btn-logout" id="btn-member-logout" title="Thoát tài khoản">
+                            <i class="fa-solid fa-right-from-bracket"></i> Thoát
+                        </button>
+                    </div>
+                    
+                    <form id="table-booking-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="booking-date" class="form-label">Chọn Ngày <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <input type="date" id="booking-date" class="form-control" required>
+                                </div>
+                                <div class="invalid-feedback">Vui lòng chọn ngày đặt bàn hợp lệ.</div>
+                            </div>
+                            
+                            <div class="form-group col-md-6">
+                                <label for="booking-time" class="form-label">Khung Giờ <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <select id="booking-time" class="form-select" required>
+                                        <option value="" disabled selected>-- Chọn khung giờ --</option>
+                                        <option value="07:00 - 09:00">07:00 - 09:00 (Sáng sớm yên tĩnh)</option>
+                                        <option value="09:00 - 11:00">09:00 - 11:00 (Cao điểm sáng)</option>
+                                        <option value="11:00 - 13:00">11:00 - 13:00 (Nghỉ trưa thư giãn)</option>
+                                        <option value="13:00 - 15:00">13:00 - 15:00 (Làm việc chiều)</option>
+                                        <option value="15:00 - 17:00">15:00 - 17:00 (Gặp gỡ đối tác)</option>
+                                        <option value="17:00 - 19:00">17:00 - 19:00 (Chiều tối thư thái)</option>
+                                        <option value="19:00 - 22:00">19:00 - 22:00 (Chill tối muộn)</option>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">Vui lòng chọn khung giờ thích hợp (07:00 - 22:00).</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="booking-guests" class="form-label">Số Lượng Người <span class="required">*</span></label>
+                                <div class="input-with-icon">
+                                    <i class="fa-solid fa-users"></i>
+                                    <select id="booking-guests" class="form-select" required>
+                                        <option value="" disabled selected>-- Chọn số người --</option>
+                                        <option value="1 người">1 Người (Làm việc cá nhân)</option>
+                                        <option value="2 người">2 Người (Hẹn hò / Đôi bạn)</option>
+                                        <option value="3-4 người">3 - 4 Người (Nhóm nhỏ học tập)</option>
+                                        <option value="5-8 người">5 - 8 Người (Họp nhóm / Dự án)</option>
+                                        <option value="trên 8 người">Trên 8 Người (Liên hoan nhỏ)</option>
+                                    </select>
+                                </div>
+                                <div class="invalid-feedback">Vui lòng chọn số lượng người tham dự.</div>
+                            </div>
+                            
+                            <div class="form-group col-md-6">
+                                <label for="booking-area" class="form-label">Khu Vực Mong Muốn</label>
+                                <div class="input-with-icon">
+                                    <i class="fa-solid fa-chair"></i>
+                                    <select id="booking-area" class="form-select">
+                                        <option value="Không yêu cầu">Bất kỳ khu vực nào trống</option>
+                                        <option value="Trong nhà yên tĩnh">Trong nhà (Máy lạnh, siêu yên tĩnh)</option>
+                                        <option value="Cạnh cửa sổ kính">Cạnh cửa sổ kính ngắm phố</option>
+                                        <option value="Ngoài trời thoáng mát">Ngoài trời (Ban công ngắm đường Nguyễn Huệ)</option>
+                                        <option value="Quầy Bar Barista">Quầy Bar (Xem Barista pha chế thủ công)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="booking-notes" class="form-label">Ghi Chú Đặc Biệt (Nếu có)</label>
+                            <textarea id="booking-notes" rows="3" class="form-control" placeholder="Ví dụ: Cần bàn gần ổ cắm điện, cần ghế cao cho trẻ em, v.v..."></textarea>
+                        </div>
+                        
+                        <div class="form-group booking-terms">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="booking-agree" required checked>
+                                <span class="checkmark"></span>
+                                Tôi cam kết đến đúng giờ đã hẹn. Sau 15 phút trễ giờ, Brew Lab xin phép được bàn giao bàn lại cho khách hàng vãng lai.
+                            </label>
+                            <div class="invalid-feedback block">Bạn cần đồng ý với điều khoản đặt bàn.</div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-submit-booking">
+                            <i class="fa-solid fa-paper-plane"></i> Xác Nhận Đặt Bàn Ngay
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: LIÊN HỆ & FEEDBACK (CONTACT) -->
+    <section id="contact" class="contact-section section-padding bg-cream-dark">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="sub-title">Kết Nối Với Chúng Tôi</span>
+                <h2 class="section-title">Liên Hệ & Góp Ý</h2>
+                <div class="title-divider"><span></span><i class="fa-solid fa-paper-plane"></i><span></span></div>
+            </div>
+            
+            <div class="contact-grid">
+                
+                <!-- Contact Info Column -->
+                <div class="contact-info-col">
+                    <div class="contact-card">
+                        <h3>The Brew Lab</h3>
+                        <p class="brand-tagline">Nghệ thuật cà phê thủ công & Không gian làm việc sáng tạo</p>
+                        
+                        <div class="info-list">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div class="info-text">
+                                    <h4>Địa chỉ của quán:</h4>
+                                    <p>123 Nguyễn Huệ, Q.1, TP.HCM</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                <div class="info-text">
+                                    <h4>Giờ mở cửa:</h4>
+                                    <p>07:00 – 22:00 (Thứ 2 – Chủ Nhật)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div class="info-text">
+                                    <h4>Hotline phản hồi:</h4>
+                                    <p>+84 28 3821 8888</p>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="info-text">
+                                    <h4>Email hỗ trợ:</h4>
+                                    <p>hello@thebrewlab.vn</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-icon" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                            <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Map Column -->
+                <div class="contact-map-col">
+                    <div class="map-container">
+                        <!-- Google Maps embed for 123 Nguyễn Huệ -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.460288277259!2d106.70198197587841!3d10.776019389373204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919460288277259%3A0x7d6f51cb7e57c6b5!2zMTIzIE5ndXnhu4VuIEh14buHLCBC4bq_biBOZ2jDqSwgUXXhuq1uIDEsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1703666500000!5m2!1svi!2s" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                
+                <!-- Feedback Form Column -->
+                <div class="contact-feedback-col">
+                    <div class="feedback-card">
+                        <h3>Gửi Ý Kiến Phản Hồi</h3>
+                        <p>Trải nghiệm của quý khách là điều quý giá nhất giúp chúng tôi cải thiện mỗi ngày.</p>
+                        
+                        <form id="feedback-form" novalidate>
+                            <div class="form-group">
+                                <label for="fb-name" class="form-label">Họ và Tên <span class="required">*</span></label>
+                                <input type="text" id="fb-name" class="form-control" placeholder="Nhập tên của bạn..." required>
+                                <div class="invalid-feedback">Vui lòng nhập họ và tên của bạn.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fb-email" class="form-label">Địa Chỉ Email <span class="required">*</span></label>
+                                <input type="email" id="fb-email" class="form-control" placeholder="Nhập email của bạn..." required>
+                                <div class="invalid-feedback">Vui lòng nhập địa chỉ email hợp lệ.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Đánh Giá Dịch Vụ <span class="required">*</span></label>
+                                <div class="star-rating-container">
+                                    <div class="star-rating" id="feedback-stars">
+                                        <button type="button" class="star-btn" data-value="1" aria-label="1 star"><i class="fa-regular fa-star"></i></button>
+                                        <button type="button" class="star-btn" data-value="2" aria-label="2 stars"><i class="fa-regular fa-star"></i></button>
+                                        <button type="button" class="star-btn" data-value="3" aria-label="3 stars"><i class="fa-regular fa-star"></i></button>
+                                        <button type="button" class="star-btn" data-value="4" aria-label="4 stars"><i class="fa-regular fa-star"></i></button>
+                                        <button type="button" class="star-btn" data-value="5" aria-label="5 stars"><i class="fa-regular fa-star"></i></button>
+                                    </div>
+                                    <span class="rating-text" id="rating-label">Chọn mức độ hài lòng</span>
+                                </div>
+                                <input type="hidden" id="fb-rating" value="" required>
+                                <div class="invalid-feedback block" id="fb-rating-feedback" style="display: none;">Vui lòng chọn số sao đánh giá.</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fb-message" class="form-label">Ý Kiến Đóng Góp <span class="required">*</span></label>
+                                <textarea id="fb-message" rows="4" class="form-control" placeholder="Hãy viết cảm nhận, góp ý của bạn về sản phẩm, thái độ phục vụ hay không gian quán..." required></textarea>
+                                <div class="invalid-feedback">Nội dung góp ý không được để trống.</div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block" id="btn-submit-feedback">
+                                <i class="fa-solid fa-paper-plane"></i> Gửi Ý Kiến Đóng Góp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-col footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="The Brew Lab Logo">
+                        <span class="footer-logo-text">The Brew <em>Lab</em></span>
+                    </div>
+                    <p class="footer-brand-desc">Nghệ thuật cà phê rang xay thủ công và không gian sáng tạo ngay giữa lòng Quận 1, TP.HCM.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Điều Hướng Nhanh</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fa-solid fa-angle-right"></i> Trang chủ</a></li>
+                        <li><a href="#about"><i class="fa-solid fa-angle-right"></i> Giới thiệu</a></li>
+                        <li><a href="#menu"><i class="fa-solid fa-angle-right"></i> Thực đơn</a></li>
+                        <li><a href="#booking"><i class="fa-solid fa-angle-right"></i> Đặt bàn</a></li>
+                        <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Liên hệ & Góp ý</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info Column -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Thông Tin Liên Hệ</h4>
+                    <ul class="footer-info-list">
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>123 Nguyễn Huệ, Q.1, TP.HCM</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-clock"></i>
+                            <span>07:00 – 22:00 (Thứ 2 – Chủ Nhật)</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+84 28 3821 8888</span>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <span>hello@thebrewlab.vn</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Column -->
+                <div class="footer-col">
+                    <h4 class="footer-heading">Nhận Ưu Đãi Độc Quyền</h4>
+                    <p class="footer-newsletter-desc">Đăng ký nhận bản tin để không bỏ lỡ sự kiện và ưu đãi mới nhất từ The Brew Lab.</p>
+                    <div class="footer-newsletter">
+                        <input type="email" placeholder="Email của bạn..." class="footer-email-input">
+                        <button class="footer-subscribe-btn">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="footer-hours-badge">
+                        <i class="fa-solid fa-mug-hot"></i>
+                        <span>Mở cửa 7 ngày / tuần</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 <strong>The Brew Lab</strong>. Tất cả quyền được bảo lưu.</p>
+                <p class="footer-crafted">Thiết kế với <i class="fa-solid fa-heart"></i> và nhiều cà phê.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODALS & POPUPS ==================== -->
+
+    <!-- Modal 1: Membership Registration / Login -->
+    <div class="modal" id="modal-membership" tabindex="-1">
+        <div class="modal-overlay" id="membership-overlay"></div>
+        <div class="modal-wrapper">
+            <button class="modal-close" id="btn-modal-member-close" aria-label="Close modal">&times;</button>
+            
+            <div class="modal-body">
+                <!-- Tab Headers -->
+                <div class="modal-tabs">
+                    <button class="modal-tab-btn active" id="tab-login" data-target="panel-login">Đăng Nhập</button>
+                    <button class="modal-tab-btn" id="tab-register" data-target="panel-register">Đăng Ký Thành Viên</button>
+                </div>
+                
+                <!-- Panel 1: Login -->
+                <div class="modal-panel active" id="panel-login">
+                    <div class="panel-header">
+                        <h3>Mừng Trở Lại Lab!</h3>
+                        <p>Nhập thông tin để đăng nhập tài khoản thành viên.</p>
+                    </div>
+                    <form id="form-member-login" novalidate>
+                        <div class="form-group">
+                            <label for="login-phone" class="form-label">Số điện thoại thành viên <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="login-phone" class="form-control" placeholder="Nhập số điện thoại đã đăng ký..." required>
+                            </div>
+                            <div class="invalid-feedback">Vui lòng nhập số điện thoại hợp lệ.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Đăng Nhập Ngay <i class="fa-solid fa-right-to-bracket"></i>
+                        </button>
+                    </form>
+                    <div class="panel-footer">
+                        <p>Chưa đăng ký? <a href="#" id="link-switch-to-register">Tạo tài khoản thành viên mới</a></p>
+                    </div>
+                </div>
+                
+                <!-- Panel 2: Register -->
+                <div class="modal-panel" id="panel-register">
+                    <div class="panel-header">
+                        <h3>Đăng Ký Thành Viên</h3>
+                        <p>Gia nhập Lab Club miễn phí chỉ trong 1 phút để nhận các quyền lợi độc quyền.</p>
+                    </div>
+                    <form id="form-member-register" novalidate>
+                        <div class="form-group">
+                            <label for="reg-name" class="form-label">Họ và Tên <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="reg-name" class="form-control" placeholder="Nhập họ tên của bạn..." required>
+                            </div>
+                            <div class="invalid-feedback">Họ tên không được để trống.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reg-phone" class="form-label">Số Điện Thoại <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-phone"></i>
+                                <input type="tel" id="reg-phone" class="form-control" placeholder="Nhập số điện thoại..." required>
+                            </div>
+                            <div class="invalid-feedback">Số điện thoại phải từ 9 đến 11 số.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reg-email" class="form-label">Địa Chỉ Email <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="reg-email" class="form-control" placeholder="Nhập địa chỉ email..." required>
+                            </div>
+                            <div class="invalid-feedback">Vui lòng điền email hợp lệ.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="reg-agree" required checked>
+                                <span class="checkmark"></span>
+                                Tôi đồng ý với điều khoản dịch vụ và chính sách thành viên của The Brew Lab.
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Hoàn Tất Đăng Ký <i class="fa-solid fa-user-plus"></i>
+                        </button>
+                    </form>
+                    <div class="panel-footer">
+                        <p>Đã có tài khoản? <a href="#" id="link-switch-to-login">Đăng nhập ngay</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Booking Success Confirmation -->
+    <div class="modal" id="modal-booking-success" tabindex="-1">
+        <div class="modal-overlay" id="booking-success-overlay"></div>
+        <div class="modal-wrapper modal-wrapper-sm">
+            <button class="modal-close" id="btn-modal-booking-close" aria-label="Close modal">&times;</button>
+            <div class="modal-body text-center booking-success-content">
+                <div class="success-icon-badge animate-badge">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2>Đặt Bàn Thành Công!</h2>
+                <p class="success-message-intro">Cảm ơn quý khách đã tin chọn The Brew Lab. Lịch hẹn đặt chỗ của bạn đã được ghi nhận trên hệ thống.</p>
+                
+                <!-- Ticket Details -->
+                <div class="booking-ticket">
+                    <div class="ticket-header">
+                        <h4>MÃ ĐẶT CHỖ</h4>
+                        <span class="ticket-code" id="lbl-booking-code">TBL-82910</span>
+                    </div>
+                    <div class="ticket-body">
+                        <div class="ticket-row">
+                            <span>Khách hàng:</span>
+                            <strong id="lbl-booking-name">Nam Hoang Tran</strong>
+                        </div>
+                        <div class="ticket-row">
+                            <span>Thời gian:</span>
+                            <strong id="lbl-booking-datetime">15:00, 29/06/2026</strong>
+                        </div>
+                        <div class="ticket-row">
+                            <span>Số khách:</span>
+                            <strong id="lbl-booking-guests">2 Người</strong>
+                        </div>
+                        <div class="ticket-row">
+                            <span>Khu vực:</span>
+                            <strong id="lbl-booking-area">Trong nhà yên tĩnh</strong>
+                        </div>
+                    </div>
+                    <div class="ticket-footer">
+                        <p class="ticket-note"><i class="fa-solid fa-triangle-exclamation"></i> Vui lòng đến trước 15 phút. Khi đến, hãy xuất trình mã này cho nhân viên phục vụ tại quầy đón tiếp.</p>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="btn-booking-success-ok">Xác Nhận & Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Product Detail View -->
+    <div class="modal" id="modal-product-detail" tabindex="-1">
+        <div class="modal-overlay" id="product-detail-overlay"></div>
+        <div class="modal-wrapper modal-wrapper-md">
+            <button class="modal-close" id="btn-modal-product-close" aria-label="Close modal">&times;</button>
+            
+            <div class="modal-body">
+                <div class="product-detail-layout" id="product-detail-content">
+                    <!-- Dynamic rendering in JS -->
+                    <div class="product-detail-image">
+                        <img src="images/products/HLC_New_logo_5.1_Products__EXPRESSO.jpg" alt="Product Image">
+                    </div>
+                    <div class="product-detail-info">
+                        <span class="detail-category">CÀ PHÊ</span>
+                        <h2 class="detail-title">Espresso Macchiato</h2>
+                        <div class="detail-price">45.000 đ</div>
+                        <div class="detail-description">
+                            <p>Đích thực là ly cà phê espresso ngon đậm đà! Được chiết xuất một cách hoàn hảo từ loại cà phê rang mộc cao cấp...</p>
+                        </div>
+                        <div class="detail-meta">
+                            <div class="meta-item"><i class="fa-solid fa-calendar-days"></i> Cập nhật: 12/2024</div>
+                            <div class="meta-item"><i class="fa-solid fa-mug-hot"></i> Phục vụ: Nóng / Đá</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Success Toast Notification -->
+    <div class="toast-notification" id="feedback-toast">
+        <div class="toast-content">
+            <i class="fa-solid fa-circle-check toast-icon"></i>
+            <div class="toast-message">
+                <strong>Gửi phản hồi thành công!</strong>
+                <p>Cảm ơn những đóng góp quý báu của quý khách.</p>
+            </div>
+        </div>
+        <button class="toast-close" id="btn-toast-close">&times;</button>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="btn-back-top" id="btn-back-top" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
