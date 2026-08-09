@@ -11,6 +11,7 @@ Features Section: 3 thẻ (cards) trình bày tính năng nổi bật.
 Footer: Thông tin bản quyền và liên hệ.
 Hãy lưu mã nguồn chính vào tệp index.html.
 
+Giao diện: màu chủ đạo là nền trắng (#f2f2f2) chữ màu tối (#2d2d86). Chỉ render ra file HTML CSS JavaScript, không dùng bất kỳ ngôn ngữ backend nào.
 
 ===============
 
