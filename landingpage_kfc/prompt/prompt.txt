@@ -1,0 +1,15 @@
+Tôi đang học cách dùng Antigravity, Vibe Coding, tạo file .MD
+Tôi muốn tạo 1 trang landing page quảng cáo cho gà rán KFC.
+Chỉ dùng HTML CSS JavaScript và database là file .CSV, không có bất kỳ code backend nào.
+Hãy tạo cho tôi các file .MD cần thiết
+
+==========================
+
+Hãy đọc các file .md trong folder.
+Chưa viết code ngay.
+Phân tích các yêu cầu, xác định những điểm mơ hồ, mâu thuẫn và thông tin còn thiếu, đồng thời đề xuất kế hoạch triển khai.
+
+==========================
+
+Hãy đọc các file .md trong folder.
+Hãy tạo project dựa trên các file .md này
