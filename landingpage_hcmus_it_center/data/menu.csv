@@ -1,0 +1,8 @@
+label,url,target,order,visible
+Trang chủ,index.html,_self,1,true
+Giới thiệu,about.html,_self,2,true
+Khóa học,#courses,_self,3,true
+Lợi ích,#benefits,_self,4,true
+Quy trình,#process,_self,5,true
+Cảm nhận,#testimonials,_self,6,true
+Liên hệ,#contact,_self,7,true

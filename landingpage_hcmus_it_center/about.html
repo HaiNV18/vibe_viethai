@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Giới thiệu Trung tâm Tin học TechEdu — Sứ mệnh, tầm nhìn, phương pháp đào tạo và đội ngũ giảng viên chuyên nghiệp.">
+  <title>Giới Thiệu — TechEdu Center</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header & Sticky Navigation -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo" aria-label="TechEdu Center Trang chủ">
+        <div class="logo-icon">T</div>
+        <span>TechEdu Center</span>
+      </a>
+
+      <!-- Desktop Navigation Menu (Rendered dynamically from data/menu.csv) -->
+      <nav class="nav-desktop" id="desktop-menu" aria-label="Menu chính">
+        <!-- Dynamic menu rendered by app.js -->
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-primary btn-sm" data-open-modal>Đăng ký tư vấn</button>
+        <button type="button" class="menu-toggle" id="mobile-menu-toggle" aria-label="Mở menu di động" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu & Overlay -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Menu di động">
+    <div class="drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">T</div>
+        <span>TechEdu</span>
+      </a>
+      <button type="button" class="modal-close" id="drawer-close" aria-label="Đóng menu">&times;</button>
+    </div>
+    <nav id="mobile-menu">
+      <!-- Dynamic mobile menu rendered by app.js -->
+    </nav>
+  </aside>
+
+  <main>
+    <!-- About Hero Section -->
+    <section class="about-hero">
+      <div class="container">
+        <span class="eyebrow" style="background: rgba(255,255,255,0.15); color: #38bdf8;">Hành Trình Kiến Tạo Kỹ Năng</span>
+        <h1 class="about-hero-title">Về Chúng Tôi — TechEdu Center</h1>
+        <p class="about-hero-desc">
+          Nơi phát triển tài năng CNTT & Tin học ứng dụng với phương pháp giảng dạy hiện đại, thực chiến và gắn liền với nhu cầu tuyển dụng doanh nghiệp.
+        </p>
+      </div>
+    </section>
+
+    <!-- Center Story Section -->
+    <section class="section">
+      <div class="container story-grid">
+        <div>
+          <span class="eyebrow">Câu Chuyện Hình Thành</span>
+          <h2 class="story-title">Ươm Mầm Tài Năng Công Nghệ Từ Năm 2018</h2>
+          <p class="story-text">
+            TechEdu Center được thành lập với mục tiêu rút ngắn khoảng cách giữa lý thuyết học đường và yêu cầu công việc thực tế tại các doanh nghiệp. Chúng tôi nhận thấy hàng ngàn sinh viên và người đi làm gặp khó khăn trong công việc chỉ vì thiếu kỹ năng tin học ứng dụng và lập trình nền tảng.
+          </p>
+          <p class="story-text">
+            Trải qua hơn 8 năm phát triển, TechEdu Center đã đào tạo thành công hơn 12,000 học viên, trở thành một trong những trung tâm đào tạo công nghệ hàng đầu được học viên tin tưởng lựa chọn.
+          </p>
+        </div>
+
+        <div style="background-color: var(--color-bg-subtle); border-radius: var(--radius-lg); padding: 2.5rem; border: 1px solid var(--color-border);">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; text-align: center;">
+            <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2.5rem; font-weight: 900; color: var(--color-brand);">12,000+</div>
+              <div style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 600;">Học viên tốt nghiệp</div>
+            </div>
+            <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2.5rem; font-weight: 900; color: var(--color-accent);">98%</div>
+              <div style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 600;">Hài lòng chất lượng</div>
+            </div>
+            <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2.5rem; font-weight: 900; color: var(--color-brand);">35+</div>
+              <div style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 600;">Giảng viên chuyên gia</div>
+            </div>
+            <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+              <div style="font-size: 2.5rem; font-weight: 900; color: var(--color-primary);">15+</div>
+              <div style="font-size: 0.9rem; color: var(--color-text-muted); font-weight: 600;">Chương trình đào tạo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission, Vision & Core Values -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Kim Chỉ Nam</span>
+          <h2 class="section-title">Sứ Mệnh, Tầm Nhìn & Giá Trị Cốt Lõi</h2>
+          <p class="section-desc">Định hướng toàn bộ hoạt động giảng dạy và phát triển của trung tâm.</p>
+        </div>
+
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🎯</div>
+            <h3 class="benefit-title">Sứ Mệnh</h3>
+            <p class="benefit-desc">Phổ cập và nâng cao kỹ năng công nghệ ứng dụng cho người Việt, giúp mọi học viên tự tin bứt phá sự nghiệp trong kỷ nguyên số.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">🔭</div>
+            <h3 class="benefit-title">Tầm Nhìn</h3>
+            <p class="benefit-desc">Trở thành biểu tượng chất lượng uy tín hàng đầu về đào tạo Tin học & Lập trình ứng dụng ngắn hạn tại Việt Nam.</p>
+          </div>
+
+          <div class="value-card">
+            <div class="value-icon">💎</div>
+            <h3 class="benefit-title">Giá Trị Cốt Lõi</h3>
+            <p class="benefit-desc"><strong>Thực chiến — Tận tâm — Sáng tạo — Đồng hành.</strong> Chúng tôi không chỉ dạy học mà còn đồng hành cùng sự tiến bộ của bạn.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaching Methodology -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Phương Pháp Đào Tạo</span>
+          <h2 class="section-title">Học Đi Đôi Với Hành</h2>
+          <p class="section-desc">Mô hình học tập 3T (Thực hành - Thực tế - Thực chiến) độc quyền.</p>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">📌</div>
+            <h3 class="benefit-title">Lý thuyết tối giản (20%)</h3>
+            <p class="benefit-desc">Chỉ tập trung vào các khái niệm trọng tâm, áp dụng được ngay vào bài tập mà không rườm rà.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🛠️</div>
+            <h3 class="benefit-title">Thực hành chuyên sâu (80%)</h3>
+            <p class="benefit-desc">Tự tay giải quyết các bài toán thực tế từ doanh nghiệp dưới sự hướng dẫn cầm tay chỉ việc.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">💡</div>
+            <h3 class="benefit-title">Đánh giá sản phẩm thực tế</h3>
+            <p class="benefit-desc">Mỗi khóa học đều kết thúc bằng dự án cá nhân hoặc bài tập lớn giúp tích lũy kinh nghiệm thực tế.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instructor Team Section -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Đội Ngũ Giảng Viên</span>
+          <h2 class="section-title">Chuyên Gia Dày Dặn Kinh Nghiệm</h2>
+          <p class="section-desc">Đội ngũ thầy cô nhiệt huyết, trình độ cao và tâm huyết với từng học viên.</p>
+        </div>
+
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">NTH</div>
+            <h3 class="author-name" style="font-size: 1.1rem;">ThS. Nguyễn Tiến Hải</h3>
+            <p class="author-role" style="color: var(--color-brand); font-weight: 600; margin-bottom: 0.5rem;">Trưởng khoa CNTT</p>
+            <p class="step-desc">12 năm kinh nghiệm giảng dạy và tư vấn giải pháp chuyển đổi số cho doanh nghiệp.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">LTM</div>
+            <h3 class="author-name" style="font-size: 1.1rem;">Cô Lê Thị Mai</h3>
+            <p class="author-role" style="color: var(--color-brand); font-weight: 600; margin-bottom: 0.5rem;">Chuyên gia Excel & Data</p>
+            <p class="step-desc">Microsoft Office Specialist Certified, 8 năm kinh nghiệm đào tạo nhân sự tập đoàn lớn.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">TQK</div>
+            <h3 class="author-name" style="font-size: 1.1rem;">Thầy Trần Quốc Khánh</h3>
+            <p class="author-role" style="color: var(--color-brand); font-weight: 600; margin-bottom: 0.5rem;">Senior Web Developer</p>
+            <p class="step-desc">Kinh nghiệm phát triển phần mềm cho các dự án đa quốc gia, truyền cảm hứng lập trình dễ hiểu.</p>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar">PTP</div>
+            <h3 class="author-name" style="font-size: 1.1rem;">Cô Phạm Thu Phương</h3>
+            <p class="author-role" style="color: var(--color-brand); font-weight: 600; margin-bottom: 0.5rem;">Art Director</p>
+            <p class="step-desc">Hơn 7 năm thiết kế nhận diện thương hiệu và sáng tạo nội dung hình ảnh doanh nghiệp.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-banner-title">Gia Nhập Cộng Đồng Học Viên TechEdu</h2>
+          <p class="cta-banner-desc">Hãy để chúng tôi đồng hành cùng bạn nâng tầm kỹ năng và mở rộng cơ hội nghề nghiệp.</p>
+          <button type="button" class="btn btn-accent btn-lg" data-open-modal>Đăng ký nhận tư vấn ngay</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">T</div>
+            <span>TechEdu Center</span>
+          </a>
+          <p class="footer-desc">
+            Trung tâm Đào tạo Tin học & Công nghệ hàng đầu, đồng hành cùng bạn trên con đường làm chủ kỹ năng số và bứt phá sự nghiệp.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Liên Kết Nhanh</h4>
+          <div class="footer-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="about.html">Giới thiệu</a>
+            <a href="index.html#courses">Khóa học</a>
+            <a href="index.html#benefits">Lợi ích</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Thông Tin Liên Hệ</h4>
+          <div class="footer-contact-item">
+            <span>📍</span>
+            <span>227 Nguyễn Văn Cừ, Quận 5, TP. Hồ Chí Minh</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span>
+            <span>(028) 3835 1056 — Hotline: 0901 234 567</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span>
+            <span>tuvan@techedu.edu.vn</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechEdu Center. Tất cả quyền được bảo lưu. Dự án tĩnh HTML/CSS/JS thuần.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal Dialog -->
+  <div class="modal" id="contact-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title-heading">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title-heading">Đăng Ký Tư Vấn</h2>
+        <button type="button" class="modal-close" data-close-modal aria-label="Đóng cửa sổ">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="contact-course-note" class="fs-banner" style="display: none; background-color: var(--color-brand-light); margin-bottom: 1rem; font-weight: 600;"></div>
+
+        <!-- File System API Status Banner -->
+        <div class="fs-banner">
+          <span>ℹ <strong>Lưu dữ liệu contacts.csv:</strong> Ưu tiên chọn thư mục project để ghi trực tiếp vào ổ đĩa.</span>
+          <span id="fs-api-status" class="fs-status">Chưa kết nối thư mục (Sẽ dùng Tải file CSV fallback nếu không chọn)</span>
+          <button type="button" id="btn-pick-dir" class="btn-pick">📂 Chọn thư mục project</button>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="fullname" class="form-label">Họ và tên <span class="text-accent">*</span></label>
+            <input type="text" id="fullname" name="fullname" class="form-input" placeholder="Ví dụ: Nguyễn Văn A" required>
+            <span class="form-error" id="fullname-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="birth_year" class="form-label">Năm sinh <span class="text-accent">*</span></label>
+            <input type="number" id="birth_year" name="birth_year" class="form-input" placeholder="Ví dụ: 2002" min="1930" max="2026" required>
+            <span class="form-error" id="birth_year-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Số điện thoại <span class="text-accent">*</span></label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="Ví dụ: 0912345678" required>
+            <span class="form-error" id="phone-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Địa chỉ Email <span class="text-accent">*</span></label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Ví dụ: van.a@gmail.com" required>
+            <span class="form-error" id="email-error"></span>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent" class="checkbox-label">Tôi đồng ý để Trung tâm Tin học TechEdu liên hệ tư vấn qua SĐT/Email.</label>
+          </div>
+          <span class="form-error" id="consent-error" style="margin-bottom: 1rem;"></span>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">Gửi Thông Tin Đăng Ký</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/csv.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

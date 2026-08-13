@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trung tâm Tin học TechEdu — Đào tạo Tin học văn phòng, Excel nâng cao, Lập trình và Thiết kế đồ họa chuẩn thực tế.">
+  <title>TechEdu Center — Trung Tâm Đào Tạo Tin Học & Công Nghệ</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header & Sticky Navigation -->
+  <header class="header" id="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo" aria-label="TechEdu Center Trang chủ">
+        <div class="logo-icon">T</div>
+        <span>TechEdu Center</span>
+      </a>
+
+      <!-- Desktop Navigation Menu (Rendered dynamically from data/menu.csv) -->
+      <nav class="nav-desktop" id="desktop-menu" aria-label="Menu chính">
+        <!-- Dynamic menu rendered by app.js -->
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn btn-primary btn-sm" data-open-modal>Đăng ký tư vấn</button>
+        <button type="button" class="menu-toggle" id="mobile-menu-toggle" aria-label="Mở menu di động" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu & Overlay -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <aside class="mobile-drawer" id="mobile-drawer" aria-label="Menu di động">
+    <div class="drawer-header">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">T</div>
+        <span>TechEdu</span>
+      </a>
+      <button type="button" class="modal-close" id="drawer-close" aria-label="Đóng menu">&times;</button>
+    </div>
+    <nav id="mobile-menu">
+      <!-- Dynamic mobile menu rendered by app.js -->
+    </nav>
+  </aside>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">Đào Tạo Chuẩn Thực Tế</span>
+          <h1 class="hero-title">Chinh phục Kỹ năng Tin học & Lập trình Để Bứt Phá</h1>
+          <p class="hero-description">
+            Cung cấp các khóa học Tin học văn phòng, Excel nâng cao, Lập trình & Thiết kế đồ họa với lộ trình thực chiến, giúp bạn tự tin làm việc và nâng cao hiệu suất ngay lập tức.
+          </p>
+          <div class="hero-ctas">
+            <button type="button" class="btn btn-primary btn-lg" data-open-modal>Đăng ký tư vấn ngay</button>
+            <a href="#courses" class="btn btn-outline btn-lg">Xem khóa học</a>
+          </div>
+          <div class="hero-features">
+            <div class="hero-feature-item">
+              <div class="feature-icon-check">✓</div>
+              <span>100% Thực hành</span>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-icon-check">✓</div>
+              <span>Hỗ trợ 1:1</span>
+            </div>
+            <div class="hero-feature-item">
+              <div class="feature-icon-check">✓</div>
+              <span>Lịch học linh hoạt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card-preview">
+            <div class="hero-badge-float">
+              ⭐ <span>4.9/5.0</span> Đánh giá từ học viên
+            </div>
+            <svg width="100%" height="220" viewBox="0 0 400 220" fill="none" xmlns="http://www.w3.org/2000/svg" style="border-radius: 12px; background: #0f172a;">
+              <rect width="400" height="220" rx="12" fill="#0F172A"/>
+              <!-- Code illustration lines -->
+              <rect x="24" y="24" width="12" height="12" rx="6" fill="#EF4444"/>
+              <rect x="44" y="24" width="12" height="12" rx="6" fill="#F59E0B"/>
+              <rect x="64" y="24" width="12" height="12" rx="6" fill="#10B981"/>
+              <line x1="24" y1="56" x2="376" y2="56" stroke="#334155" stroke-width="2"/>
+              <rect x="24" y="76" width="140" height="12" rx="3" fill="#0284C7"/>
+              <rect x="174" y="76" width="80" height="12" rx="3" fill="#38BDF8"/>
+              <rect x="24" y="104" width="220" height="12" rx="3" fill="#475569"/>
+              <rect x="24" y="132" width="180" height="12" rx="3" fill="#06B6D4"/>
+              <rect x="214" y="132" width="90" height="12" rx="3" fill="#F59E0B"/>
+              <rect x="24" y="160" width="120" height="12" rx="3" fill="#334155"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="section" id="courses">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Khóa Học Nổi Bật</span>
+          <h2 class="section-title">Chương Trình Đào Tạo Đa Dạng</h2>
+          <p class="section-desc">Được thiết kế tỉ mỉ từ cơ bản đến nâng cao, phù hợp cho sinh viên và người đi làm.</p>
+        </div>
+
+        <div class="courses-grid">
+          <!-- Course 1: Vibe Coding -->
+          <article class="course-card">
+            <span class="course-tag" style="background-color: rgba(6, 182, 212, 0.15); color: #0891b2;">🔥 Lập Trình AI</span>
+            <h3 class="course-title">Khóa học Vibe Coding - Tạo website bằng AI</h3>
+            <p class="course-desc">Học cách làm chủ các công cụ AI (ChatGPT, Claude, Cursor, Antigravity) để xây dựng ứng dụng web hoàn chỉnh từ ý tưởng đến sản phẩm thực tế.</p>
+            <div class="course-meta">
+              <span>⏱ 24 giờ (8 buổi)</span>
+              <span style="font-weight: 800; color: var(--color-brand); font-size: 1.05rem;">3.000.000 VNĐ</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+              <a href="course-detail.html?id=vibe-coding" class="btn btn-primary btn-sm" style="flex: 1;">Xem chi tiết</a>
+              <button type="button" class="btn btn-outline btn-sm" data-open-modal data-course="Khóa học Vibe Coding - Tạo website bằng AI">Đăng ký</button>
+            </div>
+          </article>
+
+          <!-- Course 2: MOS -->
+          <article class="course-card">
+            <span class="course-tag" style="background-color: rgba(245, 158, 11, 0.15); color: #d97706;">🎓 Chứng Chỉ Quốc Tế</span>
+            <h3 class="course-title">Khóa học MOS (Word, Excel) Chuẩn Quốc Tế</h3>
+            <p class="course-desc">Luyện thi chứng chỉ tin học văn phòng quốc tế Microsoft Office Specialist (MOS) cho Word và Excel với lộ trình bài bản & cam kết đầu ra.</p>
+            <div class="course-meta">
+              <span>⏱ 48 giờ (16 buổi)</span>
+              <span style="font-weight: 800; color: var(--color-brand); font-size: 1.05rem;">5.000.000 VNĐ</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+              <a href="course-detail.html?id=mos-word-excel" class="btn btn-primary btn-sm" style="flex: 1;">Xem chi tiết</a>
+              <button type="button" class="btn btn-outline btn-sm" data-open-modal data-course="Khóa học MOS (Word, Excel) Chuẩn Quốc Tế">Đăng ký</button>
+            </div>
+          </article>
+
+          <!-- Course 3: Excel Advanced -->
+          <article class="course-card">
+            <span class="course-tag">Phân Tích Dữ Liệu</span>
+            <h3 class="course-title">Excel Nâng Cao & Xử Lý Dữ Liệu</h3>
+            <p class="course-desc">Chinh phục các hàm phức tạp, PivotTable, Dashboard báo cáo động và tự động hóa thao tác dữ liệu doanh nghiệp.</p>
+            <div class="course-meta">
+              <span>⏱ 36 giờ (12 buổi)</span>
+              <span style="font-weight: 800; color: var(--color-brand); font-size: 1.05rem;">4.200.000 VNĐ</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+              <a href="course-detail.html?id=excel-advanced" class="btn btn-primary btn-sm" style="flex: 1;">Xem chi tiết</a>
+              <button type="button" class="btn btn-outline btn-sm" data-open-modal data-course="Excel Nâng Cao & Xử Lý Dữ Liệu">Đăng ký</button>
+            </div>
+          </article>
+
+          <!-- Course 4: Programming Basic -->
+          <article class="course-card">
+            <span class="course-tag">Lập Trình Web</span>
+            <h3 class="course-title">Lập Trình Web Cơ Bản (HTML, CSS, JS)</h3>
+            <p class="course-desc">Xây dựng tư duy thuật toán, làm quen với HTML5, CSS3 và JavaScript thuần để kiến tạo các sản phẩm web thực tế.</p>
+            <div class="course-meta">
+              <span>⏱ 72 giờ (24 buổi)</span>
+              <span style="font-weight: 800; color: var(--color-brand); font-size: 1.05rem;">6.500.000 VNĐ</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+              <a href="course-detail.html?id=programming-basic" class="btn btn-primary btn-sm" style="flex: 1;">Xem chi tiết</a>
+              <button type="button" class="btn btn-outline btn-sm" data-open-modal data-course="Lập Trình Web Cơ Bản (HTML, CSS, JS)">Đăng ký</button>
+            </div>
+          </article>
+
+          <!-- Course 5: Design App -->
+          <article class="course-card">
+            <span class="course-tag">Thiết Kế</span>
+            <h3 class="course-title">Thiết Kế Đồ Họa Ứng Dụng</h3>
+            <p class="course-desc">Sử dụng Photoshop, Illustrator và Canva để tự thiết kế ấn phẩm truyền thông, banner, poster chuyên nghiệp.</p>
+            <div class="course-meta">
+              <span>⏱ 54 giờ (18 buổi)</span>
+              <span style="font-weight: 800; color: var(--color-brand); font-size: 1.05rem;">4.800.000 VNĐ</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+              <a href="course-detail.html?id=design-app" class="btn btn-primary btn-sm" style="flex: 1;">Xem chi tiết</a>
+              <button type="button" class="btn btn-outline btn-sm" data-open-modal data-course="Thiết Kế Đồ Họa Ứng Dụng">Đăng ký</button>
+            </div>
+          </article>
+
+          <!-- Course 6: Computer Basic -->
+          <article class="course-card">
+            <span class="course-tag">Cơ Bản</span>
+            <h3 class="course-title">Tin Học Nhập Môn & Máy Tính</h3>
+            <p class="course-desc">Dành cho người mới bắt đầu tiếp xúc máy tính: sử dụng hệ điều hành Windows, Internet an toàn & đám mây.</p>
+            <div class="course-meta">
+              <span>⏱ 27 giờ (9 buổi)</span>
+              <span style="font-weight: 800; color: var(--color-brand); font-size: 1.05rem;">2.500.000 VNĐ</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: auto;">
+              <a href="course-detail.html?id=computer-basic" class="btn btn-primary btn-sm" style="flex: 1;">Xem chi tiết</a>
+              <button type="button" class="btn btn-outline btn-sm" data-open-modal data-course="Tin Học Nhập Môn & Máy Tính">Đăng ký</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="section section-alt" id="benefits">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Tại Sao Chọn TechEdu</span>
+          <h2 class="section-title">Lợi Ích Khác Biệt Cho Học Viên</h2>
+          <p class="section-desc">Chúng tôi cam kết chất lượng đào tạo vượt trội với môi trường học tập hiện đại.</p>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">👨‍🏫</div>
+            <h3 class="benefit-title">Giảng Viên Chuyên Nghiệp</h3>
+            <p class="benefit-desc">Đội ngũ giảng viên giàu kinh nghiệm thực tế tại các doanh nghiệp công nghệ lớn.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">💻</div>
+            <h3 class="benefit-title">Học Theo Dự Án</h3>
+            <p class="benefit-desc">Thực hành trên 80% thời lượng học, làm dự án thực tế ngay tại lớp học.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🗺️</div>
+            <h3 class="benefit-title">Lộ Trình Rõ Ràng</h3>
+            <p class="benefit-desc">Giáo trình bài bản, cập nhật xu hướng công nghệ mới nhất trong ngành.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">👥</div>
+            <h3 class="benefit-title">Lớp Học Quy Mô Nhỏ</h3>
+            <p class="benefit-desc">Tối đa 15 học viên/lớp để đảm bảo giảng viên hỗ trợ tận tình từng người.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🤝</div>
+            <h3 class="benefit-title">Hỗ Trợ Sau Khóa Học</h3>
+            <p class="benefit-desc">Giải đáp thắc mắc và hỗ trợ kỹ thuật trọn đời sau khi hoàn thành chương trình.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🎓</div>
+            <h3 class="benefit-title">Cấp Chứng Nhận</h3>
+            <p class="benefit-desc">Cấp chứng nhận hoàn thành khóa học có giá trị uy tín để gia tăng cơ hội việc làm.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Process Section -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Quy Trình Học</span>
+          <h2 class="section-title">4 Bước Đến Thành Công</h2>
+          <p class="section-desc">Phương pháp học tập khoa học giúp bạn nhanh chóng làm chủ kiến thức.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Tư Vấn & Định Hướng</h3>
+            <p class="step-desc">Lắng nghe nhu cầu và định hướng khóa học phù hợp nhất với mục tiêu của bạn.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Kiểm Tra Trình Độ</h3>
+            <p class="step-desc">Đánh giá năng lực ban đầu để xếp lớp và xây dựng lộ trình rèn luyện tối ưu.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Học Theo Lộ Trình</h3>
+            <p class="step-desc">Tham gia các buổi học thực chiến, tương tác liên tục cùng giảng viên và trợ giảng.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h3 class="step-title">Đánh Giá & Chứng Nhận</h3>
+            <p class="step-desc">Nộp bài tập lớn cuối khóa, nhận đánh giá chi tiết và chứng chỉ hoàn thành.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section section-alt" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Cảm Nhận Học Viên</span>
+          <h2 class="section-title">Họ Nói Gì Về Chúng Tôi</h2>
+          <p class="section-desc">Sự hài lòng và thành công của học viên là niềm tự hào lớn nhất của trung tâm.</p>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Khóa học Excel nâng cao đã giúp tôi xử lý báo cáo hàng tháng chỉ trong 30 phút thay vì mất 2 ngày như trước. Giảng viên hướng dẫn rất dễ hiểu!"</p>
+            <div class="testimonial-author">
+              <div class="avatar-circle">HN</div>
+              <div>
+                <div class="author-name">Hoàng Nam</div>
+                <div class="author-role">Chuyên viên Kế toán</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Từ một người không biết gì về lập trình, sau khóa Lập trình cơ bản tôi đã tự tay làm được trang web giới thiệu cá nhân mượt mà. Rất cảm ơn trung tâm!"</p>
+            <div class="testimonial-author">
+              <div class="avatar-circle">TL</div>
+              <div>
+                <div class="author-name">Trần Linh</div>
+                <div class="author-role">Sinh viên Đại học</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Môi trường học năng động, máy tính cấu hình cao. Điều tôi thích nhất là sau khóa học vẫn được các thầy cô nhiệt tình hỗ trợ giải đáp thắc mắc công việc."</p>
+            <div class="testimonial-author">
+              <div class="avatar-circle">MP</div>
+              <div>
+                <div class="author-name">Minh Phương</div>
+                <div class="author-role">Nhân viên Nhân sự</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Banner CTA Section -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-banner">
+          <h2 class="cta-banner-title">Sẵn Sàng Nâng Cao Kỹ Năng Ngay Hôm Nay?</h2>
+          <p class="cta-banner-desc">Đăng ký ngay để nhận ưu đãi 20% học phí cho các khóa học khai giảng trong tháng này.</p>
+          <button type="button" class="btn btn-accent btn-lg" data-open-modal>Đăng ký nhận tư vấn miễn phí</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">T</div>
+            <span>TechEdu Center</span>
+          </a>
+          <p class="footer-desc">
+            Trung tâm Đào tạo Tin học & Công nghệ hàng đầu, đồng hành cùng bạn trên con đường làm chủ kỹ năng số và bứt phá sự nghiệp.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Liên Kết Nhanh</h4>
+          <div class="footer-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="about.html">Giới thiệu</a>
+            <a href="#courses">Khóa học</a>
+            <a href="#benefits">Lợi ích</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Thông Tin Liên Hệ</h4>
+          <div class="footer-contact-item">
+            <span>📍</span>
+            <span>227 Nguyễn Văn Cừ, Quận 5, TP. Hồ Chí Minh</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>📞</span>
+            <span>(028) 3835 1056 — Hot line: 0901 234 567</span>
+          </div>
+          <div class="footer-contact-item">
+            <span>✉️</span>
+            <span>tuvan@techedu.edu.vn</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TechEdu Center. Tất cả quyền được bảo lưu. Dự án tĩnh HTML/CSS/JS thuần.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Contact Modal Dialog -->
+  <div class="modal" id="contact-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title-heading">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title-heading">Đăng Ký Tư Vấn</h2>
+        <button type="button" class="modal-close" data-close-modal aria-label="Đóng cửa sổ">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Optional Course note -->
+        <div id="contact-course-note" class="fs-banner" style="display: none; background-color: var(--color-brand-light); margin-bottom: 1rem; font-weight: 600;"></div>
+
+        <!-- File System API Status Banner -->
+        <div class="fs-banner">
+          <span>ℹ <strong>Lưu dữ liệu contacts.csv:</strong> Ưu tiên chọn thư mục project để ghi trực tiếp vào ổ đĩa.</span>
+          <span id="fs-api-status" class="fs-status">Chưa kết nối thư mục (Sẽ dùng Tải file CSV fallback nếu không chọn)</span>
+          <button type="button" id="btn-pick-dir" class="btn-pick">📂 Chọn thư mục project</button>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div class="form-group">
+            <label for="fullname" class="form-label">Họ và tên <span class="text-accent">*</span></label>
+            <input type="text" id="fullname" name="fullname" class="form-input" placeholder="Ví dụ: Nguyễn Văn A" required>
+            <span class="form-error" id="fullname-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="birth_year" class="form-label">Năm sinh <span class="text-accent">*</span></label>
+            <input type="number" id="birth_year" name="birth_year" class="form-input" placeholder="Ví dụ: 2002" min="1930" max="2026" required>
+            <span class="form-error" id="birth_year-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone" class="form-label">Số điện thoại <span class="text-accent">*</span></label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="Ví dụ: 0912345678" required>
+            <span class="form-error" id="phone-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Địa chỉ Email <span class="text-accent">*</span></label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="Ví dụ: van.a@gmail.com" required>
+            <span class="form-error" id="email-error"></span>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent" class="checkbox-label">Tôi đồng ý để Trung tâm Tin học TechEdu liên hệ tư vấn qua SĐT/Email.</label>
+          </div>
+          <span class="form-error" id="consent-error" style="margin-bottom: 1rem;"></span>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">Gửi Thông Tin Đăng Ký</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/csv.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

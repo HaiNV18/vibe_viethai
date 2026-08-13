@@ -1,0 +1,30 @@
+ChatGPT
+
+Tôi muốn dùng Antigravity để tạo 1 landing page cho trung tâm tin học.
+Hãy tạo cho tôi các file .MD để tôi dùng cho Antigravity
+Yêu cầu:
+Website chỉ sử dụng HTML, CSS, JavaScript, không có backend.
+Phải có danh sách khóa học lấy từ file .CSV Khóa học bao gồm: MOS, Vibe Coding, n8n
+Phải có 1 popup liên hệ gồm: nhập tên, năm sinh, số điện thoại, email. Dữ liệu được lưu vào file .CSV
+Phải có 1 page About Us, giới thiệu về trung tâm.
+Trong About Us có địa chỉ:
+Trụ sở chính: 227 Nguyễn Văn Cừ, Phường Chợ Quán, Quận 5, TP.HCM.
+Cơ sở đào tạo: 21-23 Nguyễn Biểu, Phường Chợ Quán, Quận 5, TP.HCM.
+
+==========
+Antigravity
+
+Hãy đọc các file .md trong folder.
+Hãy tạo project dựa trên các file .md này
+
+======
+Hãy tạo trang nội dung của từng khóa học
+Tạo data cho chi tiết môn học.
+Ví dụ:
+Khóa học Vibe Coding - tạo website bằng AI
+Tổng số giờ: 24 giờ (8 buổi)
+Học phí: 3000000 VND
+
+Khóa học MOS (Word, Excel)
+Tổng số giờ: 48 giờ (16 buổi)
+Học phí: 5000000 VND
