@@ -1,15 +1,48 @@
+ChatGPT
 Tôi đang học cách dùng Antigravity, Vibe Coding, tạo file .MD
 Tôi muốn tạo 1 trang landing page quảng cáo cho gà rán KFC.
 Chỉ dùng HTML CSS JavaScript và database là file .CSV, không có bất kỳ code backend nào.
 Hãy tạo cho tôi các file .MD cần thiết
 
 ==========================
-
-Hãy đọc các file .md trong folder.
-Chưa viết code ngay.
-Phân tích các yêu cầu, xác định những điểm mơ hồ, mâu thuẫn và thông tin còn thiếu, đồng thời đề xuất kế hoạch triển khai.
-
-==========================
-
+Antigravity:
 Hãy đọc các file .md trong folder.
 Hãy tạo project dựa trên các file .md này
+
+
+
+===============
+Tạo module đầu tiên:
+
+Dựa trên các file .MD, hãy xây dựng module Giỏ Hàng.
+Đây là module thứ 1 trong tổng số module cần xây cho ứng dụng này - không giới hạn số lượng module, cứ tiếp tục cho tới khi đủ chức năng theo PRD.
+Chỉ tập trung xây module này, CHƯA cần đụng tới các module khác đã xây hoặc chưa xây.
+Giao diện cần tuân theo đúng mô tả trong DESIGN.MD (bố cục, màu sắc, font).
+
+===========
+Nếu module này cần dùng lại dữ liệu/component từ module trước đó là [tên module trước, nếu có], hãy làm 1 bảng các dữ liệu/component này.
+Trả về code đầy đủ, có tạo các test case nghiêm ngặt của module và đảm bảo không có lỗi nào phát sinh.
+
+
+===========
+Tôi muốn Giỏ Hàng, sau khi đặt hàng thành công sẽ lưu data dưới dạng SQLite.
+SQLite là file orders.db có 2 table là orders và order_items
+
+
+
+===========
+Tạo module thứ 2:
+Prompt tạo Thanh Toán
+
+Dựa trên các file .MD, hãy xây dựng module Thanh Toán.
+Đây là module thứ 2 trong tổng số module cần xây cho ứng dụng này - không giới hạn số lượng module, cứ tiếp tục cho tới khi đủ chức năng theo PRD.
+Chỉ tập trung xây module này, CHƯA cần đụng tới các module khác đã xây hoặc chưa xây.
+Giao diện cần tuân theo đúng mô tả trong DESIGN.MD (bố cục, màu sắc, font).
+
+Nếu module này cần dùng lại dữ liệu/component từ module trước đó là Giỏ Hàng, hãy làm 1 bảng các dữ liệu/component này.
+Trả về code đầy đủ, có tạo các test case nghiêm ngặt của module và đảm bảo không có lỗi nào phát sinh.
+
+
+===========
+Tiếp tục tạo Trạng Thái Đơn Hàng
+Chưa gửi, đang gửi, đã gửi thành công, đã bị hủy (tai nạn, hư hỏng)
