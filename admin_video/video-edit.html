@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biên tập Video — Video Admin</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Overlay for Mobile -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="app-sidebar" class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="brand-icon">V</div>
+          <span>Video Admin</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Menu chính</div>
+        <a href="dashboard.html" class="nav-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="videos.html" class="nav-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Quản lý Video</span>
+        </a>
+        <a href="video-edit.html?id=new" class="nav-item active">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 01-18 0 9 9 0 01-18 0z"/></svg>
+          <span>Thêm Video mới</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div style="font-size: var(--font-size-xs); color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase;">
+          Quản lý Database
+        </div>
+        <button id="export-db-btn" class="db-action-btn" title="Xuất file SQLite .db">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export Database (.db)
+        </button>
+        <button id="import-db-btn" class="db-action-btn" title="Nhập file SQLite .db">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          Import Database
+        </button>
+        <input type="file" id="import-db-input" accept=".db,.sqlite,.sqlite3" style="display: none;">
+        <button id="reset-db-btn" class="db-action-btn" style="color: var(--danger);" title="Reset về Seed Data mẫu">
+          ⚡ Reset Seed Data
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="sidebar-toggle-btn">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h2 id="form-heading-title" class="page-title-text">Thêm Video mới</h2>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile-menu">
+            <div id="user-avatar" class="user-avatar">A</div>
+            <div class="user-info">
+              <span id="user-name" class="user-name">Admin</span>
+              <span id="user-role" class="user-role">ADMINISTRATOR</span>
+            </div>
+          </div>
+          <button id="logout-btn" class="logout-btn">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="app-content">
+        <div class="video-edit-container">
+          <div class="card">
+            <form id="video-form">
+              <div class="form-grid">
+                <!-- Title -->
+                <div class="form-group form-grid-full">
+                  <label for="title" class="form-label">Tiêu đề Video <span style="color: var(--danger);">*</span></label>
+                  <input type="text" id="title" class="form-input" placeholder="Nhập tiêu đề video..." required>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                  <label for="category_id" class="form-label">Danh mục</label>
+                  <select id="category_id" class="form-select">
+                    <option value="">-- Chọn danh mục --</option>
+                  </select>
+                </div>
+
+                <!-- Status -->
+                <div class="form-group">
+                  <label for="status" class="form-label">Trạng thái</label>
+                  <select id="status" class="form-select">
+                    <option value="published">Published</option>
+                    <option value="draft">Draft</option>
+                  </select>
+                </div>
+
+                <!-- Views -->
+                <div class="form-group">
+                  <label for="views" class="form-label">Lượt xem (Views)</label>
+                  <input type="number" id="views" class="form-input" min="0" value="0">
+                </div>
+
+                <!-- Duration -->
+                <div class="form-group">
+                  <label for="duration_seconds" class="form-label">Thời lượng (Số giây)</label>
+                  <input type="number" id="duration_seconds" class="form-input" min="0" placeholder="Ví dụ: 300 (5 phút)" value="0">
+                </div>
+
+                <!-- File Size Bytes -->
+                <div class="form-group form-grid-full">
+                  <label for="file_size_bytes" class="form-label">Dung lượng File (Bytes)</label>
+                  <input type="number" id="file_size_bytes" class="form-input" min="0" placeholder="Ví dụ: 52428800 (50 MB)" value="0">
+                </div>
+
+                <!-- Thumbnail URL -->
+                <div class="form-group form-grid-full">
+                  <label for="thumbnail_url" class="form-label">Đường dẫn ảnh Thumbnail (URL)</label>
+                  <input type="url" id="thumbnail_url" class="form-input" placeholder="https://images.unsplash.com/...">
+                  <div class="thumbnail-preview-box">
+                    <img id="thumbnail-preview-img" class="thumbnail-preview-img" style="display: none;">
+                    <span id="thumbnail-preview-placeholder" class="thumbnail-preview-placeholder">Xem trước ảnh Thumbnail</span>
+                  </div>
+                </div>
+
+                <!-- Video URL -->
+                <div class="form-group form-grid-full">
+                  <label for="video_url" class="form-label">Đường dẫn File Video (URL)</label>
+                  <input type="url" id="video_url" class="form-input" placeholder="https://domain.com/video.mp4">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group form-grid-full">
+                  <label for="description" class="form-label">Mô tả video</label>
+                  <textarea id="description" class="form-textarea" placeholder="Nhập mô tả chi tiết về video..."></textarea>
+                </div>
+              </div>
+
+              <!-- Form Actions -->
+              <div style="display: flex; justify-content: flex-end; gap: var(--spacing-md); margin-top: var(--spacing-lg);">
+                <a href="videos.html" class="btn btn-secondary">Hủy bỏ</a>
+                <button type="submit" id="save-btn" class="btn btn-primary">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                  <span>Lưu Video</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/video-edit.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Video Admin</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <!-- Chart.js CDN for high quality charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Overlay for Mobile -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="app-sidebar" class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="brand-icon">V</div>
+          <span>Video Admin</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Menu chính</div>
+        <a href="dashboard.html" class="nav-item active">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="videos.html" class="nav-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Quản lý Video</span>
+        </a>
+        <a href="video-edit.html?id=new" class="nav-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Thêm Video mới</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div style="font-size: var(--font-size-xs); color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase;">
+          Quản lý Database
+        </div>
+        <button id="export-db-btn" class="db-action-btn" title="Xuất file SQLite .db">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export Database (.db)
+        </button>
+        <button id="import-db-btn" class="db-action-btn" title="Nhập file SQLite .db">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          Import Database
+        </button>
+        <input type="file" id="import-db-input" accept=".db,.sqlite,.sqlite3" style="display: none;">
+        <button id="reset-db-btn" class="db-action-btn" style="color: var(--danger);" title="Reset về Seed Data mẫu">
+          ⚡ Reset Seed Data
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="sidebar-toggle-btn">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h2 class="page-title-text">Dashboard Tổng Quan</h2>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile-menu">
+            <div id="user-avatar" class="user-avatar">A</div>
+            <div class="user-info">
+              <span id="user-name" class="user-name">Admin</span>
+              <span id="user-role" class="user-role">ADMINISTRATOR</span>
+            </div>
+          </div>
+          <button id="logout-btn" class="logout-btn">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="app-content">
+        <!-- KPI Summary Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-info">
+              <span class="kpi-label">Tổng số Video</span>
+              <span id="kpi-total-videos" class="kpi-value">0</span>
+            </div>
+            <div class="kpi-icon-wrapper kpi-icon-indigo">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-info">
+              <span class="kpi-label">Tổng lượt xem</span>
+              <span id="kpi-total-views" class="kpi-value">0</span>
+            </div>
+            <div class="kpi-icon-wrapper kpi-icon-green">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-info">
+              <span class="kpi-label">Dung lượng Storage</span>
+              <span id="kpi-total-storage" class="kpi-value">0 MB</span>
+            </div>
+            <div class="kpi-icon-wrapper kpi-icon-blue">
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Layout Grid -->
+        <div class="dashboard-grid">
+          <!-- Top 10 Videos Bar Chart -->
+          <div class="card chart-card-half">
+            <div class="card-header">
+              <h3 class="card-title">Top 10 Video xem nhiều nhất</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="top-videos-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Views Over Time Line Chart -->
+          <div class="card chart-card-half">
+            <div class="card-header">
+              <h3 class="card-title">Thống kê Lượt xem theo thời gian</h3>
+              <div class="chart-actions">
+                <button id="toggle-day-btn" class="chart-toggle-btn active">Theo ngày</button>
+                <button id="toggle-month-btn" class="chart-toggle-btn">Theo tháng</button>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="views-time-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/dashboard.js"></script>
+</body>
+</html>

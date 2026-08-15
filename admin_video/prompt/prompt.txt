@@ -1,0 +1,26 @@
+Tôi đang học Vibe Coding. Tôi muốn build 1 website admin quản lý video với các trang sau:
+
+Dashboard
+Tổng số video
+Tổng lượt xem
+Dung lượng storage
+Biểu đồ cột: 10 video nhiều lượt xem nhất
+Biểu đồ line: lượt xem theo ngày/tháng
+
+List Video
+Danh sách video gồm: id, title, thumbnail, views, action (Edit, Delete)
+
+3 trang login, register, forgot password
+
+Ngôn ngữ lập trình: chỉ sử dụng HTML CSS JavaScript và database SQLite. Không sử dụng backend.
+Giao diện: tông màu sáng, nền trắng (light mode)
+Database users.db quản lý người dùng.
+Database videos.db quản lý video.
+Thêm các database khác như video_categories...
+
+Hãy tạo cho tôi các file .MD cần thiết
+
+==========================
+Antigravity:
+Hãy đọc các file .md trong folder.
+Hãy tạo project dựa trên các file .md này

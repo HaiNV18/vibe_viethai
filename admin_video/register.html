@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng ký tài khoản — Video Admin</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo">V</div>
+        <h1 class="auth-title">Đăng ký</h1>
+        <p class="auth-subtitle">Tạo tài khoản quản trị Video mới</p>
+      </div>
+
+      <form id="register-form">
+        <div class="form-group">
+          <label for="fullName" class="form-label">Họ và tên</label>
+          <input type="text" id="fullName" class="form-input" placeholder="Nguyễn Văn A" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="user@domain.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Mật khẩu (tối thiểu 8 ký tự)</label>
+          <input type="password" id="password" class="form-input" placeholder="••••••••" required autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Xác nhận mật khẩu</label>
+          <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••" required autocomplete="new-password">
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; margin-top: var(--spacing-md);">
+          <span>Tạo tài khoản</span>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Đã có tài khoản? <a href="login.html" class="auth-link">Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/register.js"></script>
+</body>
+</html>

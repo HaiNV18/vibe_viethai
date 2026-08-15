@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập — Video Admin</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo">V</div>
+        <h1 class="auth-title">Đăng nhập</h1>
+        <p class="auth-subtitle">Quản lý hệ thống Video Admin</p>
+      </div>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-input" placeholder="admin@video.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Mật khẩu</label>
+          <input type="password" id="password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; justify-content: space-between;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--font-size-xs); color: var(--text-secondary); cursor: pointer;">
+            <input type="checkbox" id="remember-me"> Ghi nhớ đăng nhập
+          </label>
+          <a href="forgot-password.html" class="auth-link" style="font-size: var(--font-size-xs);">Quên mật khẩu?</a>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; margin-top: var(--spacing-md);">
+          <span>Đăng nhập</span>
+        </button>
+      </form>
+
+      <div class="auth-demo-hint">
+        <div style="font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary);">Account Demo mẫu:</div>
+        <div>Email: <code>admin@video.com</code></div>
+        <div>Mật khẩu: <code>admin123</code></div>
+        <button type="button" id="autofill-btn" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 0.5rem;">
+          ⚡ Tự động điền tài khoản Demo
+        </button>
+      </div>
+
+      <div class="auth-footer">
+        Chưa có tài khoản? <a href="register.html" class="auth-link">Đăng ký ngay</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/login.js"></script>
+</body>
+</html>

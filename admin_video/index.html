@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Admin</title>
+  <script type="module">
+    import { AuthService } from './js/services/auth-service.js';
+    if (AuthService.isAuthenticated()) {
+      window.location.href = 'dashboard.html';
+    } else {
+      window.location.href = 'login.html';
+    }
+  </script>
+</head>
+<body>
+  <div style="font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #0b0f19; color: #9ca3af;">
+    <p>Đang chuyển hướng đến hệ thống Video Admin...</p>
+  </div>
+</body>
+</html>

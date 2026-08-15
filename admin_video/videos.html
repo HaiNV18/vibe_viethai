@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý Video — Video Admin</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Overlay for Mobile -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="app-sidebar" class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand-logo">
+          <div class="brand-icon">V</div>
+          <span>Video Admin</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Menu chính</div>
+        <a href="dashboard.html" class="nav-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="videos.html" class="nav-item active">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Quản lý Video</span>
+        </a>
+        <a href="video-edit.html?id=new" class="nav-item">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 01-18 0 9 9 0 018 0z"/></svg>
+          <span>Thêm Video mới</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div style="font-size: var(--font-size-xs); color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase;">
+          Quản lý Database
+        </div>
+        <button id="export-db-btn" class="db-action-btn" title="Xuất file SQLite .db">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export Database (.db)
+        </button>
+        <button id="import-db-btn" class="db-action-btn" title="Nhập file SQLite .db">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          Import Database
+        </button>
+        <input type="file" id="import-db-input" accept=".db,.sqlite,.sqlite3" style="display: none;">
+        <button id="reset-db-btn" class="db-action-btn" style="color: var(--danger);" title="Reset về Seed Data mẫu">
+          ⚡ Reset Seed Data
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button id="sidebar-toggle-btn" class="sidebar-toggle-btn">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <h2 class="page-title-text">Danh sách Video</h2>
+        </div>
+
+        <div class="header-right">
+          <div class="user-profile-menu">
+            <div id="user-avatar" class="user-avatar">A</div>
+            <div class="user-info">
+              <span id="user-name" class="user-name">Admin</span>
+              <span id="user-role" class="user-role">ADMINISTRATOR</span>
+            </div>
+          </div>
+          <button id="logout-btn" class="logout-btn">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="app-content">
+        <!-- Toolbar (Search & Filter) -->
+        <div class="videos-toolbar">
+          <div class="search-filter-group">
+            <div class="search-input-wrapper">
+              <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input type="text" id="search-input" class="form-input search-input" placeholder="Tìm kiếm theo tiêu đề...">
+            </div>
+
+            <select id="category-filter" class="form-select" style="max-width: 180px;">
+              <option value="">Tất cả danh mục</option>
+            </select>
+
+            <select id="status-filter" class="form-select" style="max-width: 150px;">
+              <option value="">Tất cả trạng thái</option>
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+
+          <a href="video-edit.html?id=new" class="btn btn-primary">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Thêm Video
+          </a>
+        </div>
+
+        <!-- Video Table Container -->
+        <div class="table-container">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 60px;">ID</th>
+                  <th style="width: 80px;">Ảnh</th>
+                  <th>Tiêu đề</th>
+                  <th>Danh mục</th>
+                  <th style="text-align: right;">Lượt xem</th>
+                  <th>Thời lượng / Size</th>
+                  <th>Trạng thái</th>
+                  <th style="text-align: center; width: 140px;">Thao tác</th>
+                </tr>
+              </thead>
+              <tbody id="video-table-body">
+                <!-- Dynamic video rows -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State -->
+          <div id="empty-state" class="empty-state" style="display: none;">
+            <svg class="empty-state-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+            <div class="empty-state-title">Không tìm thấy video nào</div>
+            <p>Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc.</p>
+          </div>
+
+          <!-- Pagination Footer -->
+          <div class="pagination">
+            <div id="pagination-info">Hiển thị 0 - 0 trong số 0 video</div>
+            <div class="pagination-controls">
+              <button id="prev-page-btn" class="btn btn-secondary btn-sm" disabled>Trang trước</button>
+              <button id="next-page-btn" class="btn btn-secondary btn-sm" disabled>Trang sau</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Delete Confirm Modal Dialog -->
+  <div id="delete-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <h3 class="modal-title">Xác nhận xóa Video</h3>
+      <p class="modal-body">Bạn có chắc chắn muốn xóa video <strong id="delete-video-title" style="color: var(--text-primary);"></strong> không? Thao tác này sẽ chuyển trạng thái video sang Xóa.</p>
+      <div class="modal-actions">
+        <button id="cancel-delete-btn" class="btn btn-secondary">Hủy bỏ</button>
+        <button id="confirm-delete-btn" class="btn btn-danger">Xóa Video</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/pages/videos.js"></script>
+</body>
+</html>
