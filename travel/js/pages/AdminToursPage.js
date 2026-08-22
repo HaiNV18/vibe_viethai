@@ -17,7 +17,7 @@ export const AdminToursPage = {
     const currentPage = parseInt(urlParams.get('page')) || 1;
     const pageSize = 20;
 
-    const data = TourService.getPaginatedTours(currentPage, pageSize);
+    const data = await TourService.getPaginatedTours(currentPage, pageSize);
     const { items, totalCount, totalPages } = data;
 
     return `
@@ -27,8 +27,8 @@ export const AdminToursPage = {
         <main>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--spacing-6);">
             <div>
-              <h2><i class="fa-solid fa-suitcase"></i> Quản Lý Tour Du Lịch</h2>
-              <p>Tổng số <strong>${totalCount}</strong> tour du lịch trong cơ sở dữ liệu SQLite</p>
+              <h2><i class="fa-solid fa-suitcase"></i> Quản Lý Tour Du Lịch (Supabase Cloud)</h2>
+              <p>Tổng số <strong>${totalCount}</strong> tour du lịch trong cơ sở dữ liệu Supabase</p>
             </div>
             <a href="/admin/tours/create" class="btn btn-primary" data-link><i class="fa-solid fa-plus"></i> Tạo Tour Mới</a>
           </div>
@@ -72,7 +72,7 @@ export const AdminToursPage = {
             <!-- SQL Pagination Controls -->
             <div class="pagination">
               <div style="font-size:var(--font-xs); color:var(--text-muted);">
-                Hiển thị trang ${currentPage} / ${totalPages} (${totalCount} bản ghi)
+                Hiển thị trang ${currentPage} / ${totalPages || 1} (${totalCount} bản ghi)
               </div>
 
               <div class="page-numbers">
@@ -80,8 +80,8 @@ export const AdminToursPage = {
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
                 
-                ${Array.from({ length: totalPages }, (_, i) => i + 1)
-                  .slice(Math.max(0, currentPage - 3), Math.min(totalPages, currentPage + 2))
+                ${Array.from({ length: totalPages || 1 }, (_, i) => i + 1)
+                  .slice(Math.max(0, currentPage - 3), Math.min(totalPages || 1, currentPage + 2))
                   .map(num => `
                     <button class="page-num-btn ${num === currentPage ? 'active' : ''}" data-page="${num}">${num}</button>
                   `).join('')}

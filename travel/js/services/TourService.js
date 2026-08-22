@@ -1,26 +1,26 @@
 import { TourRepository } from '../repositories/TourRepository.js';
 
 export const TourService = {
-  getFeaturedTours() {
-    return TourRepository.getFeatured(8);
+  async getFeaturedTours() {
+    return await TourRepository.getFeatured(8);
   },
 
-  searchTours(params = {}) {
-    return TourRepository.searchAndFilter(params);
+  async searchTours(params = {}) {
+    return await TourRepository.searchAndFilter(params);
   },
 
-  getTourById(id) {
+  async getTourById(id) {
     if (!id) return null;
-    const tour = TourRepository.findById(id);
+    const tour = await TourRepository.findById(id);
     if (!tour) return null;
-    tour.itinerary = TourRepository.getItineraryByTourId(id);
+    tour.itinerary = await TourRepository.getItineraryByTourId(id);
     return tour;
   },
 
-  getPaginatedTours(page = 1, pageSize = 20) {
+  async getPaginatedTours(page = 1, pageSize = 20) {
     const offset = (page - 1) * pageSize;
-    const items = TourRepository.getPaginated(pageSize, offset);
-    const totalCount = TourRepository.countAll();
+    const items = await TourRepository.getPaginated(pageSize, offset);
+    const totalCount = await TourRepository.countAll();
     const totalPages = Math.ceil(totalCount / pageSize);
     return {
       items,
@@ -31,13 +31,13 @@ export const TourService = {
     };
   },
 
-  createTour(tourData, itineraries = []) {
+  async createTour(tourData, itineraries = []) {
     if (!tourData.name || !tourData.operator || !tourData.price) {
       throw new Error('Vui lòng nhập đầy đủ các thông tin bắt buộc của tour.');
     }
     if (!tourData.code) {
       tourData.code = 'TOUR' + Math.floor(100 + Math.random() * 900);
     }
-    return TourRepository.create(tourData, itineraries);
+    return await TourRepository.create(tourData, itineraries);
   }
 };

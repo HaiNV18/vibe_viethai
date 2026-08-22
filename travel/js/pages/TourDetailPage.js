@@ -10,7 +10,7 @@ export const TourDetailPage = {
     const urlParams = new URLSearchParams(window.location.search);
     const tourId = urlParams.get('id');
 
-    const tour = TourService.getTourById(tourId);
+    const tour = await TourService.getTourById(tourId);
 
     if (!tour) {
       return `
@@ -138,10 +138,10 @@ export const TourDetailPage = {
     `;
   },
 
-  initEvents() {
+  async initEvents() {
     const urlParams = new URLSearchParams(window.location.search);
     const tourId = urlParams.get('id');
-    const tour = TourService.getTourById(tourId);
+    const tour = await TourService.getTourById(tourId);
 
     if (!tour) return;
 

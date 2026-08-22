@@ -1,5 +1,6 @@
 import { AuthService } from './services/AuthService.js';
 import { Toast } from './components/Toast.js';
+import { Header } from './components/Header.js';
 
 import { HomePage } from './pages/HomePage.js';
 import { FlightsPage } from './pages/FlightsPage.js';
@@ -36,12 +37,23 @@ const routes = [
 ];
 
 export const router = {
+  refreshHeader() {
+    const headerEl = document.getElementById('app-header');
+    if (headerEl) {
+      headerEl.innerHTML = Header.render();
+      Header.initEvents();
+    }
+  },
+
   async handleRoute() {
     const path = window.location.pathname;
     const match = routes.find(r => r.path === path);
 
     const contentEl = document.getElementById('app-content');
     if (!contentEl) return;
+
+    // Refresh Header on every route change to sync Auth state & active nav link
+    this.refreshHeader();
 
     // Check Auth & Admin permissions
     if (match && match.auth) {
@@ -84,8 +96,6 @@ export const router = {
   navigate(url) {
     history.pushState(null, '', url);
     this.handleRoute();
-    // Refresh Header active state
-    window.dispatchEvent(new CustomEvent('cart-updated'));
   },
 
   init() {

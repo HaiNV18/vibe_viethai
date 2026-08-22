@@ -10,7 +10,7 @@ export const FlightDetailPage = {
     const urlParams = new URLSearchParams(window.location.search);
     const flightId = urlParams.get('id');
 
-    const flight = FlightService.getFlightById(flightId);
+    const flight = await FlightService.getFlightById(flightId);
 
     if (!flight) {
       return `
@@ -117,10 +117,10 @@ export const FlightDetailPage = {
     `;
   },
 
-  initEvents() {
+  async initEvents() {
     const urlParams = new URLSearchParams(window.location.search);
     const flightId = urlParams.get('id');
-    const flight = FlightService.getFlightById(flightId);
+    const flight = await FlightService.getFlightById(flightId);
 
     if (!flight) return;
 

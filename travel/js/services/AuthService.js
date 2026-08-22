@@ -14,9 +14,9 @@ export const AuthService = {
       throw new Error('Vui lòng nhập đầy đủ thông tin đăng nhập.');
     }
 
-    let user = UserRepository.findByEmail(emailOrUsername);
+    let user = await UserRepository.findByEmail(emailOrUsername);
     if (!user) {
-      user = UserRepository.findByUsername(emailOrUsername);
+      user = await UserRepository.findByUsername(emailOrUsername);
     }
 
     if (!user) {
@@ -28,7 +28,7 @@ export const AuthService = {
       throw new Error('Tài khoản hoặc mật khẩu không chính xác.');
     }
 
-    // Sanitize user object (remove password hash)
+    // Sanitize user object
     const { password_hash, ...safeUser } = user;
     storage.set(STORAGE_KEYS.AUTH_USER, safeUser);
     return safeUser;
@@ -53,16 +53,16 @@ export const AuthService = {
       throw new Error('Mật khẩu xác nhận không trùng khớp.');
     }
 
-    if (UserRepository.findByEmail(email)) {
+    if (await UserRepository.findByEmail(email)) {
       throw new Error('Email này đã được đăng ký.');
     }
 
-    if (UserRepository.findByUsername(username)) {
+    if (await UserRepository.findByUsername(username)) {
       throw new Error('Tên đăng nhập này đã được sử dụng.');
     }
 
     const password_hash = await hashPassword(password);
-    const result = UserRepository.create({
+    const createdUser = await UserRepository.create({
       username,
       email,
       password_hash,
@@ -71,8 +71,7 @@ export const AuthService = {
       phone: phone || ''
     });
 
-    const newUser = UserRepository.findById(result.lastInsertId);
-    const { password_hash: _, ...safeUser } = newUser;
+    const { password_hash: _, ...safeUser } = createdUser;
     storage.set(STORAGE_KEYS.AUTH_USER, safeUser);
     return safeUser;
   },
@@ -85,8 +84,7 @@ export const AuthService = {
     const currentUser = this.getCurrentUser();
     if (!currentUser) throw new Error('Chưa đăng nhập.');
 
-    UserRepository.update(currentUser.id, data);
-    const updatedUser = UserRepository.findById(currentUser.id);
+    const updatedUser = await UserRepository.update(currentUser.id, data);
     const { password_hash, ...safeUser } = updatedUser;
     storage.set(STORAGE_KEYS.AUTH_USER, safeUser);
     return safeUser;

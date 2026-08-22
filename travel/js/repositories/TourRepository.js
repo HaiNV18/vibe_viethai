@@ -1,125 +1,160 @@
-import { query, queryOne, execute, getDb } from '../database/database.js';
+import { getSupabase } from '../database/database.js';
+
+function formatTour(t) {
+  if (!t) return null;
+  return {
+    ...t,
+    airline_name: t.airlines ? t.airlines.name : '',
+    airline_logo: t.airlines ? t.airlines.logo : ''
+  };
+}
 
 export const TourRepository = {
-  getFeatured(limit = 8) {
-    const sql = `
-      SELECT t.*, a.name as airline_name, a.logo as airline_logo
-      FROM tours t
-      LEFT JOIN airlines a ON t.airline_id = a.id
-      WHERE t.featured = 1
-      ORDER BY t.id ASC
-      LIMIT ?;
-    `;
-    return query(sql, [limit]);
+  async getFeatured(limit = 8) {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('tours')
+      .select('*, airlines(name, logo)')
+      .eq('featured', 1)
+      .order('id', { ascending: true })
+      .limit(limit);
+
+    if (error) console.error('TourRepository.getFeatured error:', error);
+    return (data || []).map(formatTour);
   },
 
-  findById(id) {
-    const sql = `
-      SELECT t.*, a.name as airline_name, a.logo as airline_logo
-      FROM tours t
-      LEFT JOIN airlines a ON t.airline_id = a.id
-      WHERE t.id = ?;
-    `;
-    return queryOne(sql, [id]);
+  async findById(id) {
+    if (!id) return null;
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('tours')
+      .select('*, airlines(name, logo)')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error) console.error('TourRepository.findById error:', error);
+    return formatTour(data);
   },
 
-  getItineraryByTourId(tourId) {
-    const sql = `
-      SELECT * FROM tour_itineraries
-      WHERE tour_id = ?
-      ORDER BY day_number ASC;
-    `;
-    return query(sql, [tourId]);
+  async getItineraryByTourId(tourId) {
+    if (!tourId) return [];
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('tour_itineraries')
+      .select('*')
+      .eq('tour_id', tourId)
+      .order('day_number', { ascending: true });
+
+    if (error) console.error('TourRepository.getItineraryByTourId error:', error);
+    return data || [];
   },
 
-  searchAndFilter(filters = {}) {
-    let sql = `
-      SELECT t.*, a.name as airline_name
-      FROM tours t
-      LEFT JOIN airlines a ON t.airline_id = a.id
-      WHERE t.status = 'available'
-    `;
-    const params = [];
-
-    if (filters.destination) {
-      sql += ` AND (UPPER(t.destination) LIKE UPPER(?) OR UPPER(t.name) LIKE UPPER(?))`;
-      params.push(`%${filters.destination}%`, `%${filters.destination}%`);
-    }
+  async searchAndFilter(filters = {}) {
+    const supabase = getSupabase();
+    let query = supabase
+      .from('tours')
+      .select('*, airlines(name, logo)')
+      .eq('status', 'available');
 
     if (filters.operator) {
-      sql += ` AND t.operator = ?`;
-      params.push(filters.operator);
+      query = query.eq('operator', filters.operator);
     }
 
     if (filters.departureDate) {
-      sql += ` AND t.departure_date = ?`;
-      params.push(filters.departureDate);
+      query = query.eq('departure_date', filters.departureDate);
     }
 
     if (filters.days) {
-      sql += ` AND t.days = ?`;
-      params.push(parseInt(filters.days));
+      query = query.eq('days', parseInt(filters.days));
     }
 
     if (filters.country) {
-      sql += ` AND UPPER(t.country) = UPPER(?)`;
-      params.push(filters.country);
+      query = query.ilike('country', filters.country);
     }
 
     if (filters.sortBy === 'price-desc') {
-      sql += ` ORDER BY t.price DESC`;
+      query = query.order('price', { ascending: false });
     } else {
-      sql += ` ORDER BY t.price ASC`;
+      query = query.order('price', { ascending: true });
     }
 
-    return query(sql, params);
+    const { data, error } = await query;
+    if (error) {
+      console.error('TourRepository.searchAndFilter error:', error);
+      return [];
+    }
+
+    let results = (data || []).map(formatTour);
+
+    if (filters.destination) {
+      const destMatch = filters.destination.toUpperCase();
+      results = results.filter(t => 
+        (t.destination && t.destination.toUpperCase().includes(destMatch)) ||
+        (t.name && t.name.toUpperCase().includes(destMatch))
+      );
+    }
+
+    return results;
   },
 
-  countAll() {
-    const res = queryOne("SELECT COUNT(*) as count FROM tours;");
-    return res ? res.count : 0;
+  async countAll() {
+    const supabase = getSupabase();
+    const { count, error } = await supabase
+      .from('tours')
+      .select('*', { count: 'exact', head: true });
+
+    if (error) console.error('TourRepository.countAll error:', error);
+    return count || 0;
   },
 
-  getPaginated(limit = 20, offset = 0) {
-    const sql = `
-      SELECT t.*, a.name as airline_name
-      FROM tours t
-      LEFT JOIN airlines a ON t.airline_id = a.id
-      ORDER BY t.id ASC
-      LIMIT ? OFFSET ?;
-    `;
-    return query(sql, [limit, offset]);
+  async getPaginated(limit = 20, offset = 0) {
+    const supabase = getSupabase();
+    const from = offset;
+    const to = offset + limit - 1;
+
+    const { data, error } = await supabase
+      .from('tours')
+      .select('*, airlines(name, logo)')
+      .order('id', { ascending: true })
+      .range(from, to);
+
+    if (error) console.error('TourRepository.getPaginated error:', error);
+    return (data || []).map(formatTour);
   },
 
-  create(tourData, itineraries = []) {
-    const db = getDb();
+  async create(tourData, itineraries = []) {
+    const supabase = getSupabase();
     const { code, name, operator, origin, destination, country, departure_date, days, nights, airline_id, aircraft, price, thumbnail, description, included_services, excluded_services, featured } = tourData;
-    const createdAt = new Date().toISOString();
+    
+    const { data: tour, error } = await supabase
+      .from('tours')
+      .insert([{
+        code, name, operator, origin, destination, country, departure_date,
+        days, nights, airline_id: airline_id || null, aircraft: aircraft || null,
+        price, thumbnail: thumbnail || null, description: description || null,
+        included_services: included_services || null, excluded_services: excluded_services || null,
+        featured: featured ? 1 : 0
+      }])
+      .select()
+      .single();
 
-    db.run("BEGIN TRANSACTION;");
-    try {
-      db.run(`
-        INSERT INTO tours (code, name, operator, origin, destination, country, departure_date, days, nights, airline_id, aircraft, price, thumbnail, description, included_services, excluded_services, featured, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-      `, [code, name, operator, origin, destination, country, departure_date, days, nights, airline_id || null, aircraft || null, price, thumbnail || null, description || null, included_services || null, excluded_services || null, featured ? 1 : 0, createdAt]);
-
-      const lastIdRes = db.exec("SELECT last_insert_rowid() as id;");
-      const tourId = lastIdRes[0].values[0][0];
-
-      if (itineraries && itineraries.length > 0) {
-        itineraries.forEach(it => {
-          db.run(`
-            INSERT INTO tour_itineraries (tour_id, day_number, title, description, meals, accommodation)
-            VALUES (?, ?, ?, ?, ?, ?);
-          `, [tourId, it.day_number, it.title, it.description, it.meals || null, it.accommodation || null]);
-        });
-      }
-
-      db.run("COMMIT;");
-      return { success: true, tourId };
-    } catch (error) {
-      db.run("ROLLBACK;");
+    if (error) {
+      console.error('TourRepository.create error:', error);
       throw error;
     }
+
+    if (itineraries && itineraries.length > 0) {
+      const itinItems = itineraries.map(it => ({
+        tour_id: tour.id,
+        day_number: it.day_number,
+        title: it.title,
+        description: it.description,
+        meals: it.meals || null,
+        accommodation: it.accommodation || null
+      }));
+      await supabase.from('tour_itineraries').insert(itinItems);
+    }
+
+    return tour;
   }
 };

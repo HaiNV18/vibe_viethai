@@ -1,34 +1,78 @@
-import { query, queryOne, execute } from '../database/database.js';
+import { getSupabase } from '../database/database.js';
 
 export const UserRepository = {
-  findByEmail(email) {
-    return queryOne("SELECT * FROM users WHERE LOWER(email) = LOWER(?);", [email]);
+  async findByEmail(email) {
+    if (!email) return null;
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .ilike('email', email)
+      .maybeSingle();
+    
+    if (error) console.error('UserRepository.findByEmail error:', error);
+    return data;
   },
 
-  findByUsername(username) {
-    return queryOne("SELECT * FROM users WHERE LOWER(username) = LOWER(?);", [username]);
+  async findByUsername(username) {
+    if (!username) return null;
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .ilike('username', username)
+      .maybeSingle();
+    
+    if (error) console.error('UserRepository.findByUsername error:', error);
+    return data;
   },
 
-  findById(id) {
-    return queryOne("SELECT * FROM users WHERE id = ?;", [id]);
+  async findById(id) {
+    if (!id) return null;
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+    
+    if (error) console.error('UserRepository.findById error:', error);
+    return data;
   },
 
-  create(user) {
+  async create(user) {
+    const supabase = getSupabase();
     const { username, email, password_hash, role = 'user', full_name = '', phone = '', country = 'Vietnam', address = '' } = user;
-    const createdAt = new Date().toISOString();
-    return execute(`
-      INSERT INTO users (username, email, password_hash, role, full_name, phone, country, address, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
-    `, [username, email, password_hash, role, full_name, phone, country, address, createdAt]);
+    
+    const { data, error } = await supabase
+      .from('users')
+      .insert([{ username, email, password_hash, role, full_name, phone, country, address }])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('UserRepository.create error:', error);
+      throw error;
+    }
+    return data;
   },
 
-  update(id, data) {
+  async update(id, data) {
+    const supabase = getSupabase();
     const { full_name, phone, country, address, avatar } = data;
     const updatedAt = new Date().toISOString();
-    return execute(`
-      UPDATE users 
-      SET full_name = ?, phone = ?, country = ?, address = ?, avatar = ?, updated_at = ?
-      WHERE id = ?;
-    `, [full_name, phone, country, address, avatar || null, updatedAt, id]);
+
+    const { data: updated, error } = await supabase
+      .from('users')
+      .update({ full_name, phone, country, address, avatar, updated_at: updatedAt })
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error) {
+      console.error('UserRepository.update error:', error);
+      throw error;
+    }
+    return updated;
   }
 };

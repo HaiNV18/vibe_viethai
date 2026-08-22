@@ -14,7 +14,7 @@ export const ToursPage = {
       sortBy: urlParams.get('sortBy') || 'price-asc'
     };
 
-    const tours = TourService.searchTours(filterParams);
+    const tours = await TourService.searchTours(filterParams);
 
     return `
       <div class="container">

@@ -1,14 +1,14 @@
 import { BookingRepository } from '../repositories/BookingRepository.js';
 
 export const DashboardService = {
-  getDashboardData() {
-    const monthlyTourCount = BookingRepository.getMonthlyTourCount();
-    const flightCount = BookingRepository.getFlightCount();
-    const tourCustomerCount = BookingRepository.getTourCustomerCount();
-    const flightCustomerCount = BookingRepository.getFlightCustomerCount();
+  async getDashboardData() {
+    const monthlyTourCount = await BookingRepository.getMonthlyTourCount();
+    const flightCount = await BookingRepository.getFlightCount();
+    const tourCustomerCount = await BookingRepository.getTourCustomerCount();
+    const flightCustomerCount = await BookingRepository.getFlightCustomerCount();
 
-    const topAirlines = BookingRepository.getTopAirlines(10);
-    const topCountries = BookingRepository.getTopTourCountries(10);
+    const topAirlines = await BookingRepository.getTopAirlines(10);
+    const topCountries = await BookingRepository.getTopTourCountries(10);
 
     return {
       kpis: {

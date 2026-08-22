@@ -1,20 +1,22 @@
 import { hashPassword } from './database.js';
 
-export async function seedDatabase(db) {
+export async function seedDatabase(supabase) {
   const now = new Date().toISOString();
+
+  console.log('Seeding Supabase Cloud Database...');
 
   // 1. Seed Users
   const adminPass = await hashPassword('Admin123!');
   const userPass = await hashPassword('User123!');
 
-  db.run(`
-    INSERT INTO users (username, email, password_hash, role, full_name, phone, country, address, created_at)
-    VALUES 
-    ('admin', 'admin@travel.com', '${adminPass}', 'admin', 'TravelViet Administrator', '0901234567', 'Vietnam', 'Hà Nội, Việt Nam', '${now}'),
-    ('userdemo', 'user@travel.com', '${userPass}', 'user', 'Nguyễn Văn User', '0987654321', 'Vietnam', 'TP. Hồ Chí Minh, Việt Nam', '${now}');
-  `);
+  const { data: users, error: usersErr } = await supabase.from('users').insert([
+    { username: 'admin', email: 'admin@travel.com', password_hash: adminPass, role: 'admin', full_name: 'TravelViet Administrator', phone: '0901234567', country: 'Vietnam', address: 'Hà Nội, Việt Nam', created_at: now },
+    { username: 'userdemo', email: 'user@travel.com', password_hash: userPass, role: 'user', full_name: 'Nguyễn Văn User', phone: '0987654321', country: 'Vietnam', address: 'TP. Hồ Chí Minh, Việt Nam', created_at: now }
+  ]).select();
 
-  // 2. Seed Airlines (10 Airlines)
+  if (usersErr) console.warn('Seed users error:', usersErr.message);
+
+  // 2. Seed Airlines
   const airlines = [
     { code: 'VJ', name: 'VietJet Air', logo: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=120&q=80', country: 'Vietnam' },
     { code: 'VN', name: 'Vietnam Airlines', logo: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=120&q=80', country: 'Vietnam' },
@@ -27,12 +29,9 @@ export async function seedDatabase(db) {
     { code: 'JL', name: 'Japan Airlines', logo: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=120&q=80', country: 'Japan' },
     { code: 'EK', name: 'Emirates', logo: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=120&q=80', country: 'UAE' }
   ];
+  await supabase.from('airlines').insert(airlines);
 
-  airlines.forEach(a => {
-    db.run(`INSERT INTO airlines (code, name, logo, country) VALUES ('${a.code}', '${a.name}', '${a.logo}', '${a.country}');`);
-  });
-
-  // 3. Seed Airports (11 Airports)
+  // 3. Seed Airports
   const airports = [
     { code: 'SGN', name: 'Tân Sơn Nhất', city: 'TP. Hồ Chí Minh', country: 'Vietnam' },
     { code: 'HAN', name: 'Nội Bài', city: 'Hà Nội', country: 'Vietnam' },
@@ -46,18 +45,14 @@ export async function seedDatabase(db) {
     { code: 'NRT', name: 'Narita', city: 'Tokyo', country: 'Japan' },
     { code: 'DXB', name: 'Dubai International', city: 'Dubai', country: 'UAE' }
   ];
+  await supabase.from('airports').insert(airports);
 
-  airports.forEach(ap => {
-    db.run(`INSERT INTO airports (code, name, city, country) VALUES ('${ap.code}', '${ap.name}', '${ap.city}', '${ap.country}');`);
-  });
-
-  // Helper arrays for generating 100+ flights & 100+ tours
+  // 4. Seed Flights (105 Flights)
   const aircraftList = ['Airbus A320', 'Airbus A321', 'Airbus A330', 'Airbus A350', 'Boeing 737', 'Boeing 787', 'Boeing 777'];
   const times = ['06:00', '08:30', '10:15', '13:00', '15:45', '18:20', '20:50', '22:30'];
   const dates = ['2026-09-01', '2026-09-02', '2026-09-05', '2026-09-10', '2026-09-15', '2026-09-20', '2026-10-01'];
 
-  // 4. Seed 105 Flights
-  db.run("BEGIN TRANSACTION;");
+  const flightsToInsert = [];
   let flightCount = 0;
   for (let aId = 1; aId <= 10; aId++) {
     for (let origId = 1; origId <= 11; origId++) {
@@ -80,101 +75,111 @@ export async function seedDatabase(db) {
         const ecoPrice = 1200000 + (flightCount % 15) * 450000;
         const busPrice = ecoPrice * 2.8;
 
-        db.run(`
-          INSERT INTO flights 
-          (flight_number, airline_id, origin_airport_id, destination_airport_id, departure_date, departure_time, arrival_time, duration_minutes, trip_type, stops, aircraft, economy_price, business_price, services)
-          VALUES ('${fNum}', ${aId}, ${origId}, ${destId}, '${depDate}', '${depTime}', '${arrTime}', ${duration}, '${tripType}', ${stops}, '${aircraft}', ${ecoPrice}, ${busPrice}, 'Hành lý xách tay 7kg, Suất ăn nhẹ');
-        `);
+        flightsToInsert.push({
+          flight_number: fNum,
+          airline_id: aId,
+          origin_airport_id: origId,
+          destination_airport_id: destId,
+          departure_date: depDate,
+          departure_time: depTime,
+          arrival_time: arrTime,
+          duration_minutes: duration,
+          trip_type: tripType,
+          stops,
+          aircraft,
+          economy_price: ecoPrice,
+          business_price: busPrice,
+          services: 'Hành lý xách tay 7kg, Suất ăn nhẹ',
+          status: 'available'
+        });
       }
     }
   }
-  db.run("COMMIT;");
 
-  // 5. Seed 8 Featured Tours
+  await supabase.from('flights').insert(flightsToInsert);
+
+  // 5. Seed Featured Tours & 100+ Total Tours
   const featuredTours = [
     {
       code: 'TOUR001', name: 'Hà Nội — Hạ Long 4N3Đ: Trải Nghiệm Du Thuyền 5 Sao', operator: 'TravelViet Heritage',
       origin: 'TP. Hồ Chí Minh', destination: 'Hạ Long', country: 'Vietnam', departure_date: '2026-09-10',
       days: 4, nights: 3, price: 5990000, thumbnail: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Hành trình khám phá vẻ đẹp kỳ vĩ của Vịnh Hạ Long, nghỉ dưỡng du thuyền cao cấp và tham quan Phố cổ Hà Nội.',
-      featured: 1
+      description: 'Hành trình khám phá vẻ đẹp kỳ vĩ của Vịnh Hạ Long, nghỉ dưỡng du thuyền cao cấp và tham quan Phố cổ Hà Nội.',
+      featured: 1, airline_id: 2, aircraft: 'Airbus A321', included_services: 'Vé máy bay, Khách sạn 4 sao, Các bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     },
     {
       code: 'TOUR002', name: 'Đà Nẵng — Hội An — Bà Nà Hills 4N3Đ: Cầu Vàng Huyền Thoại', operator: 'Vietnam Travel',
       origin: 'Hà Nội', destination: 'Đà Nẵng', country: 'Vietnam', departure_date: '2026-09-12',
       days: 4, nights: 3, price: 6890000, thumbnail: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Chiêm ngưỡng Cầu Vàng Sun World Bà Nà Hills, thả hoa đăng trên sông Hoài Phố cổ Hội An rực rỡ sắc màu.',
-      featured: 1
+      description: 'Chiêm ngưỡng Cầu Vàng Sun World Bà Nà Hills, thả hoa đăng trên sông Hoài Phố cổ Hội An rực rỡ sắc màu.',
+      featured: 1, airline_id: 2, aircraft: 'Airbus A321', included_services: 'Vé máy bay, Khách sạn 4 sao, Các bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     },
     {
       code: 'TOUR003', name: 'Phú Quốc 4N3Đ: Thiên Đường Biển Ngọc & VinWonders', operator: 'Island Escape',
       origin: 'TP. Hồ Chí Minh', destination: 'Phú Quốc', country: 'Vietnam', departure_date: '2026-09-15',
       days: 4, nights: 3, price: 7490000, thumbnail: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Tận hưởng bờ cát trắng mịn Grand World, lặn ngắm san hô Hòn Mây Rút và vui chơi VinWonders cực đã.',
-      featured: 1
+      description: 'Tận hưởng bờ cát trắng mịn Grand World, lặn ngắm san hô Hòn Mây Rút và vui chơi VinWonders cực đã.',
+      featured: 1, airline_id: 1, aircraft: 'Airbus A320', included_services: 'Vé máy bay, Khách sạn 4 sao, Các bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     },
     {
       code: 'TOUR004', name: 'Nha Trang 4N3Đ: Khám Phá Vịnh Biển Đẹp Nhất Thế Giới', operator: 'Coastal Travel',
       origin: 'Hà Nội', destination: 'Nha Trang', country: 'Vietnam', departure_date: '2026-09-18',
       days: 4, nights: 3, price: 5490000, thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Tắm khoáng nóng Tháp Bà, đi cáp treo Vinpearl Harbour và thưởng thức hải sản tươi sống đẳng cấp.',
-      featured: 1
+      description: 'Tắm khoáng nóng Tháp Bà, đi cáp treo Vinpearl Harbour và thưởng thức hải sản tươi sống đẳng cấp.',
+      featured: 1, airline_id: 3, aircraft: 'Airbus A321', included_services: 'Vé máy bay, Khách sạn 4 sao, Các bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     },
     {
       code: 'TOUR005', name: 'Đà Lạt 3N2Đ: Thành Phố Ngàn Hoa & Thung Lũng Tình Yêu', operator: 'Highland Tour',
       origin: 'TP. Hồ Chí Minh', destination: 'Đà Lạt', country: 'Vietnam', departure_date: '2026-09-20',
       days: 3, nights: 2, price: 3990000, thumbnail: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Khí hậu mát mẻ quanh năm, ghé thăm Quảng trường Lâm Viên, săn mây Cầu Đất và thưởng thức lẩu gà lá é.',
-      featured: 1
+      description: 'Khí hậu mát mẻ quanh năm, ghé thăm Quảng trường Lâm Viên, săn mây Cầu Đất và thưởng thức lẩu gà lá é.',
+      featured: 1, airline_id: 1, aircraft: 'Airbus A320', included_services: 'Vé xe cao cấp, Khách sạn 3 sao, Bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     },
     {
       code: 'TOUR006', name: 'Hà Nội — Ninh Bình 3N2Đ: Tràng An — Bái Đính Quần Thể Di Sản', operator: 'TravelViet Heritage',
       origin: 'Đà Nẵng', destination: 'Ninh Bình', country: 'Vietnam', departure_date: '2026-09-22',
       days: 3, nights: 2, price: 4290000, thumbnail: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Đi thuyền trên dòng sông Sào Khê Tràng An, leo núi Hang Múa ngắm trọn vẹn thung lũng lúa chín.',
-      featured: 1
+      description: 'Đi thuyền trên dòng sông Sào Khê Tràng An, leo núi Hang Múa ngắm trọn vẹn thung lũng lúa chín.',
+      featured: 1, airline_id: 2, aircraft: 'Airbus A321', included_services: 'Vé máy bay, Khách sạn 4 sao, Bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     },
     {
       code: 'TOUR007', name: 'TP.HCM — Miền Tây 3N2Đ: Sông Nước Cần Thơ — Chợ Nổi Cái Răng', operator: 'Mekong Discovery',
       origin: 'Hà Nội', destination: 'Cần Thơ', country: 'Vietnam', departure_date: '2026-09-25',
       days: 3, nights: 2, price: 3490000, thumbnail: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Trải nghiệm văn hóa chợ nổi trên sông, hái trái cây tại vườn bãi bồi Cù lao Thới Sơn mộc mạc.',
-      featured: 1
+      description: 'Trải nghiệm văn hóa chợ nổi trên sông, hái trái cây tại vườn bãi bồi Cù lao Thới Sơn mộc mạc.',
+      featured: 1, airline_id: 1, aircraft: 'Airbus A320', included_services: 'Xe du lịch, Khách sạn 3 sao, Bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     },
     {
       code: 'TOUR008', name: 'Sapa — Fansipan 4N3Đ: Chinh Phục Nóc Nhà Đông Dương', operator: 'Highland Tour',
       origin: 'TP. Hồ Chí Minh', destination: 'Sapa', country: 'Vietnam', departure_date: '2026-09-28',
       days: 4, nights: 3, price: 6290000, thumbnail: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&h=400&q=80',
-      desc: 'Đỉnh Fansipan rực rỡ mây trời, khám phá Bản Cát Cát sương giăng và trải nghiệm ẩm thực nướng vùng cao.',
-      featured: 1
+      description: 'Đỉnh Fansipan rực rỡ mây trời, khám phá Bản Cát Cát sương giăng và trải nghiệm ẩm thực nướng vùng cao.',
+      featured: 1, airline_id: 2, aircraft: 'Airbus A321', included_services: 'Vé máy bay, Khách sạn 4 sao, Bữa ăn, HDV', excluded_services: 'Chi phí cá nhân'
     }
   ];
 
-  db.run("BEGIN TRANSACTION;");
-  featuredTours.forEach(t => {
-    db.run(`
-      INSERT INTO tours (code, name, operator, origin, destination, country, departure_date, days, nights, airline_id, aircraft, price, thumbnail, description, included_services, excluded_services, featured, created_at)
-      VALUES ('${t.code}', '${t.name}', '${t.operator}', '${t.origin}', '${t.destination}', '${t.country}', '${t.departure_date}', ${t.days}, ${t.nights}, 2, 'Airbus A321', ${t.price}, '${t.thumbnail}', '${t.desc}', 'Vé máy bay khứ hồi, Khách sạn 4 sao, Các bữa ăn theo chương trình, Xe đưa đón, Hướng dẫn viên', 'Chi phí cá nhân, Tiền tip HDV', ${t.featured}, '${now}');
-    `);
-  });
+  const { data: insertedFeatured } = await supabase.from('tours').insert(featuredTours).select();
 
-  // Seed sample Itineraries for Featured Tours
-  for (let tId = 1; tId <= 8; tId++) {
-    db.run(`
-      INSERT INTO tour_itineraries (tour_id, day_number, title, description, meals, accommodation)
-      VALUES 
-      (${tId}, 1, 'Khởi hành — Nhận phòng & Tham quan', 'Đón khách tại sân bay, di chuyển về khách sạn nhận phòng nghỉ ngơi. Chiều tham quan danh thắng địa phương.', 'Trưa, Tối', 'Khách sạn 4 sao central'),
-      (${tId}, 2, 'Khám phá danh thắng & Trải nghiệm', 'Hành trình trải nghiệm trọn vẹn các điểm đến nổi tiếng nhất trong tour. Thưởng thức đặc sản vùng miền.', 'Sáng, Trưa, Tối', 'Khách sạn 4 sao central'),
-      (${tId}, 3, 'Trải nghiệm văn hóa & Mua sắm', 'Tự do dạo chơi mua sắm quà lưu niệm địa phương. Tham gia các hoạt động giải trí độc đáo.', 'Sáng, Trưa', 'Khách sạn 4 sao central'),
-      (${tId}, 4, 'Tạm biệt & Trở về điểm xuất phát', 'Ăn sáng tại khách sạn, làm thủ tục trả phòng. Xe đưa đoàn ra sân bay trở về điểm đón ban đầu.', 'Sáng', 'Tự do');
-    `);
+  if (insertedFeatured) {
+    // Seed Itineraries
+    const itineraries = [];
+    insertedFeatured.forEach(t => {
+      itineraries.push(
+        { tour_id: t.id, day_number: 1, title: 'Khởi hành — Nhận phòng & Tham quan', description: 'Đón khách tại sân bay, di chuyển về khách sạn nhận phòng nghỉ ngơi. Chiều tham quan danh thắng địa phương.', meals: 'Trưa, Tối', accommodation: 'Khách sạn 4 sao' },
+        { tour_id: t.id, day_number: 2, title: 'Khám phá danh thắng & Trải nghiệm', description: 'Hành trình trải nghiệm trọn vẹn các điểm đến nổi tiếng nhất trong tour. Thưởng thức đặc sản vùng miền.', meals: 'Sáng, Trưa, Tối', accommodation: 'Khách sạn 4 sao' },
+        { tour_id: t.id, day_number: 3, title: 'Trải nghiệm văn hóa & Mua sắm', description: 'Tự do dạo chơi mua sắm quà lưu niệm địa phương. Tham gia các hoạt động giải trí độc đáo.', meals: 'Sáng, Trưa', accommodation: 'Khách sạn 4 sao' },
+        { tour_id: t.id, day_number: 4, title: 'Tạm biệt & Trở về điểm xuất phát', description: 'Ăn sáng tại khách sạn, làm thủ tục trả phòng. Xe đưa đoàn ra sân bay trở về điểm đón ban đầu.', meals: 'Sáng', accommodation: 'Tự do' }
+      );
+    });
+    await supabase.from('tour_itineraries').insert(itineraries);
   }
 
-  // 6. Seed additional 95 Tours (Total 103 tours for Admin Pagination testing)
+  // Seed 95 additional tours for pagination
   const countries = ['Thailand', 'Singapore', 'Japan', 'South Korea', 'China', 'Malaysia', 'Indonesia', 'France', 'Italy', 'Australia', 'UAE', 'Vietnam'];
   const destinations = ['Bangkok', 'Singapore', 'Tokyo', 'Seoul', 'Thượng Hải', 'Kuala Lumpur', 'Bali', 'Paris', 'Rome', 'Sydney', 'Dubai', 'Đà Nẵng'];
   const operators = ['Vietnam Travel', 'TravelViet Heritage', 'Global Explorer', 'Asian Horizons', 'Euro World Travel'];
 
+  const extraTours = [];
   for (let idx = 9; idx <= 103; idx++) {
     const country = countries[idx % countries.length];
     const dest = destinations[idx % destinations.length];
@@ -184,56 +189,42 @@ export async function seedDatabase(db) {
     const price = 8900000 + (idx % 20) * 1200000;
     const depDate = `2026-10-${String(1 + (idx % 28)).padStart(2, '0')}`;
 
-    db.run(`
-      INSERT INTO tours (code, name, operator, origin, destination, country, departure_date, days, nights, airline_id, aircraft, price, thumbnail, description, included_services, excluded_services, featured, created_at)
-      VALUES ('${code}', '${name}', '${op}', 'TP. Hồ Chí Minh', '${dest}', '${country}', '${depDate}', ${4 + (idx % 3)}, ${3 + (idx % 3)}, ${(idx % 10) + 1}, 'Boeing 787', ${price}, 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=400&q=80', 'Hành trình tour hấp dẫn với dịch vụ tiêu chuẩn quốc tế.', 'Vé máy bay, Khách sạn, Các bữa ăn, HDV', 'Chi phí cá nhân', 0, '${now}');
-    `);
-
-    // Basic Itinerary
-    db.run(`
-      INSERT INTO tour_itineraries (tour_id, day_number, title, description, meals, accommodation)
-      VALUES 
-      (${idx}, 1, 'TP.HCM → ${dest}', 'Khởi hành chuyến bay đến ${dest}, làm thủ tục nhập cảnh và di chuyển về khách sạn.', 'Tối', 'Khách sạn 4 sao'),
-      (${idx}, 2, 'Khám phá ${dest}', 'Tham quan các công trình kiến trúc và thắng cảnh biểu tượng của ${country}.', 'Sáng, Trưa, Tối', 'Khách sạn 4 sao');
-    `);
+    extraTours.push({
+      code, name, operator: op, origin: 'TP. Hồ Chí Minh', destination: dest, country, departure_date: depDate,
+      days: 4 + (idx % 3), nights: 3 + (idx % 3), airline_id: (idx % 10) + 1, aircraft: 'Boeing 787', price,
+      thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&h=400&q=80',
+      description: 'Hành trình tour hấp dẫn với dịch vụ tiêu chuẩn quốc tế.', included_services: 'Vé máy bay, Khách sạn, Các bữa ăn, HDV',
+      excluded_services: 'Chi phí cá nhân', featured: 0, created_at: now
+    });
   }
+  await supabase.from('tours').insert(extraTours);
 
-  // 7. Seed Bookings & Booking items for Dashboard Stats
+  // 6. Seed Bookings
   const demoBookings = [
-    { code: 'BK8801', user_id: 2, name: 'Nguyễn Văn User', email: 'user@travel.com', phone: '0987654321', country: 'Vietnam', amount: 12480000, date: '2026-08-01 10:30:00' },
-    { code: 'BK8802', user_id: null, name: 'Trần Thị B', email: 'tranb@gmail.com', phone: '0912345678', country: 'Thailand', amount: 15800000, date: '2026-08-03 14:15:00' },
-    { code: 'BK8803', user_id: null, name: 'Le Vance', email: 'vance@yahoo.com', phone: '0933445566', country: 'Singapore', amount: 9500000, date: '2026-08-05 09:20:00' },
-    { code: 'BK8804', user_id: null, name: 'Phạm Minh C', email: 'minhc@hotmail.com', phone: '0977889900', country: 'Japan', amount: 24500000, date: '2026-08-08 16:45:00' },
-    { code: 'BK8805', user_id: null, name: 'Kim Soo Hyun', email: 'kimsh@naver.com', phone: '0900112233', country: 'South Korea', amount: 18900000, date: '2026-08-10 11:00:00' },
-    { code: 'BK8806', user_id: null, name: 'David Smith', email: 'dsmith@gmail.com', phone: '0944556677', country: 'Australia', amount: 32000000, date: '2026-08-12 15:30:00' },
-    { code: 'BK8807', user_id: null, name: 'Li Wei', email: 'liwei@qq.com', phone: '0966778899', country: 'China', amount: 14200000, date: '2026-08-14 08:45:00' },
-    { code: 'BK8808', user_id: null, name: 'Jean Dupont', email: 'jdupont@orange.fr', phone: '0922334455', country: 'France', amount: 28900000, date: '2026-08-16 19:10:00' },
-    { code: 'BK8809', user_id: null, name: 'Marco Rossi', email: 'mrossi@libero.it', phone: '0955667788', country: 'Italy', amount: 27500000, date: '2026-08-18 13:25:00' },
-    { code: 'BK8810', user_id: null, name: 'Sultan Ahmed', email: 'sahmed@emirates.ae', phone: '0988990011', country: 'UAE', amount: 41000000, date: '2026-08-20 17:50:00' }
+    { booking_code: 'BK8801', customer_name: 'Nguyễn Văn User', customer_email: 'user@travel.com', customer_phone: '0987654321', country: 'Vietnam', total_amount: 12480000, created_at: '2026-08-01T10:30:00Z' },
+    { booking_code: 'BK8802', customer_name: 'Trần Thị B', customer_email: 'tranb@gmail.com', customer_phone: '0912345678', country: 'Thailand', total_amount: 15800000, created_at: '2026-08-03T14:15:00Z' },
+    { booking_code: 'BK8803', customer_name: 'Le Vance', customer_email: 'vance@yahoo.com', customer_phone: '0933445566', country: 'Singapore', total_amount: 9500000, created_at: '2026-08-05T09:20:00Z' },
+    { booking_code: 'BK8804', customer_name: 'Phạm Minh C', customer_email: 'minhc@hotmail.com', customer_phone: '0977889900', country: 'Japan', total_amount: 24500000, created_at: '2026-08-08T16:45:00Z' },
+    { booking_code: 'BK8805', customer_name: 'Kim Soo Hyun', customer_email: 'kimsh@naver.com', customer_phone: '0900112233', country: 'South Korea', total_amount: 18900000, created_at: '2026-08-10T11:00:00Z' },
+    { booking_code: 'BK8806', customer_name: 'David Smith', customer_email: 'dsmith@gmail.com', customer_phone: '0944556677', country: 'Australia', total_amount: 32000000, created_at: '2026-08-12T15:30:00Z' },
+    { booking_code: 'BK8807', customer_name: 'Li Wei', customer_email: 'liwei@qq.com', customer_phone: '0966778899', country: 'China', total_amount: 14200000, created_at: '2026-08-14T08:45:00Z' },
+    { booking_code: 'BK8808', customer_name: 'Jean Dupont', customer_email: 'jdupont@orange.fr', customer_phone: '0922334455', country: 'France', total_amount: 28900000, created_at: '2026-08-16T19:10:00Z' },
+    { booking_code: 'BK8809', customer_name: 'Marco Rossi', customer_email: 'mrossi@libero.it', customer_phone: '0955667788', country: 'Italy', total_amount: 27500000, created_at: '2026-08-18T13:25:00Z' },
+    { booking_code: 'BK8810', customer_name: 'Sultan Ahmed', customer_email: 'sahmed@emirates.ae', customer_phone: '0988990011', country: 'UAE', total_amount: 41000000, created_at: '2026-08-20T17:50:00Z' }
   ];
 
-  demoBookings.forEach((b, i) => {
-    db.run(`
-      INSERT INTO bookings (booking_code, user_id, customer_name, customer_email, customer_phone, country, address, total_amount, status, created_at)
-      VALUES ('${b.code}', ${b.user_id ? b.user_id : 'NULL'}, '${b.name}', '${b.email}', '${b.phone}', '${b.country}', 'Khu phố 1, Việt Nam', ${b.amount}, 'completed', '${b.date}');
-    `);
+  const { data: insertedBookings } = await supabase.from('bookings').insert(demoBookings).select();
 
-    // Add booking flights (Airlines stats)
-    const airlineId = (i % 10) + 1;
-    const flightId = (i * 10) + 1;
-    db.run(`
-      INSERT INTO booking_flights (booking_id, flight_id, fare_class, quantity, price)
-      VALUES (${i + 1}, ${flightId}, 'Economy', 2, 4500000);
-    `);
+  if (insertedBookings) {
+    const bookingFlights = [];
+    const bookingTours = [];
+    insertedBookings.forEach((b, i) => {
+      bookingFlights.push({ booking_id: b.id, flight_id: (i * 10) + 1, fare_class: 'Economy', quantity: 2, price: 4500000 });
+      bookingTours.push({ booking_id: b.id, tour_id: (i % 8) + 1, quantity: 1, price: 5990000 });
+    });
+    await supabase.from('booking_flights').insert(bookingFlights);
+    await supabase.from('booking_tours').insert(bookingTours);
+  }
 
-    // Add booking tours
-    const tourId = (i % 8) + 1;
-    db.run(`
-      INSERT INTO booking_tours (booking_id, tour_id, quantity, price)
-      VALUES (${i + 1}, ${tourId}, 1, 5990000);
-    `);
-  });
-
-  db.run("COMMIT;");
-  console.log('Seed data inserted successfully.');
+  console.log('Supabase Cloud Database seeded successfully!');
 }

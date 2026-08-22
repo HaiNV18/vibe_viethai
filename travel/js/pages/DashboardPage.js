@@ -11,7 +11,7 @@ export const DashboardPage = {
       return '';
     }
 
-    const data = DashboardService.getDashboardData();
+    const data = await DashboardService.getDashboardData();
     const { kpis, topCountries } = data;
 
     return `
@@ -21,7 +21,7 @@ export const DashboardPage = {
         <main>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--spacing-6);">
             <div>
-              <h2><i class="fa-solid fa-chart-line"></i> Admin Dashboard</h2>
+              <h2><i class="fa-solid fa-chart-line"></i> Admin Dashboard (Supabase Cloud)</h2>
               <p>Tổng quan chỉ số hoạt động & thống kê hệ thống TravelViet</p>
             </div>
           </div>
@@ -114,11 +114,11 @@ export const DashboardPage = {
     `;
   },
 
-  initEvents() {
+  async initEvents() {
     const user = AuthService.getCurrentUser();
     if (!user || user.role !== 'admin') return;
 
-    const data = DashboardService.getDashboardData();
+    const data = await DashboardService.getDashboardData();
     const { topAirlines, topCountries } = data;
 
     // Render Bar Chart

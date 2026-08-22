@@ -20,7 +20,7 @@ export const AdminCreateTourPage = {
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--spacing-6);">
             <div>
               <h2><i class="fa-solid fa-plus-circle"></i> Tạo Tour Du Lịch Mới</h2>
-              <p>Thêm thông tin tour du lịch mới vào cơ sở dữ liệu hệ thống</p>
+              <p>Thêm thông tin tour du lịch mới vào cơ sở dữ liệu Supabase Cloud</p>
             </div>
             <a href="/admin/tours" class="btn btn-outline btn-sm" data-link><i class="fa-solid fa-arrow-left"></i> Danh sách Tour</a>
           </div>
@@ -154,7 +154,7 @@ export const AdminCreateTourPage = {
     const form = document.getElementById('create-tour-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const tourData = {
@@ -191,7 +191,7 @@ export const AdminCreateTourPage = {
       });
 
       try {
-        TourService.createTour(tourData, itineraries);
+        await TourService.createTour(tourData, itineraries);
         Toast.success('Tạo tour du lịch mới thành công!');
         router.navigate('/admin/tours');
       } catch (err) {

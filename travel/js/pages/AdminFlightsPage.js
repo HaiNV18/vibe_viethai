@@ -17,7 +17,7 @@ export const AdminFlightsPage = {
     const currentPage = parseInt(urlParams.get('page')) || 1;
     const pageSize = 20;
 
-    const data = FlightService.getPaginatedFlights(currentPage, pageSize);
+    const data = await FlightService.getPaginatedFlights(currentPage, pageSize);
     const { items, totalCount, totalPages } = data;
 
     return `
@@ -27,8 +27,8 @@ export const AdminFlightsPage = {
         <main>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--spacing-6);">
             <div>
-              <h2><i class="fa-solid fa-plane"></i> Quản Lý Chuyến Bay</h2>
-              <p>Tổng số <strong>${totalCount}</strong> chuyến bay trong cơ sở dữ liệu SQLite</p>
+              <h2><i class="fa-solid fa-plane"></i> Quản Lý Chuyến Bay (Supabase Cloud)</h2>
+              <p>Tổng số <strong>${totalCount}</strong> chuyến bay trong cơ sở dữ liệu Supabase</p>
             </div>
             <a href="/admin/flights/create" class="btn btn-primary" data-link><i class="fa-solid fa-plus"></i> Tạo Chuyến Bay Mới</a>
           </div>
@@ -76,7 +76,7 @@ export const AdminFlightsPage = {
             <!-- SQL Pagination Controls -->
             <div class="pagination">
               <div style="font-size:var(--font-xs); color:var(--text-muted);">
-                Hiển thị trang ${currentPage} / ${totalPages} (${totalCount} bản ghi)
+                Hiển thị trang ${currentPage} / ${totalPages || 1} (${totalCount} bản ghi)
               </div>
 
               <div class="page-numbers">
@@ -84,8 +84,8 @@ export const AdminFlightsPage = {
                   <i class="fa-solid fa-chevron-left"></i>
                 </button>
                 
-                ${Array.from({ length: totalPages }, (_, i) => i + 1)
-                  .slice(Math.max(0, currentPage - 3), Math.min(totalPages, currentPage + 2))
+                ${Array.from({ length: totalPages || 1 }, (_, i) => i + 1)
+                  .slice(Math.max(0, currentPage - 3), Math.min(totalPages || 1, currentPage + 2))
                   .map(num => `
                     <button class="page-num-btn ${num === currentPage ? 'active' : ''}" data-page="${num}">${num}</button>
                   `).join('')}

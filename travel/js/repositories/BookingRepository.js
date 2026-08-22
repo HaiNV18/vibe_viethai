@@ -1,103 +1,146 @@
-import { query, queryOne, execute, getDb } from '../database/database.js';
+import { getSupabase } from '../database/database.js';
 
 export const BookingRepository = {
-  createBooking(booking, flights = [], tours = []) {
-    const db = getDb();
+  async createBooking(booking, flights = [], tours = []) {
+    const supabase = getSupabase();
     const { booking_code, user_id, customer_name, customer_email, customer_phone, country, address, total_amount } = booking;
-    const createdAt = new Date().toISOString();
 
-    db.run("BEGIN TRANSACTION;");
-    try {
-      db.run(`
-        INSERT INTO bookings (booking_code, user_id, customer_name, customer_email, customer_phone, country, address, total_amount, status, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'completed', ?);
-      `, [booking_code, user_id || null, customer_name, customer_email, customer_phone, country, address, total_amount, createdAt]);
+    const { data: bData, error: bErr } = await supabase
+      .from('bookings')
+      .insert([{
+        booking_code, user_id: user_id || null, customer_name, customer_email,
+        customer_phone, country, address, total_amount, status: 'completed'
+      }])
+      .select()
+      .single();
 
-      const lastIdRes = db.exec("SELECT last_insert_rowid() as id;");
-      const bookingId = lastIdRes[0].values[0][0];
-
-      // Insert flights
-      flights.forEach(f => {
-        db.run(`
-          INSERT INTO booking_flights (booking_id, flight_id, fare_class, quantity, price)
-          VALUES (?, ?, ?, ?, ?);
-        `, [bookingId, f.flight_id, f.fare_class, f.quantity || 1, f.price]);
-      });
-
-      // Insert tours
-      tours.forEach(t => {
-        db.run(`
-          INSERT INTO booking_tours (booking_id, tour_id, quantity, price)
-          VALUES (?, ?, ?, ?);
-        `, [bookingId, t.tour_id, t.quantity || 1, t.price]);
-      });
-
-      db.run("COMMIT;");
-      return { success: true, bookingId, bookingCode: booking_code };
-    } catch (error) {
-      db.run("ROLLBACK;");
-      throw error;
+    if (bErr) {
+      console.error('BookingRepository.createBooking error:', bErr);
+      throw bErr;
     }
+
+    const bookingId = bData.id;
+
+    if (flights && flights.length > 0) {
+      const bFlights = flights.map(f => ({
+        booking_id: bookingId,
+        flight_id: f.flight_id,
+        fare_class: f.fare_class,
+        quantity: f.quantity || 1,
+        price: f.price
+      }));
+      await supabase.from('booking_flights').insert(bFlights);
+    }
+
+    if (tours && tours.length > 0) {
+      const bTours = tours.map(t => ({
+        booking_id: bookingId,
+        tour_id: t.tour_id,
+        quantity: t.quantity || 1,
+        price: t.price
+      }));
+      await supabase.from('booking_tours').insert(bTours);
+    }
+
+    return { success: true, bookingId, bookingCode: booking_code };
   },
 
-  getMonthlyTourCount() {
-    const sql = `
-      SELECT COUNT(bt.id) as count 
-      FROM booking_tours bt
-      JOIN bookings b ON bt.booking_id = b.id;
-    `;
-    const res = queryOne(sql);
-    return res ? res.count : 0;
+  async getMonthlyTourCount() {
+    const supabase = getSupabase();
+    const { count, error } = await supabase
+      .from('booking_tours')
+      .select('*', { count: 'exact', head: true });
+
+    if (error) console.error('BookingRepository.getMonthlyTourCount error:', error);
+    return count || 0;
   },
 
-  getFlightCount() {
-    const res = queryOne("SELECT COUNT(*) as count FROM flights;");
-    return res ? res.count : 0;
+  async getFlightCount() {
+    const supabase = getSupabase();
+    const { count, error } = await supabase
+      .from('flights')
+      .select('*', { count: 'exact', head: true });
+
+    if (error) console.error('BookingRepository.getFlightCount error:', error);
+    return count || 0;
   },
 
-  getTourCustomerCount() {
-    const sql = `
-      SELECT COUNT(DISTINCT b.id) as count
-      FROM bookings b
-      JOIN booking_tours bt ON bt.booking_id = b.id;
-    `;
-    const res = queryOne(sql);
-    return res ? res.count : 0;
+  async getTourCustomerCount() {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('booking_tours')
+      .select('booking_id');
+
+    if (error) console.error('BookingRepository.getTourCustomerCount error:', error);
+    const uniqueBookings = new Set((data || []).map(item => item.booking_id));
+    return uniqueBookings.size;
   },
 
-  getFlightCustomerCount() {
-    const sql = `
-      SELECT COUNT(DISTINCT b.id) as count
-      FROM bookings b
-      JOIN booking_flights bf ON bf.booking_id = b.id;
-    `;
-    const res = queryOne(sql);
-    return res ? res.count : 0;
+  async getFlightCustomerCount() {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('booking_flights')
+      .select('booking_id');
+
+    if (error) console.error('BookingRepository.getFlightCustomerCount error:', error);
+    const uniqueBookings = new Set((data || []).map(item => item.booking_id));
+    return uniqueBookings.size;
   },
 
-  getTopAirlines(limit = 10) {
-    const sql = `
-      SELECT a.name as airline_name, COUNT(bf.id) as booking_count
-      FROM airlines a
-      JOIN flights f ON f.airline_id = a.id
-      JOIN booking_flights bf ON bf.flight_id = f.id
-      GROUP BY a.id
-      ORDER BY booking_count DESC
-      LIMIT ?;
-    `;
-    return query(sql, [limit]);
+  async getTopAirlines(limit = 10) {
+    const supabase = getSupabase();
+    // Query booking_flights joined with flights and airlines
+    const { data, error } = await supabase
+      .from('booking_flights')
+      .select('flight_id, flights(airline_id, airlines(name))');
+
+    if (error) console.error('BookingRepository.getTopAirlines error:', error);
+
+    const counts = {};
+    (data || []).forEach(bf => {
+      const name = bf.flights?.airlines?.name || 'Unassigned';
+      counts[name] = (counts[name] || 0) + 1;
+    });
+
+    const result = Object.keys(counts)
+      .map(name => ({ airline_name: name, booking_count: counts[name] }))
+      .sort((a, b) => b.booking_count - a.booking_count)
+      .slice(0, limit);
+
+    return result;
   },
 
-  getTopTourCountries(limit = 10) {
-    const sql = `
-      SELECT b.country, COUNT(DISTINCT bt.tour_id) as tour_count, COUNT(DISTINCT b.id) as customer_count, COUNT(b.id) as total_bookings
-      FROM bookings b
-      JOIN booking_tours bt ON bt.booking_id = b.id
-      WHERE b.country IS NOT NULL AND b.country != ''
-      GROUP BY b.country
-      ORDER BY total_bookings DESC
-      LIMIT ?;
-    `;
-    return query(sql, [limit]);
+  async getTopTourCountries(limit = 10) {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('booking_tours')
+      .select('tour_id, booking_id, bookings(country)');
+
+    if (error) console.error('BookingRepository.getTopTourCountries error:', error);
+
+    const stats = {};
+    (data || []).forEach(bt => {
+      const country = bt.bookings?.country;
+      if (!country) return;
+
+      if (!stats[country]) {
+        stats[country] = { tours: new Set(), customers: new Set(), total_bookings: 0 };
+      }
+      stats[country].tours.add(bt.tour_id);
+      stats[country].customers.add(bt.booking_id);
+      stats[country].total_bookings += 1;
+    });
+
+    const result = Object.keys(stats)
+      .map(country => ({
+        country,
+        tour_count: stats[country].tours.size,
+        customer_count: stats[country].customers.size,
+        total_bookings: stats[country].total_bookings
+      }))
+      .sort((a, b) => b.total_bookings - a.total_bookings)
+      .slice(0, limit);
+
+    return result;
   }
 };

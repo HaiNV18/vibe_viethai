@@ -63,37 +63,34 @@ export const Header = {
     const logoutBtn = document.getElementById('logout-btn');
 
     if (avatarBtn && dropdown) {
-      avatarBtn.addEventListener('click', (e) => {
+      avatarBtn.onclick = (e) => {
         e.stopPropagation();
         dropdown.classList.toggle('show');
-      });
+      };
 
-      document.addEventListener('click', () => {
-        dropdown.classList.remove('show');
-      });
+      document.onclick = (e) => {
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
+      };
+
+      dropdown.onclick = (e) => {
+        e.stopPropagation();
+      };
     }
 
     if (mobileToggle && mainNav) {
-      mobileToggle.addEventListener('click', () => {
+      mobileToggle.onclick = () => {
         mainNav.classList.toggle('show');
-      });
+      };
     }
 
     if (logoutBtn) {
-      logoutBtn.addEventListener('click', (e) => {
+      logoutBtn.onclick = (e) => {
         e.preventDefault();
         AuthService.logout();
         router.navigate('/login');
-      });
+      };
     }
-
-    // Listen to cart changes
-    window.addEventListener('cart-updated', () => {
-      const headerEl = document.getElementById('app-header');
-      if (headerEl) {
-        headerEl.innerHTML = this.render();
-        this.initEvents();
-      }
-    });
   }
 };

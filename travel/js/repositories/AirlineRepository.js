@@ -1,15 +1,41 @@
-import { query, queryOne } from '../database/database.js';
+import { getSupabase } from '../database/database.js';
 
 export const AirlineRepository = {
-  getAllActive() {
-    return query("SELECT * FROM airlines WHERE active = 1 ORDER BY name ASC;");
+  async getAllActive() {
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('airlines')
+      .select('*')
+      .eq('active', 1)
+      .order('name', { ascending: true });
+
+    if (error) console.error('AirlineRepository.getAllActive error:', error);
+    return data || [];
   },
 
-  findById(id) {
-    return queryOne("SELECT * FROM airlines WHERE id = ?;", [id]);
+  async findById(id) {
+    if (!id) return null;
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('airlines')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error) console.error('AirlineRepository.findById error:', error);
+    return data;
   },
 
-  findByCode(code) {
-    return queryOne("SELECT * FROM airlines WHERE UPPER(code) = UPPER(?);", [code]);
+  async findByCode(code) {
+    if (!code) return null;
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from('airlines')
+      .select('*')
+      .ilike('code', code)
+      .maybeSingle();
+
+    if (error) console.error('AirlineRepository.findByCode error:', error);
+    return data;
   }
 };

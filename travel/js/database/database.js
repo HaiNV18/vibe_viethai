@@ -1,7 +1,9 @@
-import { CREATE_TABLES_SQL } from './schema.js';
 import { seedDatabase } from './seed.js';
 
-let dbInstance = null;
+export const SUPABASE_URL = 'https://eacgavjbnhjdgnivkomo.supabase.co';
+export const SUPABASE_ANON_KEY = 'sb_publishable_VZrz7yGSYqDWAwjyt-8-pg_lp1O5I1l';
+
+let supabaseClient = null;
 
 /**
  * Utility to hash password with Web Crypto API SHA-256
@@ -15,90 +17,40 @@ export async function hashPassword(password) {
 }
 
 /**
- * Initializes sql.js SQLite database, creates tables & runs seed data
+ * Gets Supabase Client Instance
+ */
+export function getSupabase() {
+  if (supabaseClient) return supabaseClient;
+
+  if (window.supabase && typeof window.supabase.createClient === 'function') {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    return supabaseClient;
+  } else {
+    throw new Error('Supabase Client SDK not loaded from CDN.');
+  }
+}
+
+/**
+ * Initializes Supabase connection and triggers seeding if database is empty
  */
 export async function initDatabase() {
-  if (dbInstance) return dbInstance;
+  const supabase = getSupabase();
 
-  try {
-    // Wait for initSqlJs from global window
-    if (typeof window.initSqlJs !== 'function') {
-      throw new Error('sql.js library not loaded');
+  // Test query users count
+  const { count, error } = await supabase
+    .from('users')
+    .select('*', { count: 'exact', head: true });
+
+  if (error) {
+    if (error.code === '42P01' || error.message.includes('relation "public.users" does not exist') || error.status === 404) {
+      throw new Error('TABLES_NOT_FOUND');
     }
-
-    const SQL = await window.initSqlJs({
-      locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
-    });
-
-    dbInstance = new SQL.Database();
-    
-    // Enable Foreign Keys
-    dbInstance.run("PRAGMA foreign_keys = ON;");
-
-    // Create Tables
-    dbInstance.run(CREATE_TABLES_SQL);
-
-    // Check if database needs seeding
-    const res = dbInstance.exec("SELECT COUNT(*) as count FROM users;");
-    const userCount = res.length > 0 ? res[0].values[0][0] : 0;
-
-    if (userCount === 0) {
-      console.log('Database empty. Running seed script...');
-      await seedDatabase(dbInstance);
-    }
-
-    console.log('SQLite Database initialized successfully.');
-    return dbInstance;
-  } catch (error) {
-    console.error('Failed to initialize database:', error);
-    throw error;
+    console.warn('Supabase query notice:', error.message);
+  } else if (count === 0) {
+    console.log('Supabase tables empty. Triggering seed...');
+    await seedDatabase(supabase);
   }
-}
 
-/**
- * Helper to run SELECT queries and return array of objects
- */
-export function query(sql, params = []) {
-  if (!dbInstance) throw new Error('Database not initialized');
-  try {
-    const stmt = dbInstance.prepare(sql);
-    stmt.bind(params);
-    const results = [];
-    while (stmt.step()) {
-      results.push(stmt.getAsObject());
-    }
-    stmt.free();
-    return results;
-  } catch (error) {
-    console.error('SQL Query Error:', error, sql, params);
-    return [];
-  }
-}
-
-/**
- * Helper to run SELECT single row query
- */
-export function queryOne(sql, params = []) {
-  const results = query(sql, params);
-  return results.length > 0 ? results[0] : null;
-}
-
-/**
- * Helper to run INSERT, UPDATE, DELETE queries
- */
-export function execute(sql, params = []) {
-  if (!dbInstance) throw new Error('Database not initialized');
-  try {
-    dbInstance.run(sql, params);
-    const lastIdRes = dbInstance.exec("SELECT last_insert_rowid() as id;");
-    const lastInsertId = lastIdRes.length > 0 ? lastIdRes[0].values[0][0] : null;
-    return { success: true, lastInsertId };
-  } catch (error) {
-    console.error('SQL Execute Error:', error, sql, params);
-    throw error;
-  }
-}
-
-export function getDb() {
-  return dbInstance;
+  console.log('Supabase connection initialized successfully.');
+  return supabase;
 }

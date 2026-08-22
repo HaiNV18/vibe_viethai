@@ -6,8 +6,8 @@ import { Toast } from '../components/Toast.js';
 
 export const HomePage = {
   async render() {
-    const featuredTours = TourService.getFeaturedTours();
-    const airlines = AirlineRepository.getAllActive();
+    const featuredTours = await TourService.getFeaturedTours();
+    const airlines = await AirlineRepository.getAllActive();
 
     return `
       <section class="hero-section">

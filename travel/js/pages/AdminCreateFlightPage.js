@@ -13,7 +13,7 @@ export const AdminCreateFlightPage = {
       return '';
     }
 
-    const airlines = AirlineRepository.getAllActive();
+    const airlines = await AirlineRepository.getAllActive();
 
     return `
       <div class="container admin-layout">
@@ -23,7 +23,7 @@ export const AdminCreateFlightPage = {
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--spacing-6);">
             <div>
               <h2><i class="fa-solid fa-plus-circle"></i> Tạo Chuyến Bay Mới</h2>
-              <p>Thêm thông tin chuyến bay mới vào cơ sở dữ liệu hệ thống</p>
+              <p>Thêm thông tin chuyến bay mới vào cơ sở dữ liệu Supabase Cloud</p>
             </div>
             <a href="/admin/flights" class="btn btn-outline btn-sm" data-link><i class="fa-solid fa-arrow-left"></i> Danh sách Chuyến Bay</a>
           </div>
@@ -146,7 +146,7 @@ export const AdminCreateFlightPage = {
     const form = document.getElementById('create-flight-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const flightData = {
@@ -167,7 +167,7 @@ export const AdminCreateFlightPage = {
       };
 
       try {
-        FlightService.createFlight(flightData);
+        await FlightService.createFlight(flightData);
         Toast.success('Tạo chuyến bay mới thành công!');
         router.navigate('/admin/flights');
       } catch (err) {

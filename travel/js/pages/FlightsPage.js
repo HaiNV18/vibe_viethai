@@ -21,7 +21,7 @@ export const FlightsPage = {
       filterParams.airlineIds.push(urlParams.get('airlineId'));
     }
 
-    const flights = FlightService.searchFlights(filterParams);
+    const flights = await FlightService.searchFlights(filterParams);
 
     return `
       <div class="container">
@@ -52,7 +52,6 @@ export const FlightsPage = {
   },
 
   initEvents() {
-    // Attach change listeners to filter inputs
     const sidebar = document.getElementById('filter-sidebar-container');
     if (!sidebar) return;
 
