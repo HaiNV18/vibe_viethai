@@ -4,7 +4,7 @@ Tôi muốn dùng Antigravity để tạo website lĩnh vực du lịch.
 Hãy tạo cho tôi các file .MD để tôi dùng cho Antigravity
 
 Tên website: Du Lịch Việt (TravelViet)
-Ngôn ngữ lập trình: HTML, CSS, JavaScript, không có backend.
+Ngôn ngữ lập trình: HTML, CSS, JavaScript thuần, không có backend.
 Database: SQLite
 Background: tông màu sáng, nền trắng
 
@@ -75,3 +75,27 @@ Antigravity
 
 Hãy đọc các file .md trong folder.
 Hãy tạo project dựa trên các file .md này
+
+==========
+
+Problem: ...
+Expect: ...
+Step by step: ...
+
+No such column: booking_count -> Lỗi cú pháp
+Nút quay lại trang chủ không được -> Lỗi logic
+Menu dropdown sau khi login thành công -> Lỗi liên kết
+
+Tôi đã bị lỗi:
+
+Lỗi 1:
+Problem: No such column: booking_count
+Expect: Vào trang dashboard sau khi đăng nhập thành công
+Step by step: 
+Step 1: login thành công
+Step 2: vào trang login thì báo lỗi No such column: booking_count
+
+Lỗi 2:
+Problem: không có menu dropdown sau khi login thành công
+Expect: sau khi login thành công, khi click vào avatar sẽ có menu dropdown. Trong menu hiển thị dashboard, logout.
+Step by step: login thành công, menu dropdown không hiển thị.
