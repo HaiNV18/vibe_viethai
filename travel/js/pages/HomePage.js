@@ -1,6 +1,7 @@
 import { TourService } from '../services/TourService.js';
 import { AirlineRepository } from '../repositories/AirlineRepository.js';
 import { TourCard } from '../components/TourCard.js';
+import { WeatherWidget } from '../components/WeatherWidget.js';
 import { router } from '../router.js';
 import { Toast } from '../components/Toast.js';
 
@@ -104,8 +105,13 @@ export const HomePage = {
         </div>
       </section>
 
+      <!-- Weather Widget Section -->
+      <section class="container" style="padding-top: var(--spacing-6);">
+        ${WeatherWidget.renderWidgetHtml()}
+      </section>
+
       <!-- Featured Tours Section -->
-      <section class="container" style="padding: var(--spacing-12) var(--spacing-4);">
+      <section class="container" style="padding: var(--spacing-8) var(--spacing-4) var(--spacing-12);">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:var(--spacing-6);">
           <div>
             <h2>Tour Du Lịch Nổi Bật</h2>
@@ -141,6 +147,9 @@ export const HomePage = {
   },
 
   initEvents() {
+    // Initialize Weather Widget events
+    WeatherWidget.initEvents();
+
     const roundRadio = document.getElementById('trip-round');
     const oneWayRadio = document.getElementById('trip-one-way');
     const returnGroup = document.getElementById('return-date-group');

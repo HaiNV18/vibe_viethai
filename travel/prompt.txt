@@ -103,6 +103,12 @@ Step by step: login thành công, menu dropdown không hiển thị.
 
 
 ==========
+Tôi vừa tạo tài khoản trên supabase.com
+Tôi muốn project sử dụng database trên supabase
+
+Project URL: https://eacgavjbnhjdgnivkomo.supabase.co
+sb_publishable_VZrz7yGSYqDWAwjyt-8-pg_lp1O5I1l
+
 
 
 

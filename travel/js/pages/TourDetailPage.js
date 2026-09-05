@@ -1,4 +1,6 @@
 import { TourService } from '../services/TourService.js';
+import { WeatherService } from '../services/WeatherService.js';
+import { WeatherWidget } from '../components/WeatherWidget.js';
 import { CartService } from '../services/CartService.js';
 import { formatCurrency } from '../utils/formatCurrency.js';
 import { formatDate } from '../utils/formatDate.js';
@@ -24,6 +26,15 @@ export const TourDetailPage = {
       `;
     }
 
+    // Attempt to load weather for destination
+    let weatherBadgeHtml = '';
+    try {
+      const weather = await WeatherService.getWeatherByCity(tour.destination);
+      weatherBadgeHtml = WeatherWidget.renderBadgeHtml(weather);
+    } catch (e) {
+      console.warn('Destination weather load error:', e.message);
+    }
+
     return `
       <div style="background-color:var(--surface-color); border-bottom:1px solid var(--border-color); padding:var(--spacing-6) 0;">
         <div class="container">
@@ -33,7 +44,10 @@ export const TourDetailPage = {
           
           <div style="display:grid; grid-template-columns: 1fr 380px; gap:var(--spacing-8); align-items:center;">
             <div>
-              <span class="badge badge-success" style="margin-bottom:var(--spacing-2);">${tour.operator}</span>
+              <div style="display:flex; align-items:center; gap:var(--spacing-3); flex-wrap:wrap; margin-bottom:var(--spacing-2);">
+                <span class="badge badge-success">${tour.operator}</span>
+                ${weatherBadgeHtml}
+              </div>
               <h2>${tour.name}</h2>
               <p style="font-size:var(--font-base); color:var(--text-muted); margin-top:var(--spacing-2);">
                 <i class="fa-solid fa-location-dot"></i> Điểm đi: ${tour.origin} — Điểm đến: ${tour.destination} (${tour.country})

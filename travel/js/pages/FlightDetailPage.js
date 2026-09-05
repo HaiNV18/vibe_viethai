@@ -1,4 +1,6 @@
 import { FlightService } from '../services/FlightService.js';
+import { WeatherService } from '../services/WeatherService.js';
+import { WeatherWidget } from '../components/WeatherWidget.js';
 import { CartService } from '../services/CartService.js';
 import { formatCurrency } from '../utils/formatCurrency.js';
 import { formatDate, formatDuration } from '../utils/formatDate.js';
@@ -24,6 +26,16 @@ export const FlightDetailPage = {
       `;
     }
 
+    // Load weather for destination city
+    let weatherBadgeHtml = '';
+    try {
+      const destCity = flight.destination_city || flight.destination_name;
+      const weather = await WeatherService.getWeatherByCity(destCity);
+      weatherBadgeHtml = WeatherWidget.renderBadgeHtml(weather);
+    } catch (e) {
+      console.warn('Flight destination weather load error:', e.message);
+    }
+
     return `
       <div class="detail-hero">
         <div class="container">
@@ -33,12 +45,15 @@ export const FlightDetailPage = {
           
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <div>
+              <div style="display:flex; align-items:center; gap:var(--spacing-3); flex-wrap:wrap; margin-bottom:var(--spacing-2);">
+                <span class="badge badge-primary" style="font-size:var(--font-xs);">${flight.aircraft || 'Airbus'}</span>
+                ${weatherBadgeHtml}
+              </div>
               <h2>${flight.airline_name} — Chuyến Bay ${flight.flight_number}</h2>
               <p style="font-size:var(--font-base); font-weight:600; color:var(--primary-color);">
                 ${flight.origin_name} (${flight.origin_code}) <i class="fa-solid fa-arrow-right"></i> ${flight.destination_name} (${flight.destination_code})
               </p>
             </div>
-            <span class="badge badge-primary" style="font-size:var(--font-sm); padding:6px 14px;">${flight.aircraft || 'Airbus'}</span>
           </div>
         </div>
       </div>
