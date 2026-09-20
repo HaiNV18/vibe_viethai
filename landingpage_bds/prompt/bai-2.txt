@@ -4,7 +4,7 @@ Chủ đề: bất động sản, quảng cáo Vinhomes Grand Park tại thành 
 
 Header/Navbar: Logo tên thương hiệu Vinhomes và menu chuyển hướng đơn giản.
 
-Hero Section: Tiêu đề giật gân, đoạn mô tả ngắn và 1 nút kêu gọi hành động (Call to Action - CTA). Có hình ảnh bất động sản, biệt thự nghỉ dưỡng. Hình ảnh nên nằm bên phải.
+Hero Section: Tiêu đề giật gân, đoạn mô tả ngắn và 1 nút kêu gọi hành động (Call to Action - CTA). Có hình ảnh bất động sản, biệt thự nghỉ dưỡng, Vinschool. Hình ảnh nên nằm bên phải.
 
 Features Section: trình bày 3 tính năng nổi bật: lối sống thượng lưu, tiện ích tối ưu, pháp lý nhanh gọn. 3 tính năng có 3 hình ảnh khác nhau để minh họa.
 

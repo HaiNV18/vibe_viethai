@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KFC Vietnam - Vị Ngon Trên Từng Ngón Tay</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --kfc-red: #f40022;
+      --kfc-red-hover: #d1001c;
+      --kfc-bg: #f2f2f2;
+      --kfc-dark: #202124;
+      --kfc-white: #ffffff;
+      --kfc-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --kfc-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--kfc-bg);
+      color: var(--kfc-dark);
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: var(--kfc-white);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+      padding: 0.8rem 0;
+      transition: var(--kfc-transition);
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--kfc-red) !important;
+      letter-spacing: -0.5px;
+    }
+
+    .navbar-brand img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .nav-link {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--kfc-dark) !important;
+      padding: 0.5rem 1rem !important;
+      transition: var(--kfc-transition);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--kfc-red) !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--kfc-red);
+      transition: var(--kfc-transition);
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 60%;
+    }
+
+    /* Custom Buttons */
+    .btn-kfc-primary {
+      background-color: var(--kfc-red);
+      color: var(--kfc-white);
+      font-weight: 700;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(244, 0, 34, 0.35);
+      transition: var(--kfc-transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-kfc-primary:hover {
+      background-color: var(--kfc-red-hover);
+      color: var(--kfc-white);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(244, 0, 34, 0.45);
+    }
+
+    .btn-kfc-outline {
+      background-color: transparent;
+      color: var(--kfc-dark);
+      font-weight: 700;
+      border: 2px solid #ddd;
+      padding: 10px 26px;
+      border-radius: 50px;
+      transition: var(--kfc-transition);
+    }
+
+    .btn-kfc-outline:hover {
+      border-color: var(--kfc-red);
+      color: var(--kfc-red);
+      background-color: rgba(244, 0, 34, 0.05);
+      transform: translateY(-3px);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 80px 0 60px 0;
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 0%, var(--kfc-bg) 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(244, 0, 34, 0.1);
+      color: var(--kfc-red);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--kfc-dark);
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: var(--kfc-red);
+      position: relative;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 35px;
+      max-width: 540px;
+    }
+
+    .hero-img-container {
+      position: relative;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-img-bg-circle {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244, 0, 34, 0.15) 0%, rgba(244, 0, 34, 0.02) 70%, transparent 100%);
+      z-index: 1;
+      animation: pulseGlow 4s infinite alternate;
+    }
+
+    .hero-img {
+      position: relative;
+      z-index: 2;
+      max-height: 420px;
+      width: auto;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.15));
+      transition: var(--kfc-transition);
+      animation: floatHero 5s ease-in-out infinite;
+    }
+
+    @keyframes floatHero {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(0.95); opacity: 0.6; }
+      100% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-tag {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      z-index: 3;
+      background: var(--kfc-white);
+      padding: 12px 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 4px solid var(--kfc-red);
+    }
+
+    .hero-tag i {
+      font-size: 1.8rem;
+      color: var(--kfc-red);
+    }
+
+    /* Menu / Features Section */
+    .menu-section {
+      padding: 90px 0;
+      background-color: var(--kfc-bg);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-subtitle {
+      color: var(--kfc-red);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--kfc-dark);
+      margin-bottom: 15px;
+    }
+
+    .section-divider {
+      width: 70px;
+      height: 4px;
+      background-color: var(--kfc-red);
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+
+    /* Menu Category Filter Pills */
+    .category-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 45px;
+    }
+
+    .filter-btn {
+      background: var(--kfc-white);
+      border: 1px solid #ddd;
+      color: var(--kfc-dark);
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--kfc-transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--kfc-red);
+      color: var(--kfc-red);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background-color: var(--kfc-red);
+      border-color: var(--kfc-red);
+      color: var(--kfc-white);
+      box-shadow: 0 4px 15px rgba(244, 0, 34, 0.3);
+    }
+
+    /* Product Cards */
+    .product-card {
+      background: var(--kfc-white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--kfc-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      transition: var(--kfc-transition);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+      background: #fafafa;
+      cursor: pointer;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.08);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: var(--kfc-red);
+      color: var(--kfc-white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .product-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--kfc-dark);
+      margin-bottom: 8px;
+      text-decoration: none;
+      transition: var(--kfc-transition);
+    }
+
+    .product-title:hover {
+      color: var(--kfc-red);
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: #777;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 16px;
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--kfc-red);
+    }
+
+    .product-price small {
+      font-size: 0.85rem;
+      color: #888;
+      font-weight: 600;
+    }
+
+    .product-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-detail-link {
+      background: transparent;
+      border: 1px solid #ddd;
+      color: #666;
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--kfc-transition);
+    }
+
+    .btn-detail-link:hover {
+      border-color: var(--kfc-red);
+      color: var(--kfc-red);
+      background-color: rgba(244, 0, 34, 0.05);
+    }
+
+    .btn-add-cart {
+      background-color: var(--kfc-red);
+      color: var(--kfc-white);
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: var(--kfc-transition);
+      cursor: pointer;
+    }
+
+    .btn-add-cart:hover {
+      background-color: var(--kfc-dark);
+      transform: rotate(90deg) scale(1.1);
+    }
+
+    /* Cart Toast / Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 1080;
+    }
+
+    /* Why KFC Banner */
+    .why-kfc-section {
+      background: var(--kfc-white);
+      padding: 60px 0;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .feature-box {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .feature-icon {
+      width: 65px;
+      height: 65px;
+      background: rgba(244, 0, 34, 0.08);
+      color: var(--kfc-red);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-box h5 {
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .feature-box p {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Reviews / Testimonials Slider */
+    .reviews-section {
+      padding: 85px 0;
+      background-color: var(--kfc-white);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .review-card {
+      background: var(--kfc-bg);
+      border-radius: 24px;
+      padding: 45px 35px 40px 35px;
+      max-width: 780px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+      position: relative;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .review-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--kfc-white);
+      box-shadow: 0 6px 16px rgba(244, 0, 34, 0.2);
+      margin: 0 auto 16px auto;
+      display: block;
+    }
+
+    .review-stars {
+      color: #ffc107;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+
+    .review-text {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .review-author {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--kfc-dark);
+      margin-bottom: 4px;
+    }
+
+    .review-badge {
+      font-size: 0.8rem;
+      color: #888;
+      font-weight: 600;
+    }
+
+    #reviewsCarousel .carousel-indicators {
+      bottom: -45px;
+      margin-bottom: 0;
+    }
+
+    #reviewsCarousel .carousel-indicators [data-bs-target] {
+      background-color: var(--kfc-red);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin: 0 6px;
+      opacity: 0.35;
+      transition: var(--kfc-transition);
+    }
+
+    #reviewsCarousel .carousel-indicators .active {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    #reviewsCarousel .carousel-control-prev,
+    #reviewsCarousel .carousel-control-next {
+      width: 46px;
+      height: 46px;
+      background-color: var(--kfc-white);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.95;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      border: 1px solid #eee;
+    }
+
+    #reviewsCarousel .carousel-control-prev {
+      left: -20px;
+    }
+
+    #reviewsCarousel .carousel-control-next {
+      right: -20px;
+    }
+
+    #reviewsCarousel .carousel-control-prev:hover,
+    #reviewsCarousel .carousel-control-next:hover {
+      background-color: var(--kfc-red);
+      border-color: var(--kfc-red);
+    }
+
+    #reviewsCarousel .carousel-control-prev-icon,
+    #reviewsCarousel .carousel-control-next-icon {
+      filter: invert(0.2);
+      width: 20px;
+      height: 20px;
+    }
+
+    #reviewsCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
+    #reviewsCarousel .carousel-control-next:hover .carousel-control-next-icon {
+      filter: brightness(0) invert(1);
+    }
+
+    /* Contact & Location Section */
+    .contact-section {
+      padding: 85px 0;
+      background-color: var(--kfc-bg);
+    }
+
+    .contact-card {
+      background: var(--kfc-white);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--kfc-shadow);
+      height: 100%;
+      border-left: 6px solid var(--kfc-red);
+    }
+
+    .contact-detail-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-detail-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(244, 0, 34, 0.08);
+      color: var(--kfc-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-content h6 {
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: var(--kfc-dark);
+    }
+
+    .contact-detail-content p {
+      margin: 0;
+      color: #666;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .map-wrapper {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--kfc-shadow);
+      height: 100%;
+      min-height: 450px;
+      background: #fff;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 450px;
+      border: 0;
+      display: block;
+    }
+
+    @media (max-width: 767.98px) {
+      #reviewsCarousel .carousel-control-prev {
+        left: 0px;
+      }
+      #reviewsCarousel .carousel-control-next {
+        right: 0px;
+      }
+      .review-card {
+        padding: 30px 20px;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--kfc-white);
+      border-top: 2px solid #e5e5e5;
+      padding: 60px 0 25px 0;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .footer-brand img {
+      height: 44px;
+    }
+
+    .footer-brand span {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--kfc-red);
+    }
+
+    .footer-desc {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .footer-heading {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--kfc-dark);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 35px;
+      height: 3px;
+      background-color: var(--kfc-red);
+      border-radius: 2px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .contact-item i {
+      color: var(--kfc-red);
+      font-size: 1.1rem;
+      margin-top: 2px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      background-color: var(--kfc-bg);
+      color: var(--kfc-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: var(--kfc-transition);
+      text-decoration: none;
+    }
+
+    .social-btn:hover {
+      background-color: var(--kfc-red);
+      color: var(--kfc-white);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eaeaea;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    /* Cart Floating Button */
+    .floating-cart-btn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 1000;
+      background: var(--kfc-red);
+      color: var(--kfc-white);
+      border-radius: 50px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 25px rgba(244, 0, 34, 0.4);
+      cursor: pointer;
+      font-weight: 700;
+      border: none;
+      transition: var(--kfc-transition);
+    }
+
+    .floating-cart-btn:hover {
+      transform: scale(1.05);
+      background: var(--kfc-red-hover);
+      color: var(--kfc-white);
+    }
+
+    .cart-count-badge {
+      background: var(--kfc-white);
+      color: var(--kfc-red);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-img {
+        max-height: 320px;
+        margin-top: 30px;
+      }
+      .hero-img-bg-circle {
+        width: 300px;
+        height: 300px;
+      }
+      .hero-tag {
+        bottom: 5px;
+        right: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/KFC_logo-image.png" alt="KFC Logo">
+        <span>KFC</span>
+      </a>
+      
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Chuyển đổi menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#hero">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#menu">Thực đơn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#reviews">Đánh giá</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Về chúng tôi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Liên hệ</a>
+          </li>
+        </ul>
+        
+        <div class="d-flex align-items-center gap-3">
+          <a href="tel:19006886" class="text-decoration-none fw-bold text-dark d-none d-xl-flex align-items-center gap-2">
+            <i class="bi bi-telephone-fill text-danger fs-5"></i> 1900 6886
+          </a>
+          <button class="btn btn-kfc-primary" onclick="scrollToMenu()">
+            <i class="bi bi-bag-check-fill"></i> Đặt Hàng Ngay
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Hero Left Column: Text & CTA -->
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="hero-badge">
+            <i class="bi bi-fire me-1"></i> Vị Ngon Trên Từng Ngón Tay
+          </div>
+          <h1 class="hero-title">
+            Gà Rán Giòn Rụm<br>
+            <span>Chuẩn Vị KFC</span> Trứ Danh
+          </h1>
+          <p class="hero-desc">
+            Thưởng thức công thức bí truyền 11 loại thảo mộc và gia vị từ Đại tá Sanders. Từng miếng gà thơm ngon, giòn tan bên ngoài, mọng nước đậm vị bên trong, sẵn sàng phục vụ bạn nóng hổi!
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <button class="btn btn-kfc-primary" onclick="scrollToMenu()">
+              <i class="bi bi-cart3"></i> Đặt Hàng Ngay
+            </button>
+            <a href="#menu" class="btn btn-kfc-outline">
+              <i class="bi bi-eye"></i> Xem Thực Đơn
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Colonel Sanders Image -->
+        <div class="col-lg-6">
+          <div class="hero-img-container">
+            <div class="hero-img-bg-circle"></div>
+            <!-- KFC Colonel Sanders Logo Image in images/ folder -->
+            <img src="images/KFC_logo-image.png" alt="Đại tá Sanders - KFC" class="hero-img">
+            
+            <div class="hero-tag">
+              <i class="bi bi-patch-check-fill"></i>
+              <div>
+                <div class="fw-bold" style="font-size: 0.95rem;">Đại tá Sanders</div>
+                <div class="text-muted" style="font-size: 0.8rem;">Công thức truyền thống từ 1952</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section / Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Món Ngon Mỗi Ngày</span>
+        <h2 class="section-title">Thực Đơn Đa Dạng KFC</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-filter">
+        <button class="filter-btn active" data-category="all" onclick="filterCategory('all', this)">
+          <i class="bi bi-grid-fill"></i> Tất Cả Món (9)
+        </button>
+        <button class="filter-btn" data-category="ga-ran" onclick="filterCategory('ga-ran', this)">
+          <i class="bi bi-fire"></i> Gà Rán
+        </button>
+        <button class="filter-btn" data-category="burger" onclick="filterCategory('burger', this)">
+          <i class="bi bi-egg-fried"></i> Hamburger
+        </button>
+        <button class="filter-btn" data-category="mon-kem" onclick="filterCategory('mon-kem', this)">
+          <i class="bi bi-stars"></i> Món Kèm
+        </button>
+        <button class="filter-btn" data-category="thuc-uong" onclick="filterCategory('thuc-uong', this)">
+          <i class="bi bi-cup-straw"></i> Thức Uống
+        </button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row g-4 justify-content-center" id="productGrid">
+        <!-- Products dynamically rendered by JavaScript from products.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Why KFC Section -->
+  <section class="why-kfc-section" id="about">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="bi bi-award-fill"></i>
+            </div>
+            <h5>Chất Lượng Thượng Hạng</h5>
+            <p>100% thịt gà tươi sạch được kiểm định nghiêm ngặt mỗi ngày trước khi chế biến.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="bi bi-lightning-charge-fill"></i>
+            </div>
+            <h5>Giao Hàng Siêu Tốc</h5>
+            <p>Cam kết giao món nóng hổi tận cửa chỉ trong 30 phút từ cửa hàng gần bạn nhất.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-box">
+            <div class="feature-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h5>An Toàn Vệ Sinh</h5>
+            <p>Quy trình chế biến chuẩn quốc tế, đảm bảo an toàn tuyệt đối cho sức khỏe người tiêu dùng.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews Slider Section -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Trải Nghiệm Thực Tế</span>
+        <h2 class="section-title">Đánh Giá Của Khách Hàng</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Đánh giá 1"></button>
+          <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1" aria-label="Đánh giá 2"></button>
+          <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="2" aria-label="Đánh giá 3"></button>
+          <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="3" aria-label="Đánh giá 4"></button>
+        </div>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="review-card">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80" alt="Nguyễn Thu Hà" class="review-avatar">
+              <div class="review-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="review-text">
+                "Món ăn ở đây cực kỳ ngon! Gà rán da giòn rụm, bên trong thịt mềm mọng nước chuẩn vị. Đặc biệt không gian quán rất thoáng đãng, bàn ghế luôn sạch sẽ, sáng bóng và tinh tươm. Cảm giác rất an tâm khi dùng bữa cùng gia đình!"
+              </p>
+              <h5 class="review-author">Nguyễn Thu Hà</h5>
+              <span class="review-badge"><i class="bi bi-patch-check-fill text-danger me-1"></i> Khách hàng thân thiết</span>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <div class="review-card">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&auto=format&fit=crop&q=80" alt="Trần Minh Quân" class="review-avatar">
+              <div class="review-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="review-text">
+                "Hamburger bò đậm đà và khoai tây chiên giòn tan chấm tương cà rất vừa miệng. Nhân viên phục vụ nhanh nhẹn, chu đáo và lau dọn bàn ghế sạch sẽ ngay khi khách trước vừa rời đi. 10/10 cho chất lượng phục vụ!"
+              </p>
+              <h5 class="review-author">Trần Minh Quân</h5>
+              <span class="review-badge"><i class="bi bi-patch-check-fill text-danger me-1"></i> Đã mua hàng tại chi nhánh</span>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <div class="review-card">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=160&auto=format&fit=crop&q=80" alt="Lê Hoàng Yến" class="review-avatar">
+              <div class="review-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="review-text">
+                "Gà rán cay ăn ghiền thực sự, ly Pepsi mát lạnh giải nhiệt cực đã. Cửa hàng máy lạnh mát mẻ, bàn ghế sạch sẽ không một hạt bụi, sàn nhà luôn khô ráo. Rất thích hợp để tụ tập bạn bè vào dịp cuối tuần!"
+              </p>
+              <h5 class="review-author">Lê Hoàng Yến</h5>
+              <span class="review-badge"><i class="bi bi-patch-check-fill text-danger me-1"></i> Khách hàng thân thiết</span>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="carousel-item">
+            <div class="review-card">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=160&auto=format&fit=crop&q=80" alt="Phạm Quốc Bảo" class="review-avatar">
+              <div class="review-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="review-text">
+                "Đồ ăn ra nhanh, nóng hổi và thơm phức. Quán bài trí hiện đại, bàn ghế sạch sẽ tinh tươm và nhân viên lễ phép. Đây chắc chắn là địa điểm KFC quen thuộc của cả nhà mình mỗi tuần."
+              </p>
+              <h5 class="review-author">Phạm Quốc Bảo</h5>
+              <span class="review-badge"><i class="bi bi-patch-check-fill text-danger me-1"></i> Khách hàng thân thiết</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Trước</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Tiếp theo</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Google Map Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Hệ Thống Cửa Hàng</span>
+        <h2 class="section-title">Địa Chỉ Liên Hệ</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- Left Column: Store Information -->
+        <div class="col-lg-5">
+          <div class="contact-card d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex align-items-center gap-3 mb-4">
+                <img src="images/KFC_logo-image.png" alt="KFC Logo" style="height: 48px;">
+                <div>
+                  <h4 class="fw-bold mb-0 text-dark">KFC NGUYỄN VĂN CỪ</h4>
+                  <small class="text-danger fw-semibold">Chi nhánh chính thức TP. Hồ Chí Minh</small>
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div class="contact-detail-item">
+                <div class="contact-detail-icon">
+                  <i class="bi bi-geo-alt-fill"></i>
+                </div>
+                <div class="contact-detail-content">
+                  <h6>Địa chỉ:</h6>
+                  <p class="fw-bold text-dark fs-6">213A Nguyễn Văn Cừ, Chợ Quán, TP Hồ Chí Minh</p>
+                </div>
+              </div>
+
+              <!-- Hotline -->
+              <div class="contact-detail-item">
+                <div class="contact-detail-icon">
+                  <i class="bi bi-telephone-fill"></i>
+                </div>
+                <div class="contact-detail-content">
+                  <h6>Tổng đài đặt món & CSKH:</h6>
+                  <p><a href="tel:19006886" class="text-danger fw-bold text-decoration-none fs-5">1900 6886</a> (8h00 - 22h00)</p>
+                </div>
+              </div>
+
+              <!-- Opening Hours -->
+              <div class="contact-detail-item">
+                <div class="contact-detail-icon">
+                  <i class="bi bi-clock-fill"></i>
+                </div>
+                <div class="contact-detail-content">
+                  <h6>Giờ mở cửa:</h6>
+                  <p>08:00 - 22:00 (Mở cửa tất cả các ngày trong tuần)</p>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="contact-detail-item">
+                <div class="contact-detail-icon">
+                  <i class="bi bi-envelope-fill"></i>
+                </div>
+                <div class="contact-detail-content">
+                  <h6>Hộp thư điện tử:</h6>
+                  <p>lienhe@kfcvietnam.com.vn</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="pt-3 border-top d-flex flex-wrap gap-2">
+              <a href="https://maps.google.com/?q=KFC+213A+Nguy%E1%BB%85n+V%C4%83n+C%E1%BB%AB+Ch%E1%BB%A3+Qu%C3%A1n+TP+H%E1%BB%93+Ch%C3%AD+Minh" target="_blank" class="btn btn-kfc-primary btn-sm flex-grow-1">
+                <i class="bi bi-arrow-up-right-circle"></i> Chỉ Đường Trên Map
+              </a>
+              <a href="tel:19006886" class="btn btn-outline-danger btn-sm rounded-pill px-3 py-2 fw-bold">
+                <i class="bi bi-telephone"></i> Gọi Ngay
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Google Maps Iframe -->
+        <div class="col-lg-7">
+          <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.661615575531!2d106.6833369!3d10.760541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752fb9cb39fbe5%3A0x792afd5dac004956!2zS0ZDIE5ndXnhu4VuIFbEg24gQ-G7qyBUUCBI4buTIENow60gTWluaA!5e0!3m2!1sen!2s!4v1789893249525!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <!-- Brand & About -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-brand">
+            <img src="images/KFC_logo-image.png" alt="KFC Logo">
+            <span>KFC VIETNAM</span>
+          </div>
+          <p class="footer-desc">
+            KFC - Thương hiệu thức ăn nhanh hàng đầu thế giới với hương vị gà rán độc quyền không thể chối từ. Hãy để chúng tôi mang đến niềm vui cho từng bữa ăn của bạn!
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="social-btn" title="TikTok"><i class="bi bi-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-heading">Liên Kết Nhanh</h5>
+          <ul class="list-unstyled text-muted">
+            <li class="mb-2"><a href="#hero" class="text-decoration-none text-muted"><i class="bi bi-chevron-right text-danger me-1"></i> Trang chủ</a></li>
+            <li class="mb-2"><a href="#menu" class="text-decoration-none text-muted"><i class="bi bi-chevron-right text-danger me-1"></i> Thực đơn đặc biệt</a></li>
+            <li class="mb-2"><a href="#reviews" class="text-decoration-none text-muted"><i class="bi bi-chevron-right text-danger me-1"></i> Đánh giá khách hàng</a></li>
+            <li class="mb-2"><a href="#about" class="text-decoration-none text-muted"><i class="bi bi-chevron-right text-danger me-1"></i> Về chúng tôi</a></li>
+            <li class="mb-2"><a href="#contact" class="text-decoration-none text-muted"><i class="bi bi-chevron-right text-danger me-1"></i> Địa chỉ & Liên hệ</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="col-lg-4 col-md-12">
+          <h5 class="footer-heading">Thông Tin Liên Hệ</h5>
+          <div class="contact-item">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>213A Nguyễn Văn Cừ, Chợ Quán, TP Hồ Chí Minh</div>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-telephone-fill"></i>
+            <div>Tổng đài đặt hàng: <strong>1900 6886</strong> (8h00 - 22h00)</div>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-envelope-fill"></i>
+            <div>Email: lienhe@kfcvietnam.com.vn</div>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-clock-fill"></i>
+            <div>Mở cửa tất cả các ngày trong tuần</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-bottom">
+        <p class="mb-0">
+          © 2026 KFC Vietnam. Tất cả quyền được bảo lưu. Thiết kế phong cách thương hiệu KFC chuẩn nhận diện.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Cart Button -->
+  <button class="floating-cart-btn" data-bs-toggle="modal" data-bs-target="#cartModal">
+    <i class="bi bi-cart3 fs-5"></i>
+    <span>Giỏ hàng</span>
+    <span class="cart-count-badge" id="cartCount">0</span>
+  </button>
+
+  <!-- Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title fw-bold" id="cartModalLabel"><i class="bi bi-bag-fill me-2"></i>Giỏ Hàng Của Bạn</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4" id="cartModalBody">
+          <div class="text-center py-4 text-muted" id="emptyCartMessage">
+            <i class="bi bi-cart-x display-4 d-block mb-3 text-secondary"></i>
+            <p>Giỏ hàng của bạn đang trống.</p>
+            <button class="btn btn-outline-danger btn-sm rounded-pill" data-bs-dismiss="modal" onclick="scrollToMenu()">Chọn món ngay</button>
+          </div>
+          <ul class="list-group list-group-flush d-none" id="cartItemList"></ul>
+          <div class="d-none mt-3 pt-3 border-top d-flex justify-content-between align-items-center" id="cartTotalContainer">
+            <span class="fw-bold">Tổng thanh toán:</span>
+            <span class="fw-bold text-danger fs-5" id="cartTotalPrice">0 VND</span>
+          </div>
+        </div>
+        <div class="modal-footer border-0 bg-light">
+          <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Tiếp tục chọn món</button>
+          <button type="button" class="btn btn-danger rounded-pill fw-bold" id="btnCheckout" onclick="checkout()" disabled>Thanh Toán</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-container">
+    <div id="cartToast" class="toast align-items-center text-white bg-danger border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body fw-semibold">
+          <i class="bi bi-check-circle-fill me-2"></i> <span id="toastMessage">Đã thêm món vào giỏ hàng!</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Shared Products Database & Cart Functions -->
+  <script src="js/products.js"></script>
+
+  <!-- Page JavaScript -->
+  <script>
+    let currentCategory = 'all';
+
+    // Render Menu Items
+    function renderMenu(category = 'all') {
+      const grid = document.getElementById('productGrid');
+      const filtered = category === 'all' 
+        ? PRODUCTS 
+        : PRODUCTS.filter(p => p.category === category);
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="col-md-6 col-lg-4">
+          <div class="product-card">
+            <div class="product-img-wrapper" onclick="window.location.href='product-detail.html?id=${item.id}'">
+              <span class="product-badge">${item.badge || item.categoryName}</span>
+              <img src="${item.image}" alt="${item.name}" class="product-img" loading="lazy">
+            </div>
+            <div class="product-body">
+              <a href="product-detail.html?id=${item.id}" class="product-title">${item.name}</a>
+              <p class="product-desc">${item.description}</p>
+              <div class="product-footer">
+                <div>
+                  <small class="text-muted d-block">Giá chỉ</small>
+                  <span class="product-price">${formatVND(item.price)}${item.unit === 'ly' ? '/ly' : ''}</span>
+                </div>
+                <div class="product-actions">
+                  <a href="product-detail.html?id=${item.id}" class="btn-detail-link">
+                    Chi tiết
+                  </a>
+                  <button class="btn-add-cart" onclick="handleAddToCart('${item.id}')" title="Thêm vào giỏ hàng">
+                    <i class="bi bi-plus-lg"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter by Category
+    function filterCategory(category, buttonEl) {
+      currentCategory = category;
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      if (buttonEl) {
+        buttonEl.classList.add('active');
+      }
+      renderMenu(category);
+    }
+
+    // Smooth scroll to menu
+    function scrollToMenu() {
+      const menuSection = document.getElementById('menu');
+      if (menuSection) {
+        menuSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Handle Add to Cart
+    function handleAddToCart(productId) {
+      const product = addToCartGlobal(productId, 1);
+      if (product) {
+        updateCartUI();
+        showToast(`Đã thêm "${product.name}" vào giỏ hàng!`);
+      }
+    }
+
+    // Handle Quantity Change in Modal
+    function handleQtyChange(productId, delta) {
+      updateCartItemQuantity(productId, delta);
+      updateCartUI();
+    }
+
+    // Update Cart UI
+    function updateCartUI() {
+      const cart = getCart();
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCount').textContent = totalCount;
+
+      const emptyMsg = document.getElementById('emptyCartMessage');
+      const list = document.getElementById('cartItemList');
+      const totalContainer = document.getElementById('cartTotalContainer');
+      const totalPriceEl = document.getElementById('cartTotalPrice');
+      const btnCheckout = document.getElementById('btnCheckout');
+
+      if (cart.length === 0) {
+        emptyMsg.classList.remove('d-none');
+        list.classList.add('d-none');
+        totalContainer.classList.add('d-none');
+        btnCheckout.disabled = true;
+      } else {
+        emptyMsg.classList.add('d-none');
+        list.classList.remove('d-none');
+        totalContainer.classList.remove('d-none');
+        btnCheckout.disabled = false;
+
+        let total = 0;
+        list.innerHTML = '';
+
+        cart.forEach(item => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+
+          const li = document.createElement('li');
+          li.className = 'list-group-item d-flex justify-content-between align-items-center px-0 py-2';
+          li.innerHTML = `
+            <div>
+              <div class="fw-bold text-dark">${item.name}</div>
+              <small class="text-danger">${formatVND(item.price)}</small>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn btn-sm btn-outline-secondary px-2 py-0" onclick="handleQtyChange('${item.id}', -1)">-</button>
+              <span class="fw-bold px-1">${item.quantity}</span>
+              <button class="btn btn-sm btn-outline-secondary px-2 py-0" onclick="handleQtyChange('${item.id}', 1)">+</button>
+              <span class="fw-bold text-dark ms-2" style="min-width: 90px; text-align: right;">${formatVND(itemTotal)}</span>
+            </div>
+          `;
+          list.appendChild(li);
+        });
+
+        totalPriceEl.textContent = formatVND(total);
+      }
+    }
+
+    // Show Toast Notification
+    function showToast(message) {
+      const toastEl = document.getElementById('cartToast');
+      document.getElementById('toastMessage').textContent = message;
+      const toast = new bootstrap.Toast(toastEl, { delay: 2500 });
+      toast.show();
+    }
+
+    // Checkout action
+    function checkout() {
+      const cart = getCart();
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      alert(`Cảm ơn bạn đã đặt hàng tại KFC!\nSố lượng: ${totalCount} món\nTổng thanh toán: ${formatVND(total)}\nĐơn hàng của bạn sẽ sớm được giao!`);
+      clearCart();
+      updateCartUI();
+      const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+      if (modal) {
+        modal.hide();
+      }
+    }
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMenu('all');
+      updateCartUI();
+    });
+  </script>
+</body>
+</html>
