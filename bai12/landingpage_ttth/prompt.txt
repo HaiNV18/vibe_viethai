@@ -1,0 +1,52 @@
+Hãy tạo cho tôi một trang Landing Page đơn giản bằng HTML, CSS (dùng Bootstrap qua CDN) và JavaScript, không có backend. Trang web bao gồm các phần:
+
+Chủ đề: trung tâm tin học Đại học Khoa học Tự nhiên
+
+Giao diện: màu chủ đạo là nền trắng (#f2f2f2) chữ màu tối (#2d2d86). Chỉ render ra file HTML CSS JavaScript, không dùng bất kỳ ngôn ngữ backend nào.
+
+Khóa học Vibe Coding - tạo website bằng AI
+Tổng số giờ: 24 giờ (8 buổi)
+Học phí: 3000000 VND
+
+Khóa học MOS (Word, Excel)
+Tổng số giờ: 48 giờ (16 buổi)
+Học phí: 5000000 VND
+
+Khóa học JavaScript Full Stack
+Tổng số giờ: 120 giờ (40 buổi)
+Học phí: 10000000 VND
+
+Trụ sở chính: 227 Nguyễn Văn Cừ, Phường Chợ Quán, Quận 5, TP.HCM.
+Cơ sở đào tạo: 21-23 Nguyễn Biểu, Phường Chợ Quán, Quận 5, TP.HCM.
+
+
+======
+Hãy tạo trang nội dung của từng khóa học
+
+Ví dụ:
+Khóa học Vibe Coding - tạo website bằng AI
+Tổng số giờ: 24 giờ (8 buổi)
+Học phí: 3000000 VND
+
+Nội dung khóa học:
+Vibe Coding - xu hướng lập trình mới cho người không chuyên.
+Các thuật ngữ nền tảng: Frontend, Backend, Database, API, deploy...
+Quy trình xây dựng ứng dụng website với Vibe Coding
+Làm chủ project và cấu trúc file trong VS Code.
+Kết nối cơ sở dữ liệu cơ bản
+Debug, kiểm thử, hoàn thiện trải nghiệm người dùng.
+Deploy, chia sẻ, demo ứng dụng website.
+
+Thực hành: xây dựng landing page đầu tiên giới thiệu sản phẩm/dịch vụ/porfolio...
+
+======
+Hãy tạo trang Liên Hệ
+
+Trụ sở chính: 227 Nguyễn Văn Cừ, Phường Chợ Quán, Quận 5, TP.HCM.
+Cơ sở đào tạo: 21-23 Nguyễn Biểu, Phường Chợ Quán, Quận 5, TP.HCM.
+
+Nhúng bản đồ Google Map
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6317797080865!2d106.6824824!3d10.762835599999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1c06f4e1dd%3A0x43900f1d4539a3d!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBLaG9hIGjhu41jIFThu7Egbmhpw6puIC0gxJDhuqFpIGjhu41jIFF14buRYyBnaWEgVFAuSENN!5e0!3m2!1svi!2s!4v1791000181443!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+
+
+

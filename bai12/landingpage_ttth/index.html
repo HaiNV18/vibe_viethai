@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trang chủ Trung tâm Tin học - Đại học Khoa học Tự nhiên. Tuyển sinh các khóa học Vibe Coding (AI), MOS Office, JavaScript Full Stack.">
+  <title>Trung tâm Tin học - Đại học Khoa học Tự nhiên</title>
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <div class="brand-icon">
+          <i class="bi bi-laptop"></i>
+        </div>
+        <div>
+          <div class="brand-title fw-bold">TRUNG TÂM TIN HỌC</div>
+          <div class="brand-subtitle">ĐẠI HỌC KHOA HỌC TỰ NHIÊN</div>
+        </div>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-3 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#trang-chu">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#khoa-hoc">Khóa học</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#uu-diem">Tại sao chọn TTTH</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="lien-he.html">Liên Hệ</a>
+          </li>
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <a class="btn btn-accent-custom text-white w-100" href="#dang-ky">Đăng Ký Tư Vấn</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="trang-chu" class="hero-section">
+    <div class="container">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-7">
+          <div class="hero-badge">
+            <i class="bi bi-award-fill text-warning"></i> Nơi Đào Tạo CNTT Hàng Đầu TP.HCM
+          </div>
+          <h1 class="hero-title">
+            Nâng tầm tri thức công nghệ cùng <span>Trung tâm Tin học</span> ĐH KHTN
+          </h1>
+          <p class="hero-desc">
+            Chương trình đào tạo thực tiễn, cập nhật xu hướng công nghệ mới nhất từ AI, Tin học văn phòng chuẩn quốc tế đến Lập trình Full Stack chuyên nghiệp.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#khoa-hoc" class="btn btn-primary-custom">
+              <i class="bi bi-book me-2"></i>Khám phá khóa học
+            </a>
+            <a href="#dang-ky" class="btn btn-outline-custom">
+              <i class="bi bi-pencil-square me-2"></i>Đăng ký ngay
+            </a>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="row g-3 mt-4">
+            <div class="col-4">
+              <div class="stats-card">
+                <div class="stats-number">35+</div>
+                <div class="stats-label">Năm uy tín</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="stats-card">
+                <div class="stats-number">100K+</div>
+                <div class="stats-label">Học viên tốt nghiệp</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="stats-card">
+                <div class="stats-number">98%</div>
+                <div class="stats-label">Hài lòng & Có việc</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="position-relative text-center">
+            <div class="p-4 bg-white rounded-4 shadow-lg border">
+              <div class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom text-start">
+                <div class="brand-icon bg-primary text-white">
+                  <i class="bi bi-cpu-fill"></i>
+                </div>
+                <div>
+                  <h6 class="mb-0 fw-bold">Khóa Học Xu Hướng 2026</h6>
+                  <small class="text-muted">Ưu đãi học phí cho học viên mới</small>
+                </div>
+              </div>
+
+              <div class="text-start mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fw-bold fs-6"><i class="bi bi-stars text-warning me-2"></i>Vibe Coding - AI</span>
+                  <span class="badge bg-danger">Mới</span>
+                </div>
+                <div class="progress mb-2" style="height: 8px;">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 90%;"></div>
+                </div>
+                <small class="text-muted">Tạo website thông minh cùng AI chỉ trong 8 buổi</small>
+              </div>
+
+              <div class="text-start mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fw-bold fs-6"><i class="bi bi-file-earmark-word text-primary me-2"></i>Tin học MOS Office</span>
+                  <span class="badge bg-success">Hot</span>
+                </div>
+                <div class="progress mb-2" style="height: 8px;">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 85%;"></div>
+                </div>
+                <small class="text-muted">Chuẩn quốc tế Microsoft Word & Excel</small>
+              </div>
+
+              <div class="text-start">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fw-bold fs-6"><i class="bi bi-code-slash text-dark me-2"></i>JavaScript Full Stack</span>
+                  <span class="badge bg-info text-dark">Chuyên sâu</span>
+                </div>
+                <div class="progress mb-2" style="height: 8px;">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 95%;"></div>
+                </div>
+                <small class="text-muted">Lộ trình bài bản trở thành Web Developer</small>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section id="khoa-hoc" class="py-5">
+    <div class="container py-4">
+      <div class="section-title-wrapper">
+        <div class="section-subtitle">Chương Trình Đào Tạo</div>
+        <h2 class="section-title">Danh Sách Khóa Học Nổi Bật</h2>
+        <div class="section-title-underline"></div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Course 1: Vibe Coding -->
+        <div class="col-lg-4 col-md-6">
+          <div class="course-card">
+            <div class="course-card-header">
+              <span class="course-badge badge-ai">
+                <i class="bi bi-magic me-1"></i>Xu Hướng AI
+              </span>
+              <div class="course-icon-wrapper">
+                <i class="bi bi-robot"></i>
+              </div>
+              <h3 class="course-name">Vibe Coding - Tạo website bằng AI</h3>
+            </div>
+            <div class="course-card-body">
+              <p class="text-muted fs-6 mb-3">
+                Ứng dụng sức mạnh của Trí tuệ nhân tạo (AI) để thiết kế, phát triển và tối ưu hóa website chuyên nghiệp một cách nhanh chóng.
+              </p>
+              
+              <ul class="course-info-list">
+                <li class="course-info-item">
+                  <i class="bi bi-clock-history"></i>
+                  <span><strong>Tổng số giờ:</strong> 24 giờ (8 buổi)</span>
+                </li>
+                <li class="course-info-item">
+                  <i class="bi bi-person-badge"></i>
+                  <span><strong>Hình thức:</strong> Thực hành 100% trên máy</span>
+                </li>
+                <li class="course-info-item">
+                  <i class="bi bi-patch-check"></i>
+                  <span><strong>Đầu ra:</strong> Làm chủ các công cụ AI Coding</span>
+                </li>
+              </ul>
+
+              <div class="price-box mt-auto">
+                <span class="price-label">Học phí trọn gói:</span>
+                <span class="price-amount">3.000.000 VNĐ</span>
+              </div>
+
+              <div class="d-grid gap-2">
+                <a href="vibe-coding.html" class="btn btn-outline-custom">
+                  <i class="bi bi-info-circle me-1"></i>Xem Chi Tiết Khóa Học
+                </a>
+                <button class="btn btn-accent-custom btn-register-course" data-course="vibe-coding">
+                  <i class="bi bi-pencil-square me-2"></i>Đăng Ký Ngay
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 2: MOS Office -->
+        <div class="col-lg-4 col-md-6">
+          <div class="course-card">
+            <div class="course-card-header">
+              <span class="course-badge badge-office">
+                <i class="bi bi-check-circle-fill me-1"></i>Chuẩn Quốc Tế
+              </span>
+              <div class="course-icon-wrapper">
+                <i class="bi bi-file-earmark-spreadsheet"></i>
+              </div>
+              <h3 class="course-name">Khóa học MOS (Word, Excel)</h3>
+            </div>
+            <div class="course-card-body">
+              <p class="text-muted fs-6 mb-3">
+                Trang bị kỹ năng Tin học văn phòng chuyên sâu theo chuẩn Microsoft Office Specialist, phục vụ tối đa cho công việc và học tập.
+              </p>
+              
+              <ul class="course-info-list">
+                <li class="course-info-item">
+                  <i class="bi bi-clock-history"></i>
+                  <span><strong>Tổng số giờ:</strong> 48 giờ (16 buổi)</span>
+                </li>
+                <li class="course-info-item">
+                  <i class="bi bi-journal-text"></i>
+                  <span><strong>Nội dung:</strong> Microsoft Word & Excel nâng cao</span>
+                </li>
+                <li class="course-info-item">
+                  <i class="bi bi-award"></i>
+                  <span><strong>Đầu ra:</strong> Cam kết chuẩn đầu ra MOS</span>
+                </li>
+              </ul>
+
+              <div class="price-box mt-auto">
+                <span class="price-label">Học phí trọn gói:</span>
+                <span class="price-amount">5.000.000 VNĐ</span>
+              </div>
+
+              <div class="d-grid gap-2">
+                <a href="mos-office.html" class="btn btn-outline-custom">
+                  <i class="bi bi-info-circle me-1"></i>Xem Chi Tiết Khóa Học
+                </a>
+                <button class="btn btn-accent-custom btn-register-course" data-course="mos">
+                  <i class="bi bi-pencil-square me-2"></i>Đăng Ký Ngay
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 3: JavaScript Full Stack -->
+        <div class="col-lg-4 col-md-6 mx-auto">
+          <div class="course-card">
+            <div class="course-card-header">
+              <span class="course-badge badge-dev">
+                <i class="bi bi-code-square me-1"></i>Lập Trình Chuyên Nghiệp
+              </span>
+              <div class="course-icon-wrapper">
+                <i class="bi bi-code-slash"></i>
+              </div>
+              <h3 class="course-name">Khóa học JavaScript Full Stack</h3>
+            </div>
+            <div class="course-card-body">
+              <p class="text-muted fs-6 mb-3">
+                Lộ trình toàn diện từ cơ bản đến nâng cao: HTML5, CSS3, JS ES6+, Node.js, Express & Database để tự tay xây dựng Web App hoàn chỉnh.
+              </p>
+              
+              <ul class="course-info-list">
+                <li class="course-info-item">
+                  <i class="bi bi-clock-history"></i>
+                  <span><strong>Tổng số giờ:</strong> 120 giờ (40 buổi)</span>
+                </li>
+                <li class="course-info-item">
+                  <i class="bi bi-layers"></i>
+                  <span><strong>Nội dung:</strong> Frontend & Backend Web Development</span>
+                </li>
+                <li class="course-info-item">
+                  <i class="bi bi-briefcase"></i>
+                  <span><strong>Đầu ra:</strong> Xây dựng đồ án thực tế tốt nghiệp</span>
+                </li>
+              </ul>
+
+              <div class="price-box mt-auto">
+                <span class="price-label">Học phí trọn gói:</span>
+                <span class="price-amount">10.000.000 VNĐ</span>
+              </div>
+
+              <div class="d-grid gap-2">
+                <a href="javascript-fullstack.html" class="btn btn-outline-custom">
+                  <i class="bi bi-info-circle me-1"></i>Xem Chi Tiết Khóa Học
+                </a>
+                <button class="btn btn-accent-custom btn-register-course" data-course="fullstack">
+                  <i class="bi bi-pencil-square me-2"></i>Đăng Ký Ngay
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section id="uu-diem" class="py-5 bg-white">
+    <div class="container py-4">
+      <div class="section-title-wrapper">
+        <div class="section-subtitle">Ưu Thế Vượt Trội</div>
+        <h2 class="section-title">Tại Sao Chọn TTTH - ĐH Khoa Học Tự Nhiên?</h2>
+        <div class="section-title-underline"></div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-box text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-patch-check-fill"></i>
+            </div>
+            <h4 class="fs-5 mb-2">Chứng Chỉ Uy Tín</h4>
+            <p class="text-muted fs-6 mb-0">
+              Cấp bởi Trường Đại học Khoa học Tự nhiên, ĐHQG TP.HCM có giá trị toàn quốc.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-box text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-person-workspace"></i>
+            </div>
+            <h4 class="fs-5 mb-2">Giảng Viên Chuyên Nghiệp</h4>
+            <p class="text-muted fs-6 mb-0">
+              Đội ngũ Giảng viên giàu kinh nghiệm, tận tâm, cầm tay chỉ việc từng học viên.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-box text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-laptop-fill"></i>
+            </div>
+            <h4 class="fs-5 mb-2">Phòng Máy Hiện Đại</h4>
+            <p class="text-muted fs-6 mb-0">
+              Trang thiết bị cấu hình cao, máy lạnh, kết nối internet tốc độ cao phục vụ thực hành.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-box text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-journal-code"></i>
+            </div>
+            <h4 class="fs-5 mb-2">Giáo Trình Cập Nhật</h4>
+            <p class="text-muted fs-6 mb-0">
+              Bám sát thực tế doanh nghiệp và các xu hướng công nghệ mới như Vibe Coding & AI.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Section -->
+  <section id="dia-chi" class="py-5">
+    <div class="container py-4">
+      <div class="section-title-wrapper">
+        <div class="section-subtitle">Hệ Thống Cơ Sở</div>
+        <h2 class="section-title">Địa Chỉ Trụ Sở & Cơ Sở Đào Tạo</h2>
+        <div class="section-title-underline"></div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Location 1: Main Campus -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <span class="location-badge">Trụ Sở Chính</span>
+            <h3 class="location-title">Trường Đại học Khoa học Tự nhiên</h3>
+            <div class="location-address">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>227 Nguyễn Văn Cừ, Phường Chợ Quán, Quận 5, TP.HCM.</span>
+            </div>
+            <p class="text-muted mb-4">
+              Khu vực tiếp nhận đăng ký học, tư vấn tuyển sinh và phòng học máy tính chất lượng cao.
+            </p>
+            <div class="d-flex align-items-center gap-2">
+              <a href="https://maps.google.com/?q=227+Nguyen+Van+Cu+Quan+5+TPHCM" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom btn-sm">
+                <i class="bi bi-map me-1"></i> Xem trên Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location 2: Training Branch -->
+        <div class="col-md-6">
+          <div class="location-card">
+            <span class="location-badge bg-secondary">Cơ Sở Đào Tạo</span>
+            <h3 class="location-title">Cơ sở Nguyễn Biểu - TTTH</h3>
+            <div class="location-address">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>21-23 Nguyễn Biểu, Phường Chợ Quán, Quận 5, TP.HCM.</span>
+            </div>
+            <p class="text-muted mb-4">
+              Cơ sở đào tạo thực hành chuyên sâu với hệ thống phòng lab hiện đại, không gian học tập tiện nghi.
+            </p>
+            <div class="d-flex align-items-center gap-2">
+              <a href="https://maps.google.com/?q=21-23+Nguyen+Bieu+Quan+5+TPHCM" target="_blank" rel="noopener noreferrer" class="btn btn-outline-custom btn-sm">
+                <i class="bi bi-map me-1"></i> Xem trên Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Section -->
+  <section id="dang-ky" class="py-5 bg-white">
+    <div class="container py-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="form-card">
+            <div class="text-center mb-4">
+              <span class="section-subtitle">Đăng Ký Trực Tuyến</span>
+              <h2 class="section-title fs-3 mb-2">Nhận Tư Vấn Khóa Học & Ưu Đãi</h2>
+              <p class="text-muted">Vui lòng điền thông tin bên dưới, bộ phận tuyển sinh sẽ liên hệ tư vấn ngay cho bạn.</p>
+            </div>
+
+            <form id="registrationForm" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="fullName" class="form-label">Họ và tên học viên <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="fullName" placeholder="Ví dụ: Nguyễn Văn A" required>
+                  <div class="invalid-feedback">
+                    Vui lòng nhập họ và tên của bạn.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Số điện thoại liên hệ <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="phone" placeholder="Ví dụ: 0901234567" pattern="[0-9]{9,11}" required>
+                  <div class="invalid-feedback">
+                    Vui lòng nhập số điện thoại hợp lệ (9 - 11 chữ số).
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Địa chỉ Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                  <div class="invalid-feedback">
+                    Vui lòng nhập địa chỉ email hợp lệ.
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="courseSelect" class="form-label">Chọn khóa học quan tâm <span class="text-danger">*</span></label>
+                  <select class="form-select" id="courseSelect" required>
+                    <option value="" disabled selected>-- Chọn khóa học --</option>
+                    <option value="vibe-coding">Khóa học Vibe Coding - tạo website bằng AI (24h - 3.000.000 VNĐ)</option>
+                    <option value="mos">Khóa học MOS (Word, Excel) (48h - 5.000.000 VNĐ)</option>
+                    <option value="fullstack">Khóa học JavaScript Full Stack (120h - 10.000.000 VNĐ)</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Vui lòng chọn khóa học bạn muốn tham gia.
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="locationSelect" class="form-label">Chọn cơ sở học <span class="text-danger">*</span></label>
+                  <select class="form-select" id="locationSelect" required>
+                    <option value="main" selected>Trụ sở chính: 227 Nguyễn Văn Cừ, P. Chợ Quán, Q.5, TP.HCM</option>
+                    <option value="branch">Cơ sở đào tạo: 21-23 Nguyễn Biểu, P. Chợ Quán, Q.5, TP.HCM</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label for="notes" class="form-label">Ghi chú thêm (nếu có)</label>
+                  <textarea class="form-control" id="notes" rows="3" placeholder="Yêu cầu lịch học mong muốn, khung giờ rảnh..."></textarea>
+                </div>
+
+                <div class="col-12 text-center mt-4">
+                  <button type="submit" class="btn btn-accent-custom btn-lg px-5 w-100 w-md-auto">
+                    <i class="bi bi-send-fill me-2"></i> Gửi Đăng Ký Tư Vấn
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Registration Success Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center p-4">
+          <div class="mb-3 text-success">
+            <i class="bi bi-check-circle-fill display-1"></i>
+          </div>
+          <h4 class="modal-title fw-bold mb-2" id="successModalLabel">Đăng Ký Thành Công!</h4>
+          <p class="text-muted mb-4">
+            Cảm ơn học viên <strong id="modalStudentName" class="text-dark"></strong> đã đăng ký tư vấn tại Trung tâm Tin học - ĐH Khoa học Tự nhiên.
+          </p>
+
+          <div class="p-3 bg-light rounded-3 text-start mb-4">
+            <div class="mb-2"><strong>Khóa học:</strong> <span id="modalCourseName" class="text-primary fw-semibold"></span></div>
+            <div class="mb-2"><strong>Số điện thoại:</strong> <span id="modalStudentPhone"></span></div>
+            <div><strong>Địa điểm học:</strong> <span id="modalLocation"></span></div>
+          </div>
+
+          <p class="small text-muted mb-4">Bộ phận Tuyển sinh sẽ liên hệ với bạn qua SĐT trong thời gian sớm nhất để xác nhận lịch học và ưu đãi.</p>
+          
+          <button type="button" class="btn btn-primary-custom w-100" data-bs-dismiss="modal">Hoàn tất</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5 col-md-6">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="brand-icon bg-white text-primary">
+              <i class="bi bi-laptop"></i>
+            </div>
+            <div>
+              <h5 class="mb-0 text-white">TRUNG TÂM TIN HỌC</h5>
+              <small class="text-white-50">ĐẠI HỌC KHOA HỌC TỰ NHIÊN</small>
+            </div>
+          </div>
+          <p class="text-white-50 mb-3">
+            Nơi đào tạo uy tín hàng đầu về Tin học, Công nghệ Thông tin và Kỹ năng Số tại TP.HCM. Cung cấp các chương trình học từ nền tảng đến chuyên sâu cho học sinh, sinh viên và người đi làm.
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h5>Liên Kết Nhanh</h5>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2"><a href="#trang-chu"><i class="bi bi-chevron-right me-1"></i> Trang chủ</a></li>
+            <li class="mb-2"><a href="#khoa-hoc"><i class="bi bi-chevron-right me-1"></i> Khóa học nổi bật</a></li>
+            <li class="mb-2"><a href="#uu-diem"><i class="bi bi-chevron-right me-1"></i> Ưu thế trung tâm</a></li>
+            <li class="mb-2"><a href="#dia-chi"><i class="bi bi-chevron-right me-1"></i> Hệ thống cơ sở</a></li>
+            <li class="mb-2"><a href="#dang-ky"><i class="bi bi-chevron-right me-1"></i> Đăng ký tư vấn</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12">
+          <h5>Thông Tin Liên Hệ</h5>
+          <ul class="list-unstyled text-white-50 mb-0">
+            <li class="mb-2 d-flex gap-2">
+              <i class="bi bi-geo-alt text-warning"></i>
+              <span><strong>Trụ sở chính:</strong> 227 Nguyễn Văn Cừ, Phường Chợ Quán, Quận 5, TP.HCM.</span>
+            </li>
+            <li class="mb-2 d-flex gap-2">
+              <i class="bi bi-building text-warning"></i>
+              <span><strong>Cơ sở đào tạo:</strong> 21-23 Nguyễn Biểu, Phường Chợ Quán, Quận 5, TP.HCM.</span>
+            </li>
+            <li class="mb-2 d-flex gap-2">
+              <i class="bi bi-telephone text-warning"></i>
+              <span><strong>Hotline tư vấn:</strong> (028) 3835 1056</span>
+            </li>
+            <li class="mb-2 d-flex gap-2">
+              <i class="bi bi-envelope text-warning"></i>
+              <span><strong>Email:</strong> tuvan@csc.hcmus.edu.vn</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="mb-0">&copy; 2026 Trung tâm Tin học - Đại học Khoa học Tự nhiên. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>

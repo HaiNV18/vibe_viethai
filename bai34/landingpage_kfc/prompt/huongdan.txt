@@ -1,0 +1,5 @@
+Hướng dẫn: 
+Dùng Antigravity tạo project trong folder, nhập theo prompt.txt
+
+Sau khi tạo project xong, nếu dữ liệu không load được thì dùng Live Server
+
