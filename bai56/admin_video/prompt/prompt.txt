@@ -30,7 +30,11 @@ email: user1@gmail.com
 password: 123456
 role: USER
 
+Thông tin connect Supabase được lưu trong file supabase.txt
+
 Hãy tạo cho tôi các file .MD cần thiết và nén lại thành file ZIP để download
+
+
 
 
 ==========================
