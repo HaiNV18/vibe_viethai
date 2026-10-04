@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - Video Admin</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar"></aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Topbar Header -->
+      <header class="app-topbar" id="app-topbar"></header>
+
+      <!-- Main Body -->
+      <main class="content-area">
+        <div class="content-header">
+          <div>
+            <h1>Category Management</h1>
+            <div class="breadcrumb">Classify and organize content taxonomy (Admin Only)</div>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary" id="open-add-category-modal-btn">
+              <i class="fa-solid fa-plus"></i>
+              <span>Add Category</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Toolbar -->
+        <div class="card" style="padding: 1.25rem; margin-bottom: 1.25rem;">
+          <div class="toolbar-bar" style="margin-bottom: 0;">
+            <div class="search-input-wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="category-search-input" class="form-control" placeholder="Search categories by name or slug...">
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+              <select id="filter-category-status" class="form-control" style="width: auto; min-width: 140px;">
+                <option value="ALL">All Status</option>
+                <option value="ACTIVE">Active</option>
+                <option value="INACTIVE">Inactive</option>
+              </select>
+
+              <span id="categories-total-count" class="badge" style="background:#f1f5f9; color:var(--text-muted); font-size:0.8rem; padding:0.4rem 0.75rem;">
+                0 categories
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Table -->
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 60px;">ID</th>
+                  <th>Category Name</th>
+                  <th>Slug</th>
+                  <th>Description</th>
+                  <th>Assigned Videos</th>
+                  <th>Status</th>
+                  <th style="text-align: right; width: 90px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="categories-tbody">
+                <tr>
+                  <td colspan="7" style="text-align: center; padding: 2rem;">Loading categories...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Add / Edit Category Modal Dialog -->
+  <div class="modal-backdrop" id="category-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="category-modal-title">Add Category</h3>
+        <button type="button" class="action-btn" onclick="Categories.closeCategoryModal()">&times;</button>
+      </div>
+      <form id="category-modal-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="cat-modal-name" class="form-label">
+              Category Name <span class="required">*</span>
+            </label>
+            <input type="text" id="cat-modal-name" class="form-control" placeholder="e.g. Web Development" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cat-modal-slug" class="form-label">
+              Slug (URL Identifier) <span class="required">*</span>
+            </label>
+            <input type="text" id="cat-modal-slug" class="form-control" placeholder="e.g. web-development" required>
+            <div class="form-helper">Auto-generated from name, but can be customized.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="cat-modal-description" class="form-label">Description</label>
+            <textarea id="cat-modal-description" class="form-control" placeholder="Short description of this category..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="cat-modal-status" class="form-label">Status</label>
+            <select id="cat-modal-status" class="form-control">
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">INACTIVE</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="Categories.closeCategoryModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/csv.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/categories.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Storage.initData();
+      await Categories.init();
+    });
+  </script>
+</body>
+</html>

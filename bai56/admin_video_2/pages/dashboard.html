@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Video Admin</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar"></aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Topbar Header -->
+      <header class="app-topbar" id="app-topbar"></header>
+
+      <!-- Main Body -->
+      <main class="content-area">
+        <div class="content-header">
+          <div>
+            <h1>Dashboard Overview</h1>
+            <div class="breadcrumb">Platform analytics, storage utilization, and video statistics</div>
+          </div>
+          <div>
+            <a href="video-form.html" class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i>
+              <span>Add Video</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3 KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-icon-wrapper kpi-icon-blue">
+              <i class="fa-solid fa-video"></i>
+            </div>
+            <div class="kpi-content">
+              <div class="kpi-label">Total Videos</div>
+              <div class="kpi-value" id="kpi-total-videos">-</div>
+              <div class="kpi-trend">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span>Active in catalog</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-wrapper kpi-icon-green">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+            <div class="kpi-content">
+              <div class="kpi-label">Total Views</div>
+              <div class="kpi-value" id="kpi-total-views">-</div>
+              <div class="kpi-trend">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <span>Cumulative views</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-icon-wrapper kpi-icon-purple">
+              <i class="fa-solid fa-hard-drive"></i>
+            </div>
+            <div class="kpi-content">
+              <div class="kpi-label">Storage Used</div>
+              <div class="kpi-value" id="kpi-total-storage">-</div>
+              <div class="kpi-trend">
+                <i class="fa-solid fa-database"></i>
+                <span>Calculated file storage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Charts Grid -->
+        <div class="charts-grid">
+          <!-- Top 10 Videos Bar Chart -->
+          <div class="chart-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fa-solid fa-chart-column" style="color: var(--primary-600); margin-right: 0.5rem;"></i>
+                Top 10 Videos by Views
+              </h3>
+              <span class="badge" style="background: var(--primary-50); color: var(--primary-700);">Most Popular</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="top-videos-chart"></canvas>
+            </div>
+          </div>
+
+          <!-- Views Over Time Line Chart -->
+          <div class="chart-card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fa-solid fa-chart-line" style="color: var(--success-500); margin-right: 0.5rem;"></i>
+                Views Over Time
+              </h3>
+              <span class="badge" style="background: var(--success-50); color: var(--success-600);">Timeline</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="views-time-chart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Videos Section -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fa-solid fa-clock-rotate-left" style="color: var(--text-muted); margin-right: 0.5rem;"></i>
+              Recently Added Videos
+            </h3>
+            <a href="videos.html" class="btn btn-secondary btn-sm">View All Videos</a>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Thumbnail</th>
+                  <th>Title & Description</th>
+                  <th>Category</th>
+                  <th>Views</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recent-videos-tbody">
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 2rem;">Loading recent videos...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/csv.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Storage.initData();
+      await Dashboard.init();
+    });
+  </script>
+</body>
+</html>

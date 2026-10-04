@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Video Admin</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-logo">
+        <i class="fa-solid fa-circle-play"></i>
+        <span>VideoAdmin</span>
+      </div>
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-subtitle">Please enter your credentials to access the panel</p>
+    </div>
+
+    <form id="login-form">
+      <div class="form-group" id="login-identifier-group">
+        <label for="login-identifier" class="form-label">
+          Username or Email <span class="required">*</span>
+        </label>
+        <input type="text" id="login-identifier" class="form-control" placeholder="admin1 or admin1@gmail.com" required autofocus>
+        <div class="form-error" id="login-identifier-error"></div>
+      </div>
+
+      <div class="form-group" id="login-password-group">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+          <label for="login-password" class="form-label" style="margin-bottom: 0;">
+            Password <span class="required">*</span>
+          </label>
+          <a href="forgot-password.html" style="font-size: 0.8rem; color: var(--primary-600); font-weight: 500;">Forgot Password?</a>
+        </div>
+        <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+        <div class="form-error" id="login-password-error"></div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <label class="form-check">
+          <input type="checkbox" id="login-remember">
+          <span>Remember me</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="login-submit-btn" style="width: 100%; padding: 0.75rem;">
+        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        <span>Sign In</span>
+      </button>
+    </form>
+
+    <div class="demo-accounts-box">
+      <h4><i class="fa-solid fa-key"></i> Demo Credentials (Click to fill)</h4>
+      <div class="demo-account-item">
+        <strong>ADMIN:</strong> <code>admin1</code> / <code>123456</code>
+        <button type="button" class="btn btn-secondary btn-sm" style="padding: 0.15rem 0.4rem; font-size: 0.7rem; margin-left: 0.5rem;" onclick="fillDemo('admin1', '123456')">Use</button>
+      </div>
+      <div class="demo-account-item">
+        <strong>USER:</strong> <code>user1</code> / <code>123456</code>
+        <button type="button" class="btn btn-secondary btn-sm" style="padding: 0.15rem 0.4rem; font-size: 0.7rem; margin-left: 0.5rem;" onclick="fillDemo('user1', '123456')">Use</button>
+      </div>
+    </div>
+
+    <div class="auth-footer">
+      Don't have an account? <a href="register.html">Create an account</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/csv.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function fillDemo(username, password) {
+      document.getElementById('login-identifier').value = username;
+      document.getElementById('login-password').value = password;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Storage.initData();
+      Guard.requireGuest();
+
+      const remembered = localStorage.getItem('video_admin_remember');
+      if (remembered) {
+        document.getElementById('login-identifier').value = remembered;
+        document.getElementById('login-remember').checked = true;
+      }
+
+      const loginForm = document.getElementById('login-form');
+      const submitBtn = document.getElementById('login-submit-btn');
+
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const identifier = document.getElementById('login-identifier').value;
+        const password = document.getElementById('login-password').value;
+        const rememberMe = document.getElementById('login-remember').checked;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Signing In...</span>';
+
+        try {
+          const result = await Auth.login(identifier, password, rememberMe);
+          if (result.success) {
+            Components.showToast('Login Successful', `Welcome back, ${result.user.username}!`, 'success');
+            setTimeout(() => {
+              window.location.replace('dashboard.html');
+            }, 600);
+          } else {
+            Components.showToast('Login Failed', result.message, 'danger');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> <span>Sign In</span>';
+          }
+        } catch (err) {
+          Components.showToast('Error', err.message || 'Login error occurred', 'danger');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> <span>Sign In</span>';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

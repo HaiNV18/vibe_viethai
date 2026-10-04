@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Admin - Redirecting...</title>
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/csv.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/guard.js"></script>
+  <script>
+    (async function() {
+      await Storage.initData();
+      const currentUser = Storage.getCurrentUser();
+      if (currentUser) {
+        window.location.replace('pages/dashboard.html');
+      } else {
+        window.location.replace('pages/login.html');
+      }
+    })();
+  </script>
+</head>
+<body style="font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #f8fafc; color: #64748b;">
+  <p>Loading Video Admin...</p>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Project: DHKHTN
+Password: rfSLgv0uR8M9IrTz
+Project URL: https://ikwpxefjfbohdhtmupfm.supabase.co
+anon public: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlrd3B4ZWZqZmJvaGRodG11cGZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEwOTEyMDEsImV4cCI6MjEwNjY2NzIwMX0.F5H3jMhUZ_CWtxRvsVoiRMFZo0ISSNFEWhI5pzlpiAA
+
+#Project Setting -> API Keys -> Legacy anon, service_role API keys để lấy anon public key

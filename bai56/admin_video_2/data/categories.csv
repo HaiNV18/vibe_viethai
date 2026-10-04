@@ -1,0 +1,5 @@
+id,name,slug,description,status
+1,Programming,programming,Programming tutorials,ACTIVE
+2,Web Development,web-development,Web development tutorials,ACTIVE
+3,Design,design,Design tutorials,ACTIVE
+4,Business,business,Business tutorials,ACTIVE

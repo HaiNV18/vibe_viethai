@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Details - Video Admin</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar"></aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Topbar Header -->
+      <header class="app-topbar" id="app-topbar"></header>
+
+      <!-- Main Body -->
+      <main class="content-area">
+        <div class="content-header">
+          <div>
+            <h1 id="form-header-title">Video Form</h1>
+            <div class="breadcrumb">Manage video metadata, media URLs, category assignment, and status</div>
+          </div>
+          <div>
+            <a href="videos.html" class="btn btn-secondary">
+              <i class="fa-solid fa-arrow-left"></i>
+              <span>Back to Videos</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="card" style="max-width: 850px;">
+          <form id="video-edit-form">
+            <!-- Title -->
+            <div class="form-group">
+              <label for="video-title" class="form-label">
+                Video Title <span class="required">*</span>
+              </label>
+              <input type="text" id="video-title" class="form-control" placeholder="e.g. Modern CSS Flexbox & Grid" required>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+              <label for="video-description" class="form-label">Description</label>
+              <textarea id="video-description" class="form-control" placeholder="Brief synopsis or summary of this video..."></textarea>
+            </div>
+
+            <!-- Category & Status -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="video-category" class="form-label">
+                  Category <span class="required">*</span>
+                </label>
+                <select id="video-category" class="form-control" required>
+                  <option value="">-- Select Category --</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="video-status" class="form-label">Status</label>
+                <select id="video-status" class="form-control">
+                  <option value="PUBLISHED">PUBLISHED</option>
+                  <option value="DRAFT">DRAFT</option>
+                  <option value="ARCHIVED">ARCHIVED</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Duration & File Size -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="video-duration" class="form-label">Duration (mm:ss or hh:mm:ss)</label>
+                <input type="text" id="video-duration" class="form-control" placeholder="e.g. 14:30">
+              </div>
+
+              <div class="form-group">
+                <label for="video-filesize-mb" class="form-label">File Size (MB)</label>
+                <input type="number" id="video-filesize-mb" class="form-control" placeholder="e.g. 125" step="0.1" min="0">
+              </div>
+            </div>
+
+            <!-- Thumbnail URL & Live Preview -->
+            <div class="form-group">
+              <label for="video-thumbnail" class="form-label">Thumbnail URL</label>
+              <input type="url" id="video-thumbnail" class="form-control" placeholder="https://example.com/image.jpg">
+              <div class="media-preview-container">
+                <div class="preview-box" id="thumb-preview-box">
+                  <div class="preview-placeholder">Thumbnail preview will appear here</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video URL & Live Player Preview -->
+            <div class="form-group">
+              <label for="video-url" class="form-label">Video Stream / File URL</label>
+              <input type="url" id="video-url" class="form-control" placeholder="https://example.com/video.mp4">
+              <div class="media-preview-container">
+                <div class="preview-box" id="video-preview-box" style="width: 280px; height: 160px;">
+                  <div class="preview-placeholder">Video player preview will appear here</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
+              <a href="videos.html" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary" id="save-video-btn">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Save Video</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/csv.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/videos.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Storage.initData();
+      await Videos.initForm();
+    });
+  </script>
+</body>
+</html>

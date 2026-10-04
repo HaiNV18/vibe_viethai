@@ -41,3 +41,9 @@ Hãy tạo cho tôi các file .MD cần thiết và nén lại thành file ZIP �
 Antigravity:
 Hãy đọc các file .md trong folder.
 Hãy tạo project dựa trên các file .md này
+
+
+==========================
+Sau khi tạo project:
+
+Hãy tạo cho tôi các file .SQL để tôi tạo table trên supabase

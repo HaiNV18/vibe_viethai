@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Management - Video Admin</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/tables.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar"></aside>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Topbar Header -->
+      <header class="app-topbar" id="app-topbar"></header>
+
+      <!-- Main Body -->
+      <main class="content-area">
+        <div class="content-header">
+          <div>
+            <h1>Video Management</h1>
+            <div class="breadcrumb">Browse, search, edit, and organize video catalog</div>
+          </div>
+          <div>
+            <a href="video-form.html" class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i>
+              <span>Add Video</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="card" style="padding: 1.25rem; margin-bottom: 1.25rem;">
+          <div class="toolbar-bar" style="margin-bottom: 0;">
+            <!-- Realtime Search -->
+            <div class="search-input-wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="video-search-input" class="form-control" placeholder="Search by title or description...">
+            </div>
+
+            <!-- Filters -->
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+              <!-- Category Filter -->
+              <select id="filter-category" class="form-control" style="width: auto; min-width: 160px;">
+                <option value="ALL">All Categories</option>
+              </select>
+
+              <!-- Status Filter -->
+              <select id="filter-status" class="form-control" style="width: auto; min-width: 140px;">
+                <option value="ALL">All Status</option>
+                <option value="PUBLISHED">Published</option>
+                <option value="DRAFT">Draft</option>
+                <option value="ARCHIVED">Archived</option>
+              </select>
+
+              <!-- Sort Order -->
+              <select id="video-sort-by" class="form-control" style="width: auto; min-width: 160px;">
+                <option value="NEWEST">Newest First</option>
+                <option value="OLDEST">Oldest First</option>
+                <option value="VIEWS_DESC">Most Views</option>
+                <option value="VIEWS_ASC">Least Views</option>
+                <option value="TITLE_ASC">Title (A-Z)</option>
+              </select>
+
+              <span id="videos-total-count" class="badge" style="background:#f1f5f9; color:var(--text-muted); font-size:0.8rem; padding:0.4rem 0.75rem;">
+                0 videos
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Videos Data Table -->
+        <div class="table-card">
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width: 50px;">ID</th>
+                  <th style="width: 80px;">Thumbnail</th>
+                  <th>Title & Description</th>
+                  <th>Category</th>
+                  <th>Views</th>
+                  <th>Duration</th>
+                  <th>File Size</th>
+                  <th>Status</th>
+                  <th style="text-align: right; width: 90px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="videos-tbody">
+                <tr>
+                  <td colspan="9" style="text-align: center; padding: 2rem;">Loading videos...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div id="videos-pagination" class="pagination-container" style="padding: 1rem 1.25rem;"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/csv.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/guard.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/videos.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await Storage.initData();
+      await Videos.initList();
+    });
+  </script>
+</body>
+</html>
