@@ -1,6 +1,6 @@
 Tôi đang học Vibe Coding. Tôi muốn build 1 website admin quản lý video với các trang sau:
 
-Ngôn ngữ lập trình: chỉ sử dụng HTML CSS JavaScript. Database dùng SQLite
+Ngôn ngữ lập trình: chỉ sử dụng HTML CSS JavaScript. Database dùng CSV
 Giao diện: tông màu sáng, nền trắng (light mode)
 
 Dashboard
@@ -42,3 +42,15 @@ Antigravity:
 Hãy đọc các file .md trong folder.
 Hãy tạo project dựa trên các file .md này
 
+
+==========================
+Bước 2: Sau khi tạo project:
+
+Tôi muốn dùng database trên supabase.
+Đầu tiên hãy tạo cho tôi các file .SQL để tôi tạo table trên supabase
+
+
+==========================
+Bước 3: 
+Tôi đã tạo file supabase.txt chứa các thông tin trên supabase.
+Hãy cho project connect với supabase
