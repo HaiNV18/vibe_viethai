@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietjet – Đặt Vé Máy Bay & Tour Du Lịch Trọn Gói</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Header dùng chung -->
+  <div id="app-header"></div>
+
+  <main>
+    <!-- HERO SECTION & KHUNG TÌM CHUYẾN BAY -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge">
+              <span>✈️</span> Hãng Hàng Không & Lữ Hành Yêu Thích Nhất
+            </div>
+            <h1 class="hero-title">
+              Bay Khắp Muôn Nơi Cùng <span>Vietjet</span> – Khám Phá Thế Giới Rực Rỡ!
+            </h1>
+            <p class="hero-desc">
+              Săn vé máy bay giá tốt nhất và 8+ hành trình Tour du lịch trọn gói trong nước & quốc tế. Dữ liệu trực tiếp từ cơ sở dữ liệu SQLite (<code>db.db</code>).
+            </p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a href="flights.html" class="btn-primary-red">Xem Tất Cả Chuyến Bay</a>
+              <a href="tours.html" class="btn-outline-red">Khám Phá Tour Du Lịch</a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <img src="images/vietjet-tiep-viet-1.jpg" alt="Tiếp viên Vietjet Air" />
+            <div class="hero-visual-tag">
+              🌟 Tận hưởng chuyến bay an toàn, thân thiện cùng đội tàu bay hiện đại
+            </div>
+          </div>
+        </div>
+
+        <!-- KHUNG CHỌN NGÀY & TÌM CHUYẾN BAY -->
+        <div class="search-widget-card">
+          <form id="flight-search-form">
+            <div class="search-widget-header">
+              <div class="search-widget-title">
+                <span>🔍</span> TÌM KIẾM CHUYẾN BAY NHANH
+              </div>
+
+              <div class="trip-type-group">
+                <label class="trip-radio-label selected">
+                  <input type="radio" name="tripType" value="round-trip" checked />
+                  <span>Vé khứ hồi</span>
+                </label>
+                <label class="trip-radio-label">
+                  <input type="radio" name="tripType" value="one-way" />
+                  <span>Vé một chiều</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="search-form-grid">
+              <div class="form-group">
+                <label for="search-from">Điểm xuất phát</label>
+                <select id="search-from" class="form-control">
+                  <option value="">-- Tất cả điểm đi --</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="search-to">Điểm đến</label>
+                <select id="search-to" class="form-control">
+                  <option value="">-- Tất cả điểm đến --</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="search-dep-date">Ngày đi</label>
+                <input type="date" id="search-dep-date" class="form-control" />
+              </div>
+
+              <div class="form-group">
+                <label for="search-ret-date">Ngày về</label>
+                <input type="date" id="search-ret-date" class="form-control" />
+              </div>
+
+              <button type="submit" class="btn-primary-red">
+                <span>🔍</span> Tìm Kiếm
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN 8 TOUR DU LỊCH NỔI BẬT -->
+    <section class="section-block">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-tag">HÀNH TRÌNH ĐƯỢC YÊU THÍCH</span>
+            <h2 class="section-title">8 Tour Du Lịch Nổi Bật</h2>
+          </div>
+          <a href="tours.html" class="btn-outline-red">Xem tất cả Tour →</a>
+        </div>
+
+        <div id="featured-tours-grid" class="tours-grid-home">
+          <!-- Render động từ bảng tours trong sqlite/db.db -->
+        </div>
+      </div>
+    </section>
+
+    <!-- PHẦN ĐỐI TÁC HÃNG HÀNG KHÔNG -->
+    <section class="section-block bg-soft">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-tag">ĐỐI TÁC HÀNG KHÔNG UY TÍN</span>
+            <h2 class="section-title">Các Hãng Hàng Không Đồng Hành</h2>
+          </div>
+          <p style="color:var(--text-muted);font-size:0.92rem;">
+            Nhấn vào logo hãng bay bất kỳ để tìm kiếm các chuyến bay của hãng
+          </p>
+        </div>
+
+        <div id="airlines-logos-grid" class="airlines-grid">
+          <!-- Render động từ bảng airlines trong sqlite/db.db -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer dùng chung -->
+  <div id="app-footer"></div>
+
+  <!-- SQLite WebAssembly + Database Snapshot + App Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="js/db-binary.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

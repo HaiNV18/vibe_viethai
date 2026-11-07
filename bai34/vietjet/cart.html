@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giỏ Hàng (Cart) & Đăng Ký – Vietjet Travel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Header dùng chung -->
+  <div id="app-header"></div>
+
+  <main>
+    <!-- Banner tiêu đề trang -->
+    <section class="page-hero-bar">
+      <div class="container page-hero-inner">
+        <div>
+          <h1 class="page-hero-title">🛒 Giỏ Hàng & Đăng Ký Đặt Chỗ</h1>
+          <p class="page-hero-sub">
+            Xem các chuyến bay và tour du lịch đã chọn, nhập thông tin cá nhân và nhận email xác nhận từ <strong>nvhai061993@gmail.com</strong>
+          </p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="flights.html" class="btn-outline-red" style="background:#fff;">+ Thêm Chuyến bay</a>
+          <a href="tours.html" class="btn-outline-red" style="background:#fff;">+ Thêm Tour du lịch</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <!-- Thông báo hoàn thành khi đăng ký thành công -->
+      <div
+        id="booking-success-banner"
+        style="display:none;background:var(--success-bg);border:2px solid var(--success);color:#14532d;padding:20px 24px;border-radius:var(--radius-lg);margin-bottom:28px;"
+      ></div>
+
+      <div class="cart-layout">
+        <!-- BÊN TRÁI: DANH SÁCH CHUYẾN BAY & TOUR ĐÃ CHỌN -->
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:12px;">
+            <h2 style="font-size:1.35rem;font-weight:800;">
+              Danh Sách Dịch Vụ Đã Chọn (<span id="cart-items-count">0</span>)
+            </h2>
+            <button
+              type="button"
+              id="btn-clear-cart"
+              class="btn-remove-item"
+              style="padding:8px 16px;font-size:0.88rem;"
+              onclick="handleClearAllCart()"
+            >
+              🗑 Xóa toàn bộ giỏ hàng
+            </button>
+          </div>
+
+          <div id="cart-items-container">
+            <!-- Render động từ js/cart.js -->
+          </div>
+        </div>
+
+        <!-- BÊN PHẢI: FORM NHẬP THÔNG TIN CÁ NHÂN & ĐĂNG KÝ -->
+        <div class="checkout-box">
+          <h3 style="font-size:1.25rem;font-weight:800;color:var(--primary-red);margin-bottom:6px;">
+            📝 Thông Tin Cá Nhân Đăng Ký
+          </h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:18px;">
+            Sau khi nhấn <strong>Đăng ký</strong>, hệ thống sẽ hoàn tất đơn hàng và gửi email xác nhận từ <strong>nvhai061993@gmail.com</strong> tới email của bạn.
+          </p>
+
+          <form id="checkout-registration-form" style="display:flex;flex-direction:column;gap:14px;">
+            <div class="form-group">
+              <label for="customer-name">Họ và Tên khách hàng *</label>
+              <input
+                type="text"
+                id="customer-name"
+                class="form-control"
+                placeholder="VD: Nguyễn Văn Hải"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="customer-email">Email nhận xác nhận *</label>
+              <input
+                type="email"
+                id="customer-email"
+                class="form-control"
+                placeholder="VD: khachhang@gmail.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="customer-phone">Số điện thoại liên hệ *</label>
+              <input
+                type="tel"
+                id="customer-phone"
+                class="form-control"
+                placeholder="VD: 0901234567"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="customer-note">Ghi chú thêm (Tùy chọn)</label>
+              <textarea
+                id="customer-note"
+                class="form-control"
+                style="height:76px;padding:10px 14px;resize:vertical;"
+                placeholder="Yêu cầu suất ăn đặc biệt, hỗ trợ hành lý..."
+              ></textarea>
+            </div>
+
+            <div style="margin-top:6px;padding-top:12px;border-top:2px solid var(--border-color);">
+              <div class="checkout-summary-row">
+                <span style="color:var(--text-muted);font-weight:600;">Số lượng dịch vụ:</span>
+                <strong id="summary-item-qty">0</strong>
+              </div>
+              <div class="checkout-summary-row" style="border-bottom:none;">
+                <span style="font-weight:800;font-size:1.05rem;">Tổng Thanh Toán:</span>
+                <span id="summary-grand-total" class="checkout-total-price">0 ₫</span>
+              </div>
+            </div>
+
+            <button type="submit" id="btn-submit-booking" class="btn-primary-red" style="height:52px;font-size:1.05rem;width:100%;">
+              ✅ ĐĂNG KÝ NGAY
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL XÁC NHẬN HOÀN THÀNH & EMAIL GỬI TỪ nvhai061993@gmail.com -->
+  <div id="email-confirmation-modal" class="modal-backdrop">
+    <div class="email-modal-card">
+      <div class="email-modal-header">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:1.7rem;">🎉</span>
+          <div>
+            <h3 style="font-size:1.15rem;font-weight:800;">ĐĂNG KÝ HOÀN THÀNH!</h3>
+            <p style="font-size:0.84rem;">Một email xác nhận đã được gửi tới hộp thư của quý khách.</p>
+          </div>
+        </div>
+        <button
+          type="button"
+          onclick="closeEmailModal()"
+          style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:inherit;font-weight:800;"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="email-modal-body" id="email-modal-content">
+        <!-- Nội dung chi tiết email gửi từ nvhai061993@gmail.com -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer dùng chung -->
+  <div id="app-footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="js/db-binary.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

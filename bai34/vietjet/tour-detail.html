@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi Tiết Tour (Tour Detail) – Vietjet Travel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Header dùng chung -->
+  <div id="app-header"></div>
+
+  <main>
+    <!-- Banner tiêu đề trang -->
+    <section class="page-hero-bar">
+      <div class="container page-hero-inner">
+        <div>
+          <h1 class="page-hero-title">🗺️ Chi Tiết Tour Du Lịch (Tour Detail)</h1>
+          <p class="page-hero-sub">
+            Thông tin chuyến bay đi kèm, loại tàu bay khai thác và lịch trình chi tiết từng ngày
+          </p>
+        </div>
+        <a href="tours.html" class="btn-outline-red" style="background:#fff;">← Quay lại Danh sách Tour</a>
+      </div>
+    </section>
+
+    <section class="container detail-container">
+      <div id="tour-detail-content">
+        <!-- Render động từ js/tour-detail.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer dùng chung -->
+  <div id="app-footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="js/db-binary.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/tour-detail.js"></script>
+</body>
+</html>

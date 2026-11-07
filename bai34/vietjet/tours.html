@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tour Du Lịch (Tours) – Vietjet Travel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Header dùng chung -->
+  <div id="app-header"></div>
+
+  <main>
+    <!-- Banner tiêu đề trang -->
+    <section class="page-hero-bar">
+      <div class="container page-hero-inner">
+        <div>
+          <h1 class="page-hero-title">🌴 Danh Sách Tour Du Lịch (Tours)</h1>
+          <p class="page-hero-sub">
+            Khám phá các gói Tour trọn gói kết hợp vé máy bay từ cơ sở dữ liệu SQLite (<code>db.db</code>)
+          </p>
+        </div>
+        <a href="index.html" class="btn-outline-red" style="background:#fff;">← Về Trang Chủ</a>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="listing-layout">
+        <!-- BÊN TRÁI: FILTER TOUR -->
+        <aside id="tours-filter-sidebar" class="filter-sidebar">
+          <div class="filter-header">
+            <h3>🌪 Bộ Lọc Tour</h3>
+            <button type="button" id="btn-reset-tours" class="btn-reset-filter">Đặt lại bộ lọc</button>
+          </div>
+
+          <!-- 1. Sắp xếp giá vé/tour tăng/giảm dần -->
+          <div class="filter-group">
+            <div class="filter-group-title">💰 Sắp xếp Giá Vé / Giá Tour</div>
+            <div class="filter-options-list">
+              <label class="filter-check-label">
+                <input type="radio" name="tourSortPrice" value="asc" checked />
+                <span>Giá tăng dần (Thấp → Cao)</span>
+              </label>
+              <label class="filter-check-label">
+                <input type="radio" name="tourSortPrice" value="desc" />
+                <span>Giá giảm dần (Cao → Thấp)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 2. Các hãng hàng không -->
+          <div class="filter-group">
+            <div class="filter-group-title">🏢 Các Hãng Hàng Không</div>
+            <div id="tour-filter-airlines-list" class="filter-options-list">
+              <!-- Render từ bảng airlines trong db.db -->
+            </div>
+          </div>
+
+          <!-- 3. Thời gian cất cánh (giờ) -->
+          <div class="filter-group">
+            <div class="filter-group-title">🕒 Thời Gian Cất Cánh (Giờ)</div>
+            <div class="filter-options-list">
+              <label class="filter-check-label">
+                <input type="checkbox" name="tourTimeSlot" value="0-6" />
+                <span>Sáng sớm (00:00 – 06:00)</span>
+              </label>
+              <label class="filter-check-label">
+                <input type="checkbox" name="tourTimeSlot" value="6-12" />
+                <span>Buổi sáng (06:00 – 12:00)</span>
+              </label>
+              <label class="filter-check-label">
+                <input type="checkbox" name="tourTimeSlot" value="12-18" />
+                <span>Buổi chiều (12:00 – 18:00)</span>
+              </label>
+              <label class="filter-check-label">
+                <input type="checkbox" name="tourTimeSlot" value="18-24" />
+                <span>Buổi tối (18:00 – 24:00)</span>
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- BÊN PHẢI: DANH SÁCH CÁC TOUR DU LỊCH -->
+        <div>
+          <div class="results-toolbar">
+            <div class="results-count">
+              Hiển thị <span id="tours-count-number">0</span> tour du lịch trọn gói
+            </div>
+            <div style="font-size:0.85rem;color:var(--text-muted);">
+              💡 Nhấn vào tour bất kỳ để xem lịch trình chuyến đi & đặt tour
+            </div>
+          </div>
+
+          <div id="tours-results-list" class="tours-list-Right">
+            <!-- Render động từ js/tours.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer dùng chung -->
+  <div id="app-footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="js/db-binary.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/tours.js"></script>
+</body>
+</html>

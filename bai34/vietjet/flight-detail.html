@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi Tiết Chuyến Bay (Detail Flights) – Vietjet Travel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Header dùng chung -->
+  <div id="app-header"></div>
+
+  <main>
+    <!-- Banner tiêu đề trang -->
+    <section class="page-hero-bar">
+      <div class="container page-hero-inner">
+        <div>
+          <h1 class="page-hero-title">🛩 Chi Tiết Chuyến Bay (Detail Flights)</h1>
+          <p class="page-hero-sub">
+            Thông tin hành trình, dòng máy bay khai thác và chọn Hạng Phổ Thông / Hạng Thương Gia
+          </p>
+        </div>
+        <a href="flights.html" class="btn-outline-red" style="background:#fff;">← Quay lại Danh sách Chuyến bay</a>
+      </div>
+    </section>
+
+    <section class="container detail-container">
+      <div id="flight-detail-content">
+        <!-- Render động từ js/flight-detail.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer dùng chung -->
+  <div id="app-footer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="js/db-binary.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/flight-detail.js"></script>
+</body>
+</html>

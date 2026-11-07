@@ -1,0 +1,1573 @@
+/* ==========================================================================
+   VIETJET TRAVEL & FLIGHTS - MAIN STYLESHEET
+   Theme: Light Mode | Background: #FFFFFF | Primary Red: #ee1d23
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+:root {
+  --primary-red: #ee1d23;
+  --primary-red-dark: #c51218;
+  --primary-red-light: #fff1f2;
+  --primary-red-border: #fecdd3;
+  --accent-yellow: #ffd200;
+  --accent-yellow-dark: #eab308;
+  --bg-white: #ffffff;
+  --bg-light: #f8fafc;
+  --bg-muted: #f1f5f9;
+  --text-dark: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --success: #16a34a;
+  --success-bg: #dcfce7;
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 14px 36px rgba(238, 29, 35, 0.14);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --container-max: 1280px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   TOP BAR & HEADER NAVIGATION
+   ========================================================================== */
+.top-strip {
+  background: linear-gradient(90deg, var(--primary-red) 0%, #d6151b 65%, #b80f14 100%);
+  color: var(--bg-white);
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
+
+.top-strip-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.top-strip-badge {
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  margin-right: 8px;
+}
+
+.site-header {
+  background: var(--bg-white);
+  border-bottom: 2px solid var(--primary-red);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 78px;
+  gap: 20px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 10px 18px;
+  border-radius: 99px;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.96rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.nav-link:hover {
+  color: var(--primary-red);
+  background: var(--primary-red-light);
+}
+
+.nav-link.active {
+  background: var(--primary-red);
+  color: var(--bg-white);
+}
+
+.nav-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary-red-light);
+  color: var(--primary-red);
+  border: 1.5px solid var(--primary-red);
+  padding: 9px 18px;
+  border-radius: 99px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.nav-cart-btn:hover,
+.nav-cart-btn.active {
+  background: var(--primary-red);
+  color: var(--bg-white);
+}
+
+.cart-count-badge {
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  font-weight: 800;
+  font-size: 0.8rem;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 99px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+/* ==========================================================================
+   HERO BANNER & FLIGHT SEARCH WIDGET (HOME PAGE)
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  background: linear-gradient(125deg, #fff5f5 0%, #ffffff 55%, #fff9db 100%);
+  padding: 44px 0 64px;
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-red-light);
+  color: var(--primary-red);
+  border: 1px solid var(--primary-red-border);
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: 2.55rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-dark);
+  margin-bottom: 14px;
+}
+
+.hero-title span {
+  color: var(--primary-red);
+}
+
+.hero-desc {
+  color: var(--text-body);
+  font-size: 1.05rem;
+  margin-bottom: 22px;
+}
+
+.hero-visual {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--bg-white);
+  aspect-ratio: 16 / 10;
+}
+
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-visual-tag {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(238, 29, 35, 0.92);
+  color: var(--bg-white);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.88rem;
+  backdrop-filter: blur(4px);
+}
+
+/* Search Box */
+.search-widget-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--primary-red);
+  padding: 28px 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.search-widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.search-widget-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary-red);
+}
+
+.trip-type-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.trip-radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 18px;
+  border-radius: 99px;
+  border: 1.5px solid var(--border-color);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.trip-radio-label input[type="radio"] {
+  accent-color: var(--primary-red);
+  width: 16px;
+  height: 16px;
+}
+
+.trip-radio-label.selected {
+  border-color: var(--primary-red);
+  background: var(--primary-red-light);
+  color: var(--primary-red);
+}
+
+.search-form-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr 1fr auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--text-body);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.form-control {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-white);
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px rgba(238, 29, 35, 0.12);
+}
+
+.form-control:disabled {
+  background: var(--bg-muted);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.btn-primary-red {
+  height: 48px;
+  padding: 0 28px;
+  background: var(--primary-red);
+  color: var(--bg-white);
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 16px rgba(238, 29, 35, 0.28);
+  white-space: nowrap;
+}
+
+.btn-primary-red:hover {
+  background: var(--primary-red-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(238, 29, 35, 0.36);
+}
+
+.btn-outline-red {
+  padding: 10px 20px;
+  background: var(--bg-white);
+  color: var(--primary-red);
+  border: 1.5px solid var(--primary-red);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-red:hover {
+  background: var(--primary-red);
+  color: var(--bg-white);
+}
+
+/* ==========================================================================
+   SECTIONS & HEADINGS
+   ========================================================================== */
+.section-block {
+  padding: 60px 0;
+}
+
+.section-block.bg-soft {
+  background-color: var(--bg-light);
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-title-wrap {
+  position: relative;
+}
+
+.section-tag {
+  display: inline-block;
+  color: var(--primary-red);
+  font-weight: 800;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 68px;
+  height: 4px;
+  background: var(--primary-red);
+  border-radius: 99px;
+}
+
+/* ==========================================================================
+   8 FEATURED TOURS GRID (HOME PAGE) - 600x400 THUMBNAILS
+   ========================================================================== */
+.tours-grid-home {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.tour-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.tour-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-red);
+}
+
+.tour-thumb-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2; /* Chuẩn 600x400 */
+  overflow: hidden;
+  background: var(--bg-muted);
+}
+
+.tour-thumb-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.tour-card:hover .tour-thumb-wrapper img {
+  transform: scale(1.06);
+}
+
+.tour-duration-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--primary-red);
+  color: var(--bg-white);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 5px 12px;
+  border-radius: 99px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tour-airline-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-dark);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.tour-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tour-agency-meta {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tour-agency-name {
+  color: var(--primary-red);
+  background: var(--primary-red-light);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.tour-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.45;
+}
+
+.tour-card-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.tour-price-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.tour-price-value {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary-red);
+}
+
+.tour-view-btn {
+  background: var(--primary-red-light);
+  color: var(--primary-red);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.tour-card:hover .tour-view-btn {
+  background: var(--primary-red);
+  color: var(--bg-white);
+}
+
+/* ==========================================================================
+   AIRLINES PARTNER LOGOS SECTION
+   ========================================================================== */
+.airlines-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+
+.airline-logo-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.airline-logo-card:hover {
+  border-color: var(--primary-red);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  background: var(--primary-red-light);
+}
+
+.airline-logo-img-box {
+  height: 54px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.airline-logo-img-box img {
+  max-height: 48px;
+  max-width: 130px;
+  object-fit: contain;
+}
+
+.airline-card-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+}
+
+.airline-card-country {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   PAGE BANNER HEADER (FLIGHTS, TOURS, DETAILS, CART)
+   ========================================================================== */
+.page-hero-bar {
+  background: linear-gradient(115deg, var(--primary-red) 0%, #b91016 100%);
+  color: var(--bg-white);
+  padding: 32px 0;
+  margin-bottom: 32px;
+}
+
+.page-hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.page-hero-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.page-hero-sub {
+  font-size: 0.95rem;
+  opacity: 0.92;
+}
+
+/* ==========================================================================
+   2-COLUMN LAYOUT (SIDEBAR FILTER LEFT + RESULTS RIGHT)
+   ========================================================================== */
+.listing-layout {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  gap: 28px;
+  align-items: start;
+  padding-bottom: 64px;
+}
+
+.filter-sidebar {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  position: sticky;
+  top: 96px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--primary-red);
+}
+
+.filter-header h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary-red);
+}
+
+.btn-reset-filter {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-reset-filter:hover {
+  color: var(--primary-red);
+}
+
+.filter-group {
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.filter-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.filter-group-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.filter-check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-body);
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-check-label:hover {
+  color: var(--primary-red);
+}
+
+.filter-check-label input[type="checkbox"],
+.filter-check-label input[type="radio"] {
+  accent-color: var(--primary-red);
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+/* Results Toolbar */
+.results-toolbar {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.results-count {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.results-count span {
+  color: var(--primary-red);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   FLIGHT ITEM CARD (FLIGHTS PAGE)
+   ========================================================================== */
+.flights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.flight-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.flight-card:hover {
+  border-color: var(--primary-red);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.flight-card-main {
+  display: grid;
+  grid-template-columns: 180px 1fr 210px;
+  gap: 24px;
+  align-items: center;
+}
+
+.flight-airline-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.flight-airline-logo {
+  height: 36px;
+  width: auto;
+  max-width: 120px;
+  object-fit: contain;
+}
+
+.flight-airline-name {
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: var(--text-dark);
+}
+
+.flight-code-pill {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-red);
+  background: var(--primary-red-light);
+  padding: 2px 8px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.flight-schedule-col {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--bg-light);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+}
+
+.flight-time-point {
+  text-align: center;
+}
+
+.flight-hour {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+.flight-city-code {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-red);
+  margin-top: 2px;
+}
+
+.flight-city-name {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.flight-duration-visual {
+  flex: 1;
+  text-align: center;
+  padding: 0 12px;
+}
+
+.flight-duration-text {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-body);
+}
+
+.flight-line-bar {
+  position: relative;
+  height: 2px;
+  background: var(--primary-red);
+  margin: 8px 0;
+}
+
+.flight-line-bar::after {
+  content: '✈';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-light);
+  color: var(--primary-red);
+  padding: 0 6px;
+  font-size: 0.95rem;
+}
+
+.flight-badges-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  color: var(--text-body);
+}
+
+.badge-tag.red {
+  background: var(--primary-red-light);
+  color: var(--primary-red);
+  border-color: var(--primary-red-border);
+}
+
+.flight-price-col {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.flight-price-amount {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  line-height: 1.1;
+}
+
+.flight-price-class {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.flight-card-bottom {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--text-body);
+}
+
+/* ==========================================================================
+   TOUR ITEM CARD (TOURS LISTING PAGE)
+   ========================================================================== */
+.tours-list-Right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tour-horizontal-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.tour-horizontal-card:hover {
+  border-color: var(--primary-red);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.tour-h-thumb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.tour-h-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tour-h-content {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tour-h-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.tour-h-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 16px;
+  font-size: 0.88rem;
+  color: var(--text-body);
+  margin-bottom: 12px;
+  background: var(--bg-light);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+}
+
+.tour-h-services {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.tour-h-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border-color);
+}
+
+/* ==========================================================================
+   FLIGHT DETAIL & FARE CLASS SELECTION (ECONOMY VS BUSINESS)
+   ========================================================================== */
+.detail-container {
+  padding-bottom: 64px;
+}
+
+.detail-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  padding: 28px 32px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 28px;
+}
+
+.detail-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.detail-info-box {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.detail-info-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.detail-info-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+/* Fare Class Cards (Giống hình chọn hạng vé Vietjet) */
+.fare-class-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 24px 0;
+}
+
+.fare-option-card {
+  border: 2.5px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  background: var(--bg-white);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.fare-option-card:hover {
+  border-color: var(--primary-red);
+}
+
+.fare-option-card.selected {
+  border-color: var(--primary-red);
+  background: var(--primary-red-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.fare-option-header {
+  padding: 20px 24px;
+  background: var(--bg-light);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fare-option-card.selected .fare-option-header {
+  background: var(--primary-red);
+  color: var(--bg-white);
+}
+
+.fare-class-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.fare-class-badge {
+  background: var(--accent-yellow);
+  color: var(--text-dark);
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.fare-option-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fare-price-display {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--primary-red);
+  margin-bottom: 16px;
+}
+
+.fare-perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.fare-perks-list li {
+  font-size: 0.92rem;
+  color: var(--text-body);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.perk-check {
+  color: var(--success);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   TOUR ITINERARY TIMELINE (TOUR DETAIL PAGE)
+   ========================================================================== */
+.itinerary-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.itinerary-day-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-left: 5px solid var(--primary-red);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.itinerary-day-badge {
+  display: inline-block;
+  background: var(--primary-red);
+  color: var(--bg-white);
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 99px;
+  margin-bottom: 8px;
+}
+
+.itinerary-day-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.itinerary-day-detail {
+  color: var(--text-body);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CART PAGE & CHECKOUT FORM
+   ========================================================================== */
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 28px;
+  align-items: start;
+  padding-bottom: 64px;
+}
+
+.cart-item-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.cart-item-type-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: var(--primary-red-light);
+  color: var(--primary-red);
+  margin-bottom: 6px;
+}
+
+.cart-item-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.cart-item-meta {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.cart-item-actions {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.btn-remove-item {
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-remove-item:hover {
+  background: #dc2626;
+  color: var(--bg-white);
+}
+
+.checkout-box {
+  background: var(--bg-white);
+  border: 2px solid var(--primary-red);
+  border-radius: var(--radius-xl);
+  padding: 26px;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 96px;
+}
+
+.checkout-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.checkout-total-price {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--primary-red);
+}
+
+/* ==========================================================================
+   EMAIL CONFIRMATION MODAL (GỬI TỪ nvhai061993@gmail.com)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal-backdrop.open {
+  display: flex;
+}
+
+.email-modal-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-xl);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  border-top: 6px solid var(--primary-red);
+  animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.email-modal-header {
+  padding: 22px 28px;
+  background: var(--success-bg);
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.email-modal-body {
+  padding: 26px 28px;
+}
+
+.email-envelope-box {
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-light);
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+
+.email-meta-line {
+  font-size: 0.92rem;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.email-meta-line strong {
+  min-width: 100px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.site-footer {
+  margin-top: auto;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 48px 0 28px;
+  border-top: 4px solid var(--primary-red);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.footer-title {
+  color: var(--bg-white);
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.footer-links a:hover {
+  color: var(--accent-yellow);
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid #374151;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .tours-grid-home {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .airlines-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .search-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .flight-card-main {
+    grid-template-columns: 1fr;
+  }
+  .flight-price-col {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero-grid,
+  .listing-layout,
+  .cart-layout,
+  .fare-class-grid,
+  .tour-horizontal-card,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .filter-sidebar {
+    position: static;
+  }
+  .navbar {
+    height: auto;
+    padding: 14px 0;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .tours-grid-home,
+  .airlines-grid,
+  .search-form-grid,
+  .detail-summary-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-title {
+    font-size: 1.85rem;
+  }
+}
